@@ -1,0 +1,270 @@
+/* About.css */
+.about-section {
+    position: relative;
+    min-height: 90vh;
+    background-color: #f0f4f8;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.pattern-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(#007bff 0.5px, transparent 0.5px), 
+                      radial-gradient(#007bff 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.about-content {
+    position: relative;
+    z-index: 2;
+}
+
+.subtitle {
+    color: #007bff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.highlight {
+    color: #007bff;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+.text-emphasis {
+    font-weight: 600;
+    color: #343a40;
+}
+
+.features {
+    margin-bottom: 2rem;
+}
+
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+}
+
+.feature-icon-wrapper {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    background-color: rgba(0, 123, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon {
+    width: 20px;
+    height: 20px;
+    color: #007bff;
+}
+
+.contact-btn, 
+.more-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-btn:hover,
+.more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+.about-image-col {
+    position: relative;
+    height: 75vh;
+    max-height: 650px;
+    background-color: #e7eef8;
+}
+
+.image-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../assets/images/about-image.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.experience-badge {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: #007bff;
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    animation: float 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+.experience-badge .number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+}
+
+.experience-badge .text {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0); 
+    }
+    50% { 
+        transform: translateY(-10px); 
+    }
+}
+
+[data-aos] {
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+[data-aos="fade-right"] {
+    transform: translateX(-50px);
+}
+
+[data-aos="fade-left"] {
+    transform: translateX(50px);
+}
+
+[data-aos="fade-up"] {
+    transform: translateY(30px);
+}
+
+[data-aos="zoom-in"] {
+    transform: scale(0.9);
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+@media (max-width: 991px) {
+    .about-section {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+
+    .about-content {
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .about-image-col {
+        height: 450px;
+        margin-top: 2rem;
+    }
+
+    .experience-badge {
+        padding: 1rem;
+    }
+
+    .experience-badge .number {
+        font-size: 2rem;
+    }
+
+    .title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-image-col {
+        height: 350px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .feature-card {
+        padding: 1rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-image-col {
+        height: 250px;
+    }
+
+    .experience-badge {
+        padding: 0.8rem;
+        top: 20px;
+        left: 20px;
+    }
+
+    .experience-badge .number {
+        font-size: 1.8rem;
+    }
+
+    .experience-badge .text {
+        font-size: 0.9rem;
+    }
+
+    .contact-btn, 
+    .more-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .feature-icon-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .feature-icon {
+        width: 18px;
+        height: 18px;
+    }
+}

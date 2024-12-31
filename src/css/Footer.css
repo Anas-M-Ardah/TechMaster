@@ -1,0 +1,388 @@
+/* Footer.css */
+.footer {
+    position: relative;
+    color: white;
+    padding: 60px 0 20px;
+    background-image: url('../assets/images/footerbg12.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 21, 41, 0.85), rgba(0, 21, 41, 0.9));
+}
+
+.footer-content {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr 1fr;
+    gap: 60px;
+    padding: 0 40px;
+    z-index: 1;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Company Info Section */
+.footer-logo {
+    max-width: 180px;
+    margin-bottom: 25px;
+}
+
+.company-description {
+    color: #a8b2c0;
+    margin-bottom: 25px;
+    line-height: 1.8;
+    font-size: 15px;
+    max-width: 90%;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a:hover {
+    background-color: #4361ee;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.social-links a:hover::before {
+    left: 100%;
+}
+
+/* Quick Links Section */
+.footer-section h3 {
+    color: white;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+    font-size: 22px;
+    text-align: left;
+}
+
+h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #4361ee;
+    transition: width 0.3s ease;
+}
+
+.footer-section:hover h3::after {
+    width: 60px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+ul li {
+    margin-bottom: 18px;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+ul li::before {
+    content: '›';
+    position: absolute;
+    left: -20px;
+    color: #4361ee;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+ul li:hover {
+    transform: translateX(20px);
+}
+
+ul li:hover::before {
+    opacity: 1;
+}
+
+ul li a {
+    color: #a8b2c0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    display: inline-block;
+    position: relative;
+}
+
+ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #4361ee;
+    transition: width 0.3s ease;
+}
+
+ul li:hover a {
+    color: #4361ee;
+}
+
+ul li:hover a::after {
+    width: 100%;
+}
+
+/* Contact Section */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(10px);
+}
+
+.contact-icon {
+    color: #4361ee;
+    margin-right: 15px;
+    font-size: 18px;
+    margin-top: 4px;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.2);
+}
+
+.contact-item p {
+    margin: 0 0 5px 0;
+    color: #a8b2c0;
+    font-size: 14px;
+}
+
+.contact-item a,
+.contact-item address {
+    color: white;
+    text-decoration: none;
+    margin: 0;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Gallery Section */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    z-index: 2;
+}
+
+/* Gallery Modal */
+.gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    animation: modalFadeIn 0.3s ease;
+
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    animation: modalZoomIn 0.3s ease;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    padding-bottom: 5%;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    position: relative;
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1;
+}
+
+.footer-bottom p {
+    color: #a8b2c0;
+    margin: 0;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom:hover p {
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalZoomIn {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Stagger the animation for each section */
+.footer-section:nth-child(1) { animation-delay: 0.1s; }
+.footer-section:nth-child(2) { animation-delay: 0.2s; }
+.footer-section:nth-child(3) { animation-delay: 0.3s; }
+.footer-section:nth-child(4) { animation-delay: 0.4s; }
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+
+    .company-description {
+        max-width: 100%;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .modal-close {
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        width: 35px;
+        height: 35px;
+    }
+
+    ul li:hover {
+        transform: translateX(10px);
+    }
+
+    .contact-item:hover {
+        transform: translateX(5px);
+    }
+}
