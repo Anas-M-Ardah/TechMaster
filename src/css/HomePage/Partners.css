@@ -1,18 +1,18 @@
 /* Partners.css */
-.partners-section {
+.par-partners-section {
     background-color: #ffffff;
     padding: 80px 0;
 }
 
-.partners-content {
+.par-partners-content {
     padding-right: 3rem;
 }
 
-.section-header {
+.par-section-header {
     margin-bottom: 2rem;
 }
 
-.subtitle {
+.par-subtitle {
     color: #4361ee;
     font-weight: 600;
     text-transform: uppercase;
@@ -23,7 +23,7 @@
     padding-right: 60px;
 }
 
-.subtitle::after {
+.par-subtitle::after {
     content: '';
     position: absolute;
     right: 0;
@@ -34,18 +34,18 @@
     transform: translateY(-50%);
 }
 
-.title {
+.par-title {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     line-height: 1.2;
 }
 
-.highlight {
+.par-highlight {
     color: #4361ee;
 }
 
-.description {
+.par-description {
     color: #6c757d;
     font-size: 1.1rem;
     line-height: 1.6;
@@ -53,14 +53,14 @@
 }
 
 /* Partners Grid */
-.partners-grid {
+.par-partners-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     padding: 1rem;
 }
 
-.partner-logo {
+.par-partner-logo {
     aspect-ratio: 16/9;
     padding: 1.5rem;
     display: flex;
@@ -70,7 +70,7 @@
     transition: transform 0.3s ease;
 }
 
-.partner-logo img {
+.par-partner-logo img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -82,7 +82,7 @@
     max-height: 100px;
 }
 
-.partner-logo:hover img {
+.par-partner-logo:hover img {
     filter: grayscale(0%);
     opacity: 1;
     transform: scale(1.05);
@@ -90,47 +90,47 @@
 
 /* Responsive Styles */
 @media (max-width: 1200px) {
-    .partners-grid {
+    .par-partners-grid {
         gap: 1.5rem;
     }
 
-    .partner-logo {
+    .par-partner-logo {
         padding: 1rem;
     }
 
-    .partner-logo img {
+    .par-partner-logo img {
         max-width: 180px;
         max-height: 90px;
     }
 }
 
 @media (max-width: 991px) {
-    .partners-content {
+    .par-partners-content {
         padding-right: 0;
         text-align: center;
         margin-bottom: 3rem;
     }
 
-    .subtitle::after {
+    .par-subtitle::after {
         display: none;
     }
 
-    .title {
+    .par-title {
         font-size: 2.2rem;
     }
 
-    .partners-grid {
+    .par-partners-grid {
         gap: 1rem;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
     }
 
-    .partner-logo {
+    .par-partner-logo {
         aspect-ratio: 3/2;
         padding: 1rem;
     }
 
-    .partner-logo img {
+    .par-partner-logo img {
         max-width: 150px;
         max-height: 80px;
         width: auto;
@@ -139,25 +139,25 @@
 }
 
 @media (max-width: 768px) {
-    .title {
+    .par-title {
         font-size: 2rem;
     }
 
-    .description {
+    .par-description {
         font-size: 1rem;
     }
 
-    .partners-grid {
+    .par-partners-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         padding: 0.5rem;
     }
 
-    .partner-logo {
+    .par-partner-logo {
         padding: 0.8rem;
     }
 
-    .partner-logo img {
+    .par-partner-logo img {
         max-width: 120px;
         max-height: 60px;
         padding: 0.5rem;
@@ -165,57 +165,22 @@
 }
 
 @media (max-width: 576px) {
-    .partners-section {
+    .par-partners-section {
         padding: 40px 0;
     }
 
-    .partners-grid {
+    .par-partners-grid {
         gap: 0.8rem;
         padding: 0.3rem;
     }
 
-    .partner-logo {
+    .par-partner-logo {
         padding: 0.5rem;
     }
 
-    .partner-logo img {
+    .par-partner-logo img {
         max-width: 100px;
         max-height: 50px;
         padding: 0.3rem;
     }
-}
-
-/* Animation Keyframes */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* AOS Animation Classes */
-[data-aos] {
-    opacity: 0;
-    transition: all 0.8s ease;
-}
-
-[data-aos="fade-right"] {
-    transform: translateX(-50px);
-}
-
-[data-aos="fade-left"] {
-    transform: translateX(50px);
-}
-
-[data-aos="fade-up"] {
-    transform: translateY(30px);
-}
-
-[data-aos].aos-animate {
-    opacity: 1;
-    transform: translate(0) scale(1);
 }
