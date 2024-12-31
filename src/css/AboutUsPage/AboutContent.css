@@ -1,0 +1,270 @@
+/* AboutContent.css */
+.tm-about-content {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.tm-about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.tm-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.tm-about-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #0066FF;
+    font-weight: 500;
+}
+
+.tm-about-arrow {
+    font-size: 20px;
+}
+
+.tm-about-text h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.tm-about-highlight {
+    color: #0066FF;
+}
+
+.tm-about-main-description {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.tm-about-sub-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.tm-about-detailed-info {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.tm-about-image-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tm-about-image-wrapper {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.tm-about-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.tm-about-image-wrapper img:hover {
+    transform: scale(1.02);
+}
+
+.tm-about-excellence-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+}
+
+.tm-about-excellence-card:hover {
+    transform: translateY(-5px);
+}
+
+.tm-about-trophy-icon {
+    color: #0066FF;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.tm-about-excellence-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.tm-about-excellence-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.tm-about-tabs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.tm-about-tab {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.tm-about-tab:hover {
+    color: #0066FF;
+}
+
+.tm-about-tab.active {
+    color: #0066FF;
+}
+
+.tm-about-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #0066FF;
+}
+
+.tm-about-tab-content {
+    padding: 20px 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+.tm-about-tab-content p {
+    margin: 0;
+    animation: tmAboutFadeIn 0.3s ease;
+    font-size: 16px;
+}
+
+@keyframes tmAboutFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .tm-about-container {
+        max-width: 960px;
+    }
+
+    .tm-about-text h2 {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 992px) {
+    .tm-about-container {
+        max-width: 720px;
+    }
+
+    .tm-about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .tm-about-text h2 {
+        font-size: 36px;
+    }
+
+    .tm-about-main-description {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tm-about-content {
+        padding: 60px 0;
+    }
+
+    .tm-about-container {
+        max-width: 540px;
+    }
+
+    .tm-about-text h2 {
+        font-size: 32px;
+    }
+
+    .tm-about-tabs {
+        gap: 10px;
+    }
+
+    .tm-about-tab {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .tm-about-excellence-card {
+        padding: 20px;
+    }
+
+    .tm-about-excellence-card h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .tm-about-container {
+        padding: 0 15px;
+    }
+
+    .tm-about-content {
+        padding: 40px 0;
+    }
+
+    .tm-about-text h2 {
+        font-size: 28px;
+    }
+
+    .tm-about-main-description,
+    .tm-about-sub-description,
+    .tm-about-detailed-info,
+    .tm-about-tab-content p {
+        font-size: 14px;
+    }
+
+    .tm-about-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tm-about-tab {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+}
