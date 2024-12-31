@@ -8,7 +8,7 @@ import Client from './components/ClientsPage/Client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import LoadingSpinner from './components/common/LoadingSpinner';
+import LoadingSpinner from './components/Common/LoadingSpinner';
 
 // Scroll to top component
 function ScrollToTop() {
