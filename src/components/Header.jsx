@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../css/Header.css';
 
+import logo from '../assets/images/technology-master-logo.png';
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -33,7 +35,7 @@ const Header = () => {
     >
       <div className="header-container">
         <Link to="/" className="logo">
-          <img src="src/assets/images/technology-master-logo.png"  alt="Company Logo" />
+          <img src={logo}  alt="Company Logo" />
         </Link>
 
         {/* Mobile Menu Button */}
