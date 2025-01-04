@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import LoadingSpinner from './components/Common/LoadingSpinner';
+import DataCenter from './components/ServicesPage/DataCenter';
 
 // Scroll to top component
 function ScrollToTop() {
@@ -52,6 +53,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/services" element={<Service />} />
         <Route path="/clients" element={<Client />} />
+        <Route path="/services/data-center" element={<DataCenter />} />
       </Routes>
     </Router>
   );
