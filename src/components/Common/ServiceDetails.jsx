@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../../css/Common/ServiceDetails.css';
@@ -43,39 +43,86 @@ const SDCategory = ({ category }) => (
 );
 
 const SDPartners = ({ partners }) => {
-    const chunkSize = 4; // Number of logos per slide
-    const partnerChunks = [];
+    const [activeIndex, setActiveIndex] = useState(0);
 
-    for (let i = 0; i < partners.length; i += chunkSize) {
-        partnerChunks.push(partners.slice(i, i + chunkSize));
-    }
+    const slidesToShow = window.innerWidth <= 576 ? 1 : 
+                        window.innerWidth <= 768 ? 2 : 
+                        window.innerWidth <= 991 ? 3 : 4;
+
+    const maxIndex = partners.length - slidesToShow;
+
+    const nextSlide = () => {
+        setActiveIndex(prev => 
+            prev >= maxIndex ? 0 : prev + 1
+        );
+    };
+
+    const prevSlide = () => {
+        setActiveIndex(prev => 
+            prev <= 0 ? maxIndex : prev - 1
+        );
+    };
+
+    useEffect(() => {
+        const interval = setInterval(nextSlide, 5000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
-        <Container className="sd-partners-slider">
-            <h3 className="text-left mb-4">Brought to you by:</h3>
-            <Carousel indicators={false} interval={3000} controls={false}>
-                {partnerChunks.map((chunk, index) => (
-                    <Carousel.Item key={`sd-partner-chunk-${index}`}>
-                        <Row className="justify-content-center">
-                            {chunk.map((partner, idx) => (
-                                <Col key={`sd-partner-${idx}`} xs={6} md={3} className="text-center">
-                                    <img 
-                                        src={partner.logo} 
-                                        alt={partner.name}
-                                        loading="lazy"
-                                        className="img-fluid"
-                                        style={{ width: '150px', height: 'auto' }} // Fixed size
-                                    />
-                                </Col>
-                            ))}
-                        </Row>
-                    </Carousel.Item>
-                ))}
-            </Carousel>
-        </Container>
+        <section className="sd-partners-section py-5">
+            <Container>
+                <h3 className="text-left mb-4">Brought to you by:</h3>
+                <Row className="align-items-center">
+                    <Col>
+                        <div className="partners-slider">
+                            <button 
+                                className="slider-arrow prev" 
+                                onClick={prevSlide}
+                                aria-label="Previous"
+                            >
+                                ‹
+                            </button>
+                            
+                            <div className="slider-container">
+                                <div 
+                                    className="slider-track"
+                                    style={{
+                                        transform: `translateX(-${activeIndex * (100 / slidesToShow)}%)`
+                                    }}
+                                >
+                                    {partners.map((partner, index) => (
+                                        <div 
+                                            key={index} 
+                                            className="slider-item"
+                                            style={{ width: `${100 / slidesToShow}%` }}
+                                        >
+                                            <div className="logo-container">
+                                                <img
+                                                    src={partner.logo}
+                                                    alt={partner.name}
+                                                    className="partner-logo"
+                                                    style={{ width: '150px', height: 'auto'}} // Fixed size
+                                                />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <button 
+                                className="slider-arrow next" 
+                                onClick={nextSlide}
+                                aria-label="Next"
+                            >
+                                ›
+                            </button>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </section>
     );
 };
-
 
 const ServiceDetailsView = ({ 
     title,
