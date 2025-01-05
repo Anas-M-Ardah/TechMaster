@@ -16,7 +16,7 @@ const MoreSection = () => {
                 <div className="play-button" onClick={handlePlayClick}>
                     <FaPlay />
                 </div>
-                <h1>Providing You With The Best<br />IT Solutions.</h1>
+                <h1>Providing You With The Best<br />Smart Solutions.</h1>
                 <p>Dig deep into what we differentiate ourself with through our exceptional services</p>
             </div>
             
@@ -27,8 +27,8 @@ const MoreSection = () => {
                         <iframe 
                             width="100%" 
                             height="100%" 
-                            src="https://www.youtube.com/embed/XqZsoesa55w"
-                            title="YouTube video player"
+                            src="https://www.youtube.com/embed/6fK0hEoKNd4"
+                            title="The MAXHUB XBoard V7 Series - Features Overview"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen

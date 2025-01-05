@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
 import '../../css/ContactUsPage/ContactUs.css';
 
 function ContactUs() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+    });
+
+    const [responseMessage, setResponseMessage] = useState('');
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('/api/contact', formData);
+            setResponseMessage(response.data.message);
+        } catch (error) {
+            setResponseMessage('Failed to send message. Please try again later.');
+        }
+    };
+
     return (
         <>
             <Header />
@@ -44,18 +68,32 @@ function ContactUs() {
                             </div>
                         </Col>
                         <Col md={8}>
-                            <Form>
+                            <Form onSubmit={handleSubmit}>
                                 <Row>
                                     <Col md={6}>
                                         <Form.Group controlId="formName">
                                             <Form.Label>Name (required)</Form.Label>
-                                            <Form.Control type="text" placeholder="Your Name*" required />
+                                            <Form.Control 
+                                                type="text" 
+                                                name="name"
+                                                placeholder="Your Name*" 
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                required 
+                                            />
                                         </Form.Group>
                                     </Col>
                                     <Col md={6}>
                                         <Form.Group controlId="formEmail">
                                             <Form.Label>Email Address (required)</Form.Label>
-                                            <Form.Control type="email" placeholder="Your Email Address*" required />
+                                            <Form.Control 
+                                                type="email" 
+                                                name="email"
+                                                placeholder="Your Email Address*" 
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                required 
+                                            />
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -63,17 +101,32 @@ function ContactUs() {
                                     <Col md={6}>
                                         <Form.Group controlId="formPhone">
                                             <Form.Label>Phone (optional)</Form.Label>
-                                            <Form.Control type="text" placeholder="Your Phone Number" />
+                                            <Form.Control 
+                                                type="text" 
+                                                name="phone"
+                                                placeholder="Your Phone Number" 
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                            />
                                         </Form.Group>
                                     </Col>
                                 </Row>
                                 <Form.Group controlId="formMessage">
                                     <Form.Label>Your message</Form.Label>
-                                    <Form.Control as="textarea" rows={4} placeholder="Type your message*" required />
+                                    <Form.Control 
+                                        as="textarea" 
+                                        name="message"
+                                        rows={4} 
+                                        placeholder="Type your message*" 
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        required 
+                                    />
                                 </Form.Group>
                                 <Button variant="primary" type="submit" className="mt-3">
                                     Send message
                                 </Button>
+                                {responseMessage && <p className="mt-3">{responseMessage}</p>}
                             </Form>
                         </Col>
                     </Row>
@@ -82,7 +135,7 @@ function ContactUs() {
                             <h5 className="mb-3">Our Location</h5>
                             <div className="location-map">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019284123456!2d-122.419415484681!3d37.77492927975933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c5b6b6b6b%3A0x4b6b6b6b6b6b6b6b!2sYour%20Location!5e0!3m2!1sen!2sus!4v1610000000000!5m2!1sen!2sus"
+                                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3383.809706026183!2d35.85956907508888!3d31.993173673631727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sBuilding%20219%2C%20Wasfi%20Tal%20St%2C%20Khalda%2C%20Amman%2C%20Jordan!5e0!3m2!1sen!2sjo!4v1736099352663!5m2!1sen!2sjo"
                                     width="100%"
                                     height="300"
                                     frameBorder="0"

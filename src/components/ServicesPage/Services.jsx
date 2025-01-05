@@ -21,7 +21,7 @@ const Services = () => {
             title: "IT Services & Network",
             image: itServices,
             icon: "🖥️",
-            link: "/services/it-services"
+            link: "/services"
         },
         {
             id: 2,
@@ -49,35 +49,35 @@ const Services = () => {
             title: "Smart Classroom Solution",
             image: smartClassroom,
             icon: "📚",
-            link: "/services/smart-classroom"
+            link: "/services"
         },
         {
             id: 6,
             title: "Smart Meeting Rooms A/V",
             image: smartMeeting,
             icon: "🎥",
-            link: "/services/smart-meeting"
+            link: "/services"
         },
         {
             id: 7,
             title: "Low Current Solution",
             image: lowCurrent,
             icon: "⚡",
-            link: "/services/low-current"
+            link: "/services"
         },
         {
             id: 8,
             title: "LED Panel & Digital Signage",
             image: ledPanel,
             icon: "📺",
-            link: "/services/led-panel"
+            link: "/services"
         },
         {
             id: 9,
             title: "Fire Extinguishing Aerosol Systems",
             image: fireSystem,
             icon: "🧯",
-            link: "/services/fire-system"
+            link: "/services"
         }
     ];
 

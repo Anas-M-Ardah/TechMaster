@@ -1,10 +1,9 @@
-// Footer.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebookF, FaPhone, FaEnvelope, FaMapMarkerAlt, FaTimes } from 'react-icons/fa';
+import { FaFacebookF, FaPhone, FaEnvelope, FaMapMarkerAlt, FaTimes, FaPlayCircle } from 'react-icons/fa';
 import '../css/Footer.css';
 
-// Import your logo and gallery images
+// Import your logo, gallery images, and videos
 import logo from '../assets/images/technology-master-logo.png';
 import gallery1 from '../assets/images/gallery/gallery1.webp';
 import gallery2 from '../assets/images/gallery/gallery2.webp';
@@ -12,22 +11,42 @@ import gallery3 from '../assets/images/gallery/gallery3.webp';
 import gallery4 from '../assets/images/gallery/gallery4.webp';
 import gallery5 from '../assets/images/gallery/gallery5.webp';
 import gallery6 from '../assets/images/gallery/gallery6.jpg';
-import gallery7 from '../assets/images/gallery/gallery7.jpg';
-import gallery8 from '../assets/images/gallery/gallery8.jpg';
+import sampleVideo1 from '../assets/videos/sample-vid-1.mp4';
+import sampleVideo2 from '../assets/videos/sample-vid-2.mp4';
 
 const Footer = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const galleryImages = [
-        { id: 1, src: gallery1, alt: "Gallery 1" },
-        { id: 2, src: gallery2, alt: "Gallery 2" },
-        { id: 3, src: gallery3, alt: "Gallery 3" },
-        { id: 4, src: gallery4, alt: "Gallery 4" },
-        { id: 5, src: gallery5, alt: "Gallery 5" },
-        { id: 6, src: gallery6, alt: "Gallery 6" },
-        { id: 7, src: gallery7, alt: "Gallery 7" },
-        { id: 8, src: gallery8, alt: "Gallery 8" },
+    const galleryItems = [
+        { id: 1, src: gallery1, alt: "Gallery 1", type: "image" },
+        { id: 2, src: gallery2, alt: "Gallery 2", type: "image" },
+        { id: 3, src: gallery3, alt: "Gallery 3", type: "image" },
+        { id: 4, src: gallery4, alt: "Gallery 4", type: "image" },
+        { id: 5, src: gallery5, alt: "Gallery 5", type: "image" },
+        { id: 6, src: gallery6, alt: "Gallery 6", type: "image" },
+        { id: 7, src: sampleVideo1, alt: "Sample Video 1", type: "video" },
+        { id: 8, src: sampleVideo2, alt: "Sample Video 2", type: "video" },
     ];
+
+    const handleVideoClick = (videoSrc) => {
+        const videoElement = document.createElement('video');
+        videoElement.src = videoSrc;
+        videoElement.controls = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        document.body.appendChild(videoElement);
+
+        const requestFullscreen = videoElement.requestFullscreen || videoElement.mozRequestFullScreen || videoElement.webkitRequestFullscreen || videoElement.msRequestFullscreen;
+        if (requestFullscreen) {
+            requestFullscreen.call(videoElement);
+        }
+
+        videoElement.onfullscreenchange = () => {
+            if (!document.fullscreenElement) {
+                videoElement.remove();
+            }
+        };
+    };
 
     return (
         <footer className="footer">
@@ -93,14 +112,25 @@ const Footer = () => {
                 <div className="footer-section">
                     <h3>Gallery</h3>
                     <div className="gallery-grid">
-                        {galleryImages.map((image) => (
-                            <img
-                                key={image.id}
-                                src={image.src}
-                                alt={image.alt}
-                                onClick={() => setSelectedImage(image)}
-                                className="gallery-image"
-                            />
+                        {galleryItems.map((item) => (
+                            item.type === "image" ? (
+                                <img
+                                    key={item.id}
+                                    src={item.src}
+                                    alt={item.alt}
+                                    onClick={() => setSelectedImage(item)}
+                                    className="gallery-image"
+                                />
+                            ) : (
+                                <div key={item.id} className="gallery-video-container" onClick={() => handleVideoClick(item.src)}>
+                                    <video
+                                        className="gallery-video"
+                                        src={item.src}
+                                        alt={item.alt}
+                                    />
+                                    <FaPlayCircle className="play-icon" />
+                                </div>
+                            )
                         ))}
                     </div>
                 </div>
