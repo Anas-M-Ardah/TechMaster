@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import ServicesCard from './ServicesCard';
-import { 
-    FaDesktop, 
-    FaFireExtinguisher, 
+import {
+    FaDesktop,
+    FaFireExtinguisher,
     FaNetworkWired
 } from 'react-icons/fa';
 import '../../css/HomePage/Services.css';
@@ -75,8 +76,8 @@ const Services = () => {
                 <div className="services-slider" data-aos="fade-up">
                     <div className="services-track">
                         {getVisibleServices.map((service, index) => (
-                            <div 
-                                key={service.id} 
+                            <div
+                                key={service.id}
                                 className={`service-slide ${index === 1 ? 'active' : ''}`}
                             >
                                 <ServicesCard {...service} />
@@ -87,7 +88,7 @@ const Services = () => {
                     <div className="dots-and-arrows">
                         <div className="slider-dots">
                             {services.map((_, index) => (
-                                <button 
+                                <button
                                     key={index}
                                     className={`dot ${index === activeIndex ? 'active' : ''}`}
                                     onClick={() => setActiveIndex(index)}
@@ -99,12 +100,14 @@ const Services = () => {
                     </div>
 
                     <div className="text-center mt-4">
-                        <button 
-                            className="more-services-btn"
-                            aria-label="View More Services"
-                        >
-                            More Services +
-                        </button>
+                        <Link to="/services">
+                            <button
+                                className="more-services-btn"
+                                aria-label="View More Services"
+                            >
+                                More Services +
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </Container>

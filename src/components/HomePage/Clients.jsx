@@ -6,7 +6,7 @@ import '../../css/HomePage/Clients.css';
 // Import your client logos
 import client1 from '../../assets/images/clients/client-1.png';
 import client2 from '../../assets/images/clients/client-2.png';
-import client3 from '../../assets/images/clients/client-3.webp';
+import irbid from '../../assets/images/clients/client3.png';
 import client4 from '../../assets/images/clients/client-4.webp';
 import client5 from '../../assets/images/clients/client-5.webp';
 import client6 from '../../assets/images/clients/client-6.webp';
@@ -21,7 +21,7 @@ const Clients = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const logos = [
-        client1, client2, client3, client4,
+        client1, client2, irbid, client4,
         client5, client6, client7, client8,
         client9, client10, client11, client12
     ];

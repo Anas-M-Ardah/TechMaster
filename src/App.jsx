@@ -6,6 +6,7 @@ import AboutUs from './components/AboutUsPage/AboutUs';
 import Service from './components/ServicesPage/Service';
 import Client from './components/ClientsPage/Client';
 import BusinessPartners from './components/BusinessPartnersPage/BusinessPartners';
+import ContactUs from './components/ContactUsPage/ContactUs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -57,6 +58,7 @@ function App() {
         <Route path="/services" element={<Service />} />
         <Route path="/clients" element={<Client />} />
         <Route path="/partners" element={<BusinessPartners />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/services/data-center" element={<DataCenter />} />
         <Route path="/services/structure-cabling" element={<StructureCabling />} />
         <Route path="/services/smart-building" element={<SmartBuildingSolutions />} />

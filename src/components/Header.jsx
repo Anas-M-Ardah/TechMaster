@@ -80,10 +80,9 @@ const Header = () => {
                 exit={{ opacity: 0, y: -10 }}
                 className="dropdown-content"
               >
-                <Link to="/services/web-development">Web Development</Link>
-                <Link to="/services/mobile-apps">Mobile Apps</Link>
-                <Link to="/services/cloud-solutions">Cloud Solutions</Link>
-                <Link to="/services/consulting">IT Consulting</Link>
+                <Link to="/services/data-center">Data Center</Link>
+                <Link to="/services/structure-cabling">Structure Cabling</Link>
+                <Link to="/services/smart-building">Smart Building</Link>
               </motion.div>
             )}
           </div>
