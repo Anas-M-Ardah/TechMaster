@@ -6,7 +6,7 @@ import '../../css/ClientsPage/Clients.css';
 // Import your client logos
 import client1 from '../../assets/images/clients/client-1.png';
 import client2 from '../../assets/images/clients/client-2.png';
-import client3 from '../../assets/images/clients/client3.jpg';
+import client3 from '../../assets/images/clients/client3.png';
 import client4 from '../../assets/images/clients/client-4.jpg';
 import client5 from '../../assets/images/clients/client-5.webp';
 import client6 from '../../assets/images/clients/client-6.webp';
