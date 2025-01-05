@@ -276,3 +276,54 @@
     }
 }
 
+.partners-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slider-item {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px; /* Reduced padding for less space */
+}
+
+.logo-container {
+    padding: 5px; /* Reduced padding */
+    background-color: transparent; /* Transparent background */
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.slider-arrow.prev {
+    left: 10px;
+}
+
+.slider-arrow.next {
+    right: 10px;
+}
+
+h3::after{
+    display: none;
+}
+

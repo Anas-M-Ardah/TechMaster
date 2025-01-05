@@ -10,6 +10,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import LoadingSpinner from './components/Common/LoadingSpinner';
 import DataCenter from './components/ServicesPage/DataCenter';
+import StructureCabling from './components/ServicesPage/StructureCabling';
+import SmartBuildingSolutions from './components/ServicesPage/SmartBuildingSolution';
 
 // Scroll to top component
 function ScrollToTop() {
@@ -54,6 +56,8 @@ function App() {
         <Route path="/services" element={<Service />} />
         <Route path="/clients" element={<Client />} />
         <Route path="/services/data-center" element={<DataCenter />} />
+        <Route path="/services/structure-cabling" element={<StructureCabling />} />
+        <Route path="/services/smart-building" element={<SmartBuildingSolutions />} />
       </Routes>
     </Router>
   );
