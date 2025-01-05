@@ -6,7 +6,7 @@ import PageHeader from '../Common/PageHeader';
 import '../../css/BusinessPartnersPage/BusinessPartners.css';
 
 // Partner Logos
-import maxhub from '../../assets/images/partners/maxhub.png';
+import maxhub from '../../assets/images/partners/MAXHUB.png';
 import huawei from '../../assets/images/partners/huawei.png';
 import schneider from '../../assets/images/partners/schneider.png';
 import conteg from '../../assets/images/partners/Conteg-logo.png';
