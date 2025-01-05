@@ -1,0 +1,35 @@
+.business-partners-section {
+    background-color: #fff;
+}
+
+.business-partners-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.business-partners-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.business-partner-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px; /* Ensure consistent height */
+}
+
+.business-partner-logo {
+    width: 150px; /* Fixed width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100px; /* Ensure logos fit within the container */
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.business-partner-logo:hover {
+    transform: scale(1.05);
+}

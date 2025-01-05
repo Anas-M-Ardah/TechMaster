@@ -16,6 +16,23 @@ import client9 from '../../assets/images/clients/client-9.png';
 import client10 from '../../assets/images/clients/client-10.png';
 import client11 from '../../assets/images/clients/client-11.png';
 import client12 from '../../assets/images/clients/client-12.png';
+import civil_protection from '../../assets/images/clients/civil_protection.png';
+import kettaneh_grp from '../../assets/images/clients/kettaneh_grp.png';
+import middle_east_insurance from '../../assets/images/clients/middle_east_insurance.png';
+import national_microfinance from '../../assets/images/clients/national-microfinance.jpg';
+import safwa from '../../assets/images/clients/safwa-logo.webp';
+import omareyah from '../../assets/images/clients/omareyah.png';
+import tazkia from '../../assets/images/clients/tazkia.png';
+import abdali_views from '../../assets/images/clients/abdali-views.png';
+import royal_marine from '../../assets/images/clients/royal_marine.png';
+import JIS from '../../assets/images/clients/JIS.png';
+import xzc from '../../assets/images/clients/xzc.png';
+import baynouna from '../../assets/images/clients/baynouna.png';
+import customs from '../../assets/images/clients/customs.png';
+import JDF from '../../assets/images/clients/JDF.png';
+import JEPCO from '../../assets/images/clients/JEPCO.png';
+import orthodox from '../../assets/images/clients/orthodox.png';
+import EHS_Jordan from '../../assets/images/clients/EHS_jordan.png';
 
 // ... import all other client images
 
@@ -33,6 +50,24 @@ const Clients = () => {
         { id: 10, name: "Client 10", image: client10 },
         { id: 11, name: "Client 11", image: client11 },
         { id: 12, name: "Client 12", image: client12 },
+        { id: 13, name: "Client 13", image: civil_protection },
+        { id: 14, name: "Client 14", image: kettaneh_grp },
+        { id: 15, name: "Client 15", image: middle_east_insurance },
+        { id: 16, name: "Client 16", image: national_microfinance },
+        { id: 17, name: "Client 17", image: safwa },
+        { id: 18, name: "Client 18", image: omareyah },
+        { id: 19, name: "Client 19", image: tazkia },
+        { id: 20, name: "Client 20", image: abdali_views },
+        { id: 21, name: "Client 21", image: royal_marine },
+        { id: 22, name: "Client 22", image: JIS },
+        { id: 23, name: "Client 23", image: xzc },
+        { id: 24, name: "Client 24", image: baynouna },
+        { id: 25, name: "Client 25", image: customs },
+        { id: 26, name: "Client 26", image: JDF },
+        { id: 27, name: "Client 27", image: JEPCO },
+        { id: 28, name: "Client 28", image: orthodox },
+        { id: 29, name: "Client 29", image: EHS_Jordan },
+        
         // ... add all clients
     ];
 
@@ -54,6 +89,7 @@ const Clients = () => {
                                 src={client.image} 
                                 alt={client.name}
                                 loading="lazy"
+                                style={{ filter: 'none' }}
                             />
                         </div>
                     </div>

@@ -9,7 +9,7 @@ import huawei from '../../assets/images/partners/huawei.png';
 import schneider from '../../assets/images/partners/schneider.png';
 import hikvision from '../../assets/images/partners/hik.png';
 import minrray from '../../assets/images/partners/logo-minrray.png';
-import visionic from '../../assets/images/partners/visonic-logo.jpg';
+import visionic from '../../assets/images/partners/vissonic.png';
 
 const Partners = () => {
     const containerVariants = {
