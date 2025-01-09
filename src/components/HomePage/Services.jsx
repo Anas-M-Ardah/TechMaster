@@ -24,28 +24,28 @@ const Services = () => {
             title: "LED Panel & Digital Signage",
             icon: <FaDesktop />,
             image: service1,
-            link: "/services/digital-signage"
+            link: "/services"
         },
         {
             id: 2,
             title: "Fire Extinguishing Aerosol Systems",
             icon: <FaFireExtinguisher />,
             image: service2,
-            link: "/services/fire-systems"
+            link: "/services"
         },
         {
             id: 3,
             title: "IT Services & Network",
             icon: <FaNetworkWired />,
             image: service3,
-            link: "/services/it-services"
+            link: "/services"
         },
         {
             id: 4,
             title: "LED Panel & Digital Signage",
             icon: <FaDesktop />,
             image: service4,
-            link: "/services/digital-signage"
+            link: "/services"
         }
     ], []);
 
