@@ -150,7 +150,7 @@ const Footer = () => {
 
             {/* Copyright Section */}
             <div className="footer-bottom">
-                <p>© 2024 Technology Master | All Rights Reserved</p>
+                <p>© {new Date().getFullYear()} Technology Master | All Rights Reserved</p>
             </div>
         </footer>
     );
