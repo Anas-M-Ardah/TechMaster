@@ -9,7 +9,7 @@ const SolutionsHero = () => {
         {
             id: 1,
             title: "Data Center",
-            icon: "🔋",
+            icon: "🗄️",
             link: "/services/data-center"
         },
         {

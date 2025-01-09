@@ -27,7 +27,7 @@ const Services = () => {
             id: 2,
             title: "Data Center Solution",
             image: dataCenter,
-            icon: "🔋",
+            icon: "🗄️",
             link: "/services/data-center"
         },
         {
