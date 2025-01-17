@@ -13,13 +13,17 @@ const MoreSection = () => {
     return (
         <section className="more-section">
             <div className="more-content">
-                <div className="play-button" onClick={handlePlayClick}>
-                    <FaPlay />
-                </div>
                 <h1>Providing You With The Best<br />Smart Solutions.</h1>
                 <p>Dig deep into what we differentiate ourself with through our exceptional services</p>
             </div>
-            
+
+            <div className="play-button-container">
+                <div className="play-button" onClick={handlePlayClick}>
+                    <FaPlay />
+                </div>
+                <p className="play-message">Play me</p>
+            </div>
+
             {showVideo && (
                 <div className="video-modal">
                     <div className="modal-content">

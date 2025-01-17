@@ -23,7 +23,7 @@ function ContactUs() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            //bug fixes
+            setResponseMessage('Email is being sent...');
             const response = await axios.post('https://techmaster-emailservice.onrender.com/api/contact', formData);
             setResponseMessage(response.data.message);
         } catch (error) {

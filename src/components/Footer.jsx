@@ -59,7 +59,7 @@ const Footer = () => {
                         Helping clients plan, design, optimize, and support the mission of IT Infrastructure, Data Centers & Smart Solutions
                     </p>
                     <div className="social-links">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/profile.php?id=100091914343555" target="_blank" rel="noopener noreferrer">
                             <FaFacebookF />
                         </a>
                     </div>
