@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import Footer from '../Footer';
@@ -15,6 +15,7 @@ function ContactUs() {
     });
 
     const [responseMessage, setResponseMessage] = useState('');
+    const [dots, setDots] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,12 +23,22 @@ function ContactUs() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setResponseMessage('Email is being sent');
+        setDots('');
+
+        const interval = setInterval(() => {
+            setDots(prev => (prev.length < 3 ? prev + '.' : ''));
+        }, 500);
+
         try {
-            setResponseMessage('Email is being sent...');
             const response = await axios.post('https://techmaster-emailservice.onrender.com/api/contact', formData);
+            clearInterval(interval);
             setResponseMessage(response.data.message);
+            setDots('');
         } catch (error) {
+            clearInterval(interval);
             setResponseMessage('Failed to send message. Please try again later.');
+            setDots('');
         }
     };
 
@@ -127,7 +138,7 @@ function ContactUs() {
                                 <Button variant="primary" type="submit" className="mt-3">
                                     Send message
                                 </Button>
-                                {responseMessage && <p className="mt-3">{responseMessage}</p>}
+                                {responseMessage && <p className="mt-3">{responseMessage}{dots}</p>}
                             </Form>
                         </Col>
                     </Row>
