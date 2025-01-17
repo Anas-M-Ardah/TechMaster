@@ -1,6 +1,6 @@
 .more-section {
     position: relative;
-    height: 60vh;
+    height: 70vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/background.jpg');
     background-size: cover;
     background-position: center;
@@ -96,6 +96,7 @@
     font-size: 1rem;
     opacity: 0.8;
     margin-top: 5px; /* Adjust spacing between button and message */
+    font-weight: 700;
 }
 
 h1 {
