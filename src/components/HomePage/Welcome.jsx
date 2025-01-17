@@ -44,7 +44,7 @@ const Welcome = () => {
                                 </Button>
                             </Link>
 
-                            <Link to="/gallery">
+                            <Link to="/contact">
                                 <Button variant="outline-light" size="lg" className="mx-2 welcome-btn">
                                     See More
                                 </Button>
