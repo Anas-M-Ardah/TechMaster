@@ -108,21 +108,21 @@ h3::after {
     width: 60px;
 }
 
-ul {
+.quick-links {
     list-style: none;
     padding: 0;
     margin: 0;
     text-align: left;
 }
 
-ul li {
+.quick-links li {
     margin-bottom: 18px;
     transform: translateX(0);
     transition: transform 0.3s ease;
     position: relative;
 }
 
-ul li::before {
+.quick-links li::before {
     content: '›';
     position: absolute;
     left: -20px;
@@ -131,15 +131,15 @@ ul li::before {
     transition: all 0.3s ease;
 }
 
-ul li:hover {
+.quick-links li:hover {
     transform: translateX(20px);
 }
 
-ul li:hover::before {
+.quick-links li:hover::before {
     opacity: 1;
 }
 
-ul li a {
+.quick-links li a {
     color: #a8b2c0;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -148,7 +148,7 @@ ul li a {
     position: relative;
 }
 
-ul li a::after {
+.quick-links li a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -159,11 +159,11 @@ ul li a::after {
     transition: width 0.3s ease;
 }
 
-ul li:hover a {
+.quick-links li:hover a {
     color: #4361ee;
 }
 
-ul li:hover a::after {
+.quick-links li:hover a::after {
     width: 100%;
 }
 
