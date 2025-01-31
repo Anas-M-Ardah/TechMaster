@@ -68,7 +68,7 @@ const Footer = () => {
                 {/* Quick Links Section */}
                 <div className="footer-section">
                     <h3>Quick Links</h3>
-                    <ul>
+                    <ul className="quick-links">
                         <li><Link to="/about">About Us</Link></li>
                         <li><Link to="/services">Our Services</Link></li>
                         <li><Link to="/partners">Our Business Partners</Link></li>
