@@ -81,6 +81,7 @@ const Header = () => {
               Services {isMobile && <span className="dropdown-arrow">›</span>}
             </Link>
             <div className={`dropdown-content ${(showDropdown || (isMobile && isServicesOpen)) ? 'show' : ''}`}>
+              <Link to="/services/" className="all-services-link">All Services</Link>
               <Link to="/services/data-center">Data Center</Link>
               <Link to="/services/structure-cabling">Structure Cabling</Link>
               <Link to="/services/smart-building">Smart Building</Link>
