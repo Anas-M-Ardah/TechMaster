@@ -268,3 +268,12 @@
         text-align: center;
     }
 }
+
+@media (max-width: 768px) {
+  .tm-about-image-container[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    visibility: visible !important;
+  }
+}
