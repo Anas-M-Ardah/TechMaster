@@ -418,3 +418,134 @@ ul li:hover a::after {
     box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
     z-index: 2;
 }
+
+/* make everything centered on mobile and tablet */
+
+@media (max-width: 1024px) {
+    /* Center text alignment for all footer sections */
+    .footer-section {
+        text-align: center;
+        align-items: center;
+    }
+
+    /* Center company description */
+    .company-description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Center footer logo */
+    .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Center social links */
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Center section headings */
+    .footer-section h3 {
+        text-align: center;
+    }
+
+    /* Center the heading underline */
+    h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Center list items */
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-left: 0;
+    }
+
+    ul li::before {
+        display: none; /* Remove the arrow since it won't work well with center alignment */
+    }
+
+    ul li:hover {
+        transform: translateX(0); /* Remove horizontal movement on hover */
+    }
+
+    /* Center contact items */
+    .contact-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .contact-item:hover {
+        transform: translateY(-5px); /* Change horizontal to vertical movement */
+    }
+
+    /* Center gallery grid */
+    .gallery-grid {
+        justify-content: center;
+    }
+
+    /* Center modal close button */
+    .modal-close {
+        top: 20px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    /* Adjust footer bottom */
+    .footer-bottom {
+        text-align: center;
+    }
+
+    /* Center footer content padding */
+    .footer-content {
+        padding: 0 20px;
+    }
+}
+
+/* Additional mobile-specific adjustments */
+@media (max-width: 480px) {
+    .footer-content {
+        gap: 40px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-section h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .company-description {
+        font-size: 14px;
+    }
+
+    ul li a {
+        font-size: 14px;
+    }
+
+    .contact-item p,
+    .contact-item a,
+    .contact-item address {
+        font-size: 14px;
+    }
+}
