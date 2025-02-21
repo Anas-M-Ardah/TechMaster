@@ -268,3 +268,14 @@
         height: 18px;
     }
 }
+
+/* on mobile */
+
+@media screen and (max-width: 480px) {
+    .experience-badge{
+        top: 70%;
+        right: 10%;
+    }
+    
+}
+

@@ -7,7 +7,7 @@ import '../../css/HomePage/About.css';
 
 const About = () => {
     return (
-        <section className="about-section py-5 my-3">
+        <section className="about-section py-5">
             <div className="pattern-overlay"></div>
             <Container style={{ width: '95%', maxWidth: '95%' }}>
                 <Row className="align-items-center justify-content-center">

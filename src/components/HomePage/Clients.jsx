@@ -7,10 +7,10 @@ import '../../css/HomePage/Clients.css';
 import client1 from '../../assets/images/clients/client-1.png';
 import client2 from '../../assets/images/clients/client-2.png';
 import irbid from '../../assets/images/clients/client3.png';
-import client4 from '../../assets/images/clients/client-4.webp';
-import client5 from '../../assets/images/clients/client-5.webp';
-import client6 from '../../assets/images/clients/client-6.webp';
-import client7 from '../../assets/images/clients/client-7.webp';
+import client4 from '../../assets/images/clients/client-4.png';
+import client5 from '../../assets/images/clients/client-5.png';
+import client6 from '../../assets/images/clients/client-6.png';
+import client7 from '../../assets/images/clients/client-7.png';
 import client8 from '../../assets/images/clients/client-8.png';
 import client9 from '../../assets/images/clients/client-9.png';
 import client10 from '../../assets/images/clients/client-10.png';
@@ -56,7 +56,7 @@ const Clients = () => {
                     <Col lg={3} className="mb-4 mb-lg-0">
                         <div className="clients-text">
                             <h2 className="fw-bold mb-3">
-                                Join over <span className="text-primary">30+</span> happy clients!
+                                Join over <span className="text-primary">150+</span> happy clients!
                             </h2>
                             <p className="text-muted">
                                 Trusted by leading companies worldwide
