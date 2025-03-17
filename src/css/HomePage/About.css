@@ -269,9 +269,9 @@
     }
 }
 
-/* on mobile */
+/* on mobile and tablets */
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1300px) {
     .experience-badge{
         top: 70%;
         right: 10%;
