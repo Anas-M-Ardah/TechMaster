@@ -5,6 +5,7 @@ import '../css/Footer.css';
 
 // Import your logo, gallery images, and videos
 import logo from '../assets/images/technology-master-logo.png';
+import movenpick from '../assets/images/gallery/movenpick-event.jpeg';
 import gallery1 from '../assets/images/gallery/gallery1.webp';
 import gallery2 from '../assets/images/gallery/gallery2.webp';
 import gallery3 from '../assets/images/gallery/gallery3.webp';
@@ -13,19 +14,22 @@ import gallery5 from '../assets/images/gallery/gallery5.webp';
 import gallery6 from '../assets/images/gallery/gallery6.jpg';
 import sampleVideo1 from '../assets/videos/sample-vid-1.mp4';
 import sampleVideo2 from '../assets/videos/sample-vid-2.mp4';
+import movenpickVideo from '../assets/videos/movenpick-event.mp4';
 
 const Footer = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const galleryItems = [
+        { id: 0, src: movenpick, alt: "Movenpick Event", type: "image" },
         { id: 1, src: gallery1, alt: "Gallery 1", type: "image" },
         { id: 2, src: gallery2, alt: "Gallery 2", type: "image" },
         { id: 3, src: gallery3, alt: "Gallery 3", type: "image" },
         { id: 4, src: gallery4, alt: "Gallery 4", type: "image" },
         { id: 5, src: gallery5, alt: "Gallery 5", type: "image" },
         { id: 6, src: gallery6, alt: "Gallery 6", type: "image" },
-        { id: 7, src: sampleVideo1, alt: "Sample Video 1", type: "video" },
-        { id: 8, src: sampleVideo2, alt: "Sample Video 2", type: "video" },
+        { id: 7, src: movenpickVideo, alt: "Movenpick Event Video", type: "video" },
+        { id: 8, src: sampleVideo1, alt: "Sample Video 1", type: "video" },
+        { id: 9, src: sampleVideo2, alt: "Sample Video 2", type: "video" },
     ];
 
     const handleVideoClick = (videoSrc) => {

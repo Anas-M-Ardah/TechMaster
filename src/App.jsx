@@ -17,55 +17,55 @@ import SmartBuildingSolutions from './components/ServicesPage/SmartBuildingSolut
 
 // Scroll to top component
 function ScrollToTop() {
-const { pathname } = useLocation();
+  const { pathname } = useLocation();
 
-useEffect(() => {
-window.scrollTo(0, 0);
-}, [pathname]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-return null;
+  return null;
 }
 
 function App() {
-const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-// Initialize AOS and handle loading
-useEffect(() => {
-// Show loader for 1 second
-setTimeout(() => {
-setLoading(false);
-}, 1000);
+  // Initialize AOS and handle loading
+  useEffect(() => {
+    // Show loader for 1 second
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
 
 
-// Initialize AOS
-AOS.init({
-  duration: 1000,
-  once: true,
-  offset: 100,
-  easing: 'ease-in-out',
-});
-}, []);
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+      easing: 'ease-in-out',
+    });
+  }, []);
 
-if (loading) {
-return <LoadingSpinner />;
-}
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
-return (
-<Router>
-<ScrollToTop />
-<Routes>
-<Route path="/" element={<Home />} />
-<Route path="/about" element={<AboutUs />} />
-<Route path="/services" element={<Service />} />
-<Route path="/clients" element={<Client />} />
-<Route path="/partners" element={<BusinessPartners />} />
-<Route path="/contact" element={<ContactUs />} />
-<Route path="/services/data-center" element={<DataCenter />} />
-<Route path="/services/structure-cabling" element={<StructureCabling />} />
-<Route path="/services/smart-building" element={<SmartBuildingSolutions />} />
-</Routes>
-</Router>
-);
+  return (
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/services" element={<Service />} />
+        <Route path="/clients" element={<Client />} />
+        <Route path="/partners" element={<BusinessPartners />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/services/data-center" element={<DataCenter />} />
+        <Route path="/services/structure-cabling" element={<StructureCabling />} />
+        <Route path="/services/smart-building" element={<SmartBuildingSolutions />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
