@@ -9,67 +9,67 @@ import CategorySection from "./CategorySection";
 import "./MaxHubProducts.css";
 
 //INTERACTIVE FLAT PANEL
-import v6 from "../../../../assets/images/partners/maxhub/interactive-flat-panel/v6.jpg";
-import v7 from "../../../../assets/images/partners/maxhub/interactive-flat-panel/v7.webp";
-import v6_classic from "../../../../assets/images/partners/maxhub/interactive-flat-panel/v6-classic.jpg";
-import v6_trancend from "../../../../assets/images/partners/maxhub/interactive-flat-panel/v6-trancend.jpg";
-import v5_classic from "../../../../assets/images/partners/maxhub/interactive-flat-panel/v5-classic.jpg";
-import v5_vogue from "../../../../assets/images/partners/maxhub/interactive-flat-panel/v5-vogue.jpg";
-import v5_transcend from "../../../../assets/images/partners/maxhub/interactive-flat-panel/v5-transcend.jpg";
-import blackboard from "../../../../assets/images/partners/maxhub/interactive-flat-panel/blackboard.webp";
-import u3 from "../../../../assets/images/partners/maxhub/interactive-flat-panel/u3.jpg";
-import e2 from "../../../../assets/images/partners/maxhub/interactive-flat-panel/e2.jpg";
-import e3 from "../../../../assets/images/partners/maxhub/interactive-flat-panel/e3.jpg";
+import v6 from "@/assets/images/partners/maxhub/interactive-flat-panel/v6.jpg";
+import v7 from "@/assets/images/partners/maxhub/interactive-flat-panel/v7.webp";
+import v6_classic from "@/assets/images/partners/maxhub/interactive-flat-panel/v6-classic.jpg";
+import v6_trancend from "@/assets/images/partners/maxhub/interactive-flat-panel/v6-trancend.jpg";
+import v5_classic from "@/assets/images/partners/maxhub/interactive-flat-panel/v5-classic.jpg";
+import v5_vogue from "@/assets/images/partners/maxhub/interactive-flat-panel/v5-vogue.jpg";
+import v5_transcend from "@/assets/images/partners/maxhub/interactive-flat-panel/v5-transcend.jpg";
+import blackboard from "@/assets/images/partners/maxhub/interactive-flat-panel/blackboard.webp";
+import u3 from "@/assets/images/partners/maxhub/interactive-flat-panel/u3.jpg";
+import e2 from "@/assets/images/partners/maxhub/interactive-flat-panel/e2.jpg";
+import e3 from "@/assets/images/partners/maxhub/interactive-flat-panel/e3.jpg";
 
 //COMMERCIAL DISPLAY
-import cma_series from "../../../../assets/images/partners/maxhub/commercial-display/cma-series.jpg";
-import cma_t_series from "../../../../assets/images/partners/maxhub/commercial-display/cma-t-series.jpg"
-import cmd_series from "../../../../assets/images/partners/maxhub/commercial-display/cmd-series.jpg";
-import uw_series_92 from "../../../../assets/images/partners/maxhub/commercial-display/UW-Series-92.jpg";
-import uw_series_105 from "../../../../assets/images/partners/maxhub/commercial-display/UW-Series-105.jpg";
+import cma_series from "@/assets/images/partners/maxhub/commercial-display/cma-series.jpg";
+import cma_t_series from "@/assets/images/partners/maxhub/commercial-display/cma-t-series.jpg"
+import cmd_series from "@/assets/images/partners/maxhub/commercial-display/cmd-series.jpg";
+import uw_series_92 from "@/assets/images/partners/maxhub/commercial-display/UW-Series-92.jpg";
+import uw_series_105 from "@/assets/images/partners/maxhub/commercial-display/UW-Series-105.jpg";
 
 //LED
-import raptor_series_v3 from "../../../../assets/images/partners/maxhub/led/Raptor-Series-V3.jpg";
-import raptor from "../../../../assets/images/partners/maxhub/led/raptor.jpg";
-import gh31_series from "../../../../assets/images/partners/maxhub/led/GH31-Series.jpg";
-import gv27_series from "../../../../assets/images/partners/maxhub/led/GV27-Series.webp";
+import raptor_series_v3 from "@/assets/images/partners/maxhub/led/Raptor-Series-V3.jpg";
+import raptor from "@/assets/images/partners/maxhub/led/raptor.jpg";
+import gh31_series from "@/assets/images/partners/maxhub/led/GH31-Series.jpg";
+import gv27_series from "@/assets/images/partners/maxhub/led/GV27-Series.webp";
 
 //UNIFIED COMMUNICATION
-import uc_s07 from "../../../../assets/images/partners/maxhub/unified/uc-s07.png";
-import uc_p30 from "../../../../assets/images/partners/maxhub/unified/UC_P30.png";
-import uc_w31 from "../../../../assets/images/partners/maxhub/unified/uc_w31.jpg";
-import uc_bm35 from "../../../../assets/images/partners/maxhub/unified/uc-bm35.png";
-import uc_bm45 from "../../../../assets/images/partners/maxhub/unified/uc-bm45.png";
-import uc_s15 from "../../../../assets/images/partners/maxhub/unified/uc-s15.jpg";
+import uc_s07 from "@/assets/images/partners/maxhub/unified/uc-s07.png";
+import uc_p30 from "@/assets/images/partners/maxhub/unified/UC_P30.png";
+import uc_w31 from "@/assets/images/partners/maxhub/unified/uc_w31.jpg";
+import uc_bm35 from "@/assets/images/partners/maxhub/unified/uc-bm35.png";
+import uc_bm45 from "@/assets/images/partners/maxhub/unified/uc-bm45.png";
+import uc_s15 from "@/assets/images/partners/maxhub/unified/uc-s15.jpg";
 
 //MICROSOFT TEAMS ROOMS
-import xcore_pro from "../../../../assets/images/partners/maxhub/ms-teams/xcore-kit-pro.png";
-import xcore from "../../../../assets/images/partners/maxhub/ms-teams/xcore-kit.jpg";
-import xt10_vb from "../../../../assets/images/partners/maxhub/ms-teams/xt10-vb-kit.jpg";
-import xt10_ws from "../../../../assets/images/partners/maxhub/ms-teams/xt10-ws-kit.jpg";
-import xt20_ps from "../../../../assets/images/partners/maxhub/ms-teams/xt20-ps-kit.png";
-import xBoard from "../../../../assets/images/partners/maxhub/ms-teams/Xboard.png";
+import xcore_pro from "@/assets/images/partners/maxhub/ms-teams/xcore-kit-pro.png";
+import xcore from "@/assets/images/partners/maxhub/ms-teams/xcore-kit.jpg";
+import xt10_vb from "@/assets/images/partners/maxhub/ms-teams/xt10-vb-kit.jpg";
+import xt10_ws from "@/assets/images/partners/maxhub/ms-teams/xt10-ws-kit.jpg";
+import xt20_ps from "@/assets/images/partners/maxhub/ms-teams/xt20-ps-kit.png";
+import xBoard from "@/assets/images/partners/maxhub/ms-teams/Xboard.png";
 
 //CAPTURE SYSTEMS
-import capture_system_v3 from "../../../../assets/images/partners/maxhub/capture-system/capture_system_v3.png";
-import capture_system from "../../../../assets/images/partners/maxhub/capture-system/capture_system.png";
+import capture_system_v3 from "@/assets/images/partners/maxhub/capture-system/capture_system_v3.png";
+import capture_system from "@/assets/images/partners/maxhub/capture-system/capture_system.png";
 
 //ACCESSORIES
-import wireless_box from "../../../../assets/images/partners/maxhub/accessories/wireless-box.jpg";
-import stylus from "../../../../assets/images/partners/maxhub/accessories/stylus.jpg";
-import wireless_dongle from "../../../../assets/images/partners/maxhub/accessories/wireless-dongle.jpg";
-import smart_lectern from "../../../../assets/images/partners/maxhub/accessories/smart-lectern.png";
+import wireless_box from "@/assets/images/partners/maxhub/accessories/wireless-box.jpg";
+import stylus from "@/assets/images/partners/maxhub/accessories/stylus.jpg";
+import wireless_dongle from "@/assets/images/partners/maxhub/accessories/wireless-dongle.jpg";
+import smart_lectern from "@/assets/images/partners/maxhub/accessories/smart-lectern.png";
 
 //SOFTWARE
-import maxhub_os from "../../../../assets/images/partners/maxhub/software/maxhub-os.jpg";
-import maxhub_share from "../../../../assets/images/partners/maxhub/software/maxhub-share.png";
-import maxhub_whiteboard from "../../../../assets/images/partners/maxhub/software/maxhub-whiteboard.png";
-import maxhub_edu_os_v4 from "../../../../assets/images/partners/maxhub/software/MAXHUB_EDU_OS_V4.png";
-import maxhub_edu_os_v3 from "../../../../assets/images/partners/maxhub/software/edu_os_V3.png";
-import maxhub_class from "../../../../assets/images/partners/maxhub/software/maxhub-class.png";
-import maxhub_class_pro from "../../../../assets/images/partners/maxhub/software/maxhub-class-pro.png";
-import maxhub_pivot from "../../../../assets/images/partners/maxhub/software/maxhub-pivot.png";
-import maxhub_connect from "../../../../assets/images/partners/maxhub/software/maxhub-connect.png";
+import maxhub_os from "@/assets/images/partners/maxhub/software/maxhub-os.jpg";
+import maxhub_share from "@/assets/images/partners/maxhub/software/maxhub-share.png";
+import maxhub_whiteboard from "@/assets/images/partners/maxhub/software/maxhub-whiteboard.png";
+import maxhub_edu_os_v4 from "@/assets/images/partners/maxhub/software/MAXHUB_EDU_OS_V4.png";
+import maxhub_edu_os_v3 from "@/assets/images/partners/maxhub/software/edu_os_V3.png";
+import maxhub_class from "@/assets/images/partners/maxhub/software/maxhub-class.png";
+import maxhub_class_pro from "@/assets/images/partners/maxhub/software/maxhub-class-pro.png";
+import maxhub_pivot from "@/assets/images/partners/maxhub/software/maxhub-pivot.png";
+import maxhub_connect from "@/assets/images/partners/maxhub/software/maxhub-connect.png";
 
 const MaxHubProducts = () => {
     const [activeCategory, setActiveCategory] = useState("interactive-flat-panel");
