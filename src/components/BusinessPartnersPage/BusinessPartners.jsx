@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom'; // Add this import
 import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
@@ -24,7 +25,7 @@ import techline from '../../assets/images/partners/techline.png';
 import fireban from '../../assets/images/partners/FireBan.webp';
 
 const partners = [
-    { name: "Maxhub", logo: maxhub },
+    { name: "Maxhub", logo: maxhub, url: "/maxhub" },
     { name: "Huawei", logo: huawei },
     { name: "Schneider Electric", logo: schneider },
     { name: "Conteg", logo: conteg },
@@ -46,8 +47,8 @@ function BusinessPartners() {
     return (
         <>
             <Header />
-            <PageHeader 
-                title="Our Business Partners" 
+            <PageHeader
+                title="Our Business Partners"
                 breadcrumb={[
                     { title: "Home", url: "/" },
                     { title: "Business Partners", url: "/business-partners" }
@@ -60,11 +61,21 @@ function BusinessPartners() {
                         {partners.map((partner, index) => (
                             <Col key={index} xs={6} md={3} className="text-center mb-4">
                                 <div className="business-partner-logo-container">
-                                    <img 
-                                        src={partner.logo} 
-                                        alt={partner.name} 
-                                        className="business-partner-logo"
-                                    />
+                                    {partner.url ? (
+                                        <Link to={partner.url}>
+                                            <img
+                                                src={partner.logo}
+                                                alt={partner.name}
+                                                className="business-partner-logo"
+                                            />
+                                        </Link>
+                                    ) : (
+                                        <img
+                                            src={partner.logo}
+                                            alt={partner.name}
+                                            className="business-partner-logo"
+                                        />
+                                    )}
                                 </div>
                             </Col>
                         ))}
