@@ -10,13 +10,13 @@ import "./MaxHubProducts.css";
 
 //INTERACTIVE FLAT PANEL
 import v6 from "@/assets/images/partners/maxhub/interactive-flat-panel/v6.jpg";
-import v7 from "@/assets/images/partners/maxhub/interactive-flat-panel/v7.webp";
+import v7 from "@/assets/images/partners/maxhub/interactive-flat-panel/v7.jpg";
 import v6_classic from "@/assets/images/partners/maxhub/interactive-flat-panel/v6-classic.jpg";
 import v6_trancend from "@/assets/images/partners/maxhub/interactive-flat-panel/v6-trancend.jpg";
 import v5_classic from "@/assets/images/partners/maxhub/interactive-flat-panel/v5-classic.jpg";
 import v5_vogue from "@/assets/images/partners/maxhub/interactive-flat-panel/v5-vogue.jpg";
 import v5_transcend from "@/assets/images/partners/maxhub/interactive-flat-panel/v5-transcend.jpg";
-import blackboard from "@/assets/images/partners/maxhub/interactive-flat-panel/blackboard.webp";
+import blackboard from "@/assets/images/partners/maxhub/interactive-flat-panel/blackboard.jpg";
 import u3 from "@/assets/images/partners/maxhub/interactive-flat-panel/u3.jpg";
 import e2 from "@/assets/images/partners/maxhub/interactive-flat-panel/e2.jpg";
 import e3 from "@/assets/images/partners/maxhub/interactive-flat-panel/e3.jpg";
