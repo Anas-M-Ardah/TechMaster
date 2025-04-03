@@ -14,6 +14,8 @@ import LoadingSpinner from './components/Common/LoadingSpinner';
 import DataCenter from './components/ServicesPage/DataCenter';
 import StructureCabling from './components/ServicesPage/StructureCabling';
 import SmartBuildingSolutions from './components/ServicesPage/SmartBuildingSolution';
+import MaxHub from './components/BusinessPartners/MaxHub/MaxHub';
+import MaxHubProducts from './components/BusinessPartners/MaxHub/MaxHubProducts/MaxHubProducts';
 
 // Scroll to top component
 function ScrollToTop() {
@@ -63,6 +65,8 @@ function App() {
         <Route path="/services/data-center" element={<DataCenter />} />
         <Route path="/services/structure-cabling" element={<StructureCabling />} />
         <Route path="/services/smart-building" element={<SmartBuildingSolutions />} />
+        <Route path="/maxhub" element={<MaxHub />} />
+        <Route path="maxhub/products" element={<MaxHubProducts />} />
       </Routes>
     </Router>
   );
