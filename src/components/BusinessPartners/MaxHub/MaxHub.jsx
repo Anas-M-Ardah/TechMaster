@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./MaxHub.css";
 
 //images
-import v6 from "../../../assets/images/partners/Maxhub/INTERACTIVE-FLAT-PANEL/v6.jpg";
+import v7 from "../../../assets/images/partners/Maxhub/INTERACTIVE-FLAT-PANEL/v7.webp";
 import wireless_dongle from "../../../assets/images/partners/MaxHub/ACCESSORIES/wireless-dongle.jpg";
 import blackboard from "../../../assets/images/partners/Maxhub/INTERACTIVE-FLAT-PANEL/blackboard.webp";
 
@@ -19,10 +19,10 @@ const MaxHub = () => {
     const featuredProducts = [
         {
             id: 1,
-            name: "V6 ViewPro Series",
-            description: "Interactive Flat Panel Display",
-            image: v6,
-            url: "/maxhub/v6-viewpro-series"
+            name: "XBoard V7 Series",
+            image: v7,
+            description: "",
+            url: "https://www.maxhub.com/en/xboard_v7_series/"
         },
         {
             id: 2,
