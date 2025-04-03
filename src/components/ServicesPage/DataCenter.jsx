@@ -3,15 +3,15 @@ import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
 import ServiceDetails from '../Common/ServiceDetails';
-import data_center from '../../assets/images/services/data-center/data-center.webp';
+import data_center from '/images/services/data-center/data-center.webp';
 
 //Partner Logos
-import schneider from '../../assets/images/partners/schneider.png';
-import huawei from '../../assets/images/partners/huawei.png';
-import gtec from '../../assets/images/partners/gtech.png';
-import conteg from '../../assets/images/partners/Conteg-logo.png';
-import fireban from '../../assets/images/partners/FireBan.webp';
-import onis from '../../assets/images/partners/Onis-Visa-Logo.webp';
+import schneider from '/images/partners/schneider.png';
+import huawei from '/images/partners/huawei.png';
+import gtec from '/images/partners/gtech.png';
+import conteg from '/images/partners/Conteg-logo.png';
+import fireban from '/images/partners/FireBan.webp';
+import onis from '/images/partners/Onis-Visa-Logo.webp';
 
 const serviceData = {
     title: "Data Center Engineering",

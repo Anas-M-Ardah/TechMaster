@@ -4,35 +4,35 @@ import '../../css/ClientsPage/Clients.css';
 
 // Import all client logos
 // Import your client logos
-import client1 from '../../assets/images/clients/client-1.png';
-import client2 from '../../assets/images/clients/client-2.png';
-import client3 from '../../assets/images/clients/client3.png';
-import client4 from '../../assets/images/clients/client-4.jpg';
-import client5 from '../../assets/images/clients/client-5.png';
-import client6 from '../../assets/images/clients/client-6.png';
-import client7 from '../../assets/images/clients/client-7.png';
-import client8 from '../../assets/images/clients/client-8.png';
-import client9 from '../../assets/images/clients/client-9.png';
-import client10 from '../../assets/images/clients/client-10.png';
-import client11 from '../../assets/images/clients/client-11.png';
-import client12 from '../../assets/images/clients/client-12.png';
-import civil_protection from '../../assets/images/clients/civil_protection.png';
-import kettaneh_grp from '../../assets/images/clients/kettaneh_grp.png';
-import middle_east_insurance from '../../assets/images/clients/middle_east_insurance.png';
-import national_microfinance from '../../assets/images/clients/national-microfinance.jpg';
-import safwa from '../../assets/images/clients/safwa-logo.webp';
-import omareyah from '../../assets/images/clients/omareyah.png';
-import tazkia from '../../assets/images/clients/tazkia.png';
-import abdali_views from '../../assets/images/clients/abdali-views.png';
-import royal_marine from '../../assets/images/clients/royal_marine.png';
-import JIS from '../../assets/images/clients/JIS.png';
-import xzc from '../../assets/images/clients/xzc.png';
-import baynouna from '../../assets/images/clients/baynouna.png';
-import customs from '../../assets/images/clients/customs.png';
-import JDF from '../../assets/images/clients/JDF.png';
-import JEPCO from '../../assets/images/clients/JEPCO.png';
-import orthodox from '../../assets/images/clients/orthodox.png';
-import EHS_Jordan from '../../assets/images/clients/EHS_jordan.png';
+import client1 from '/images/clients/client-1.png';
+import client2 from '/images/clients/client-2.png';
+import client3 from '/images/clients/client3.png';
+import client4 from '/images/clients/client-4.jpg';
+import client5 from '/images/clients/client-5.png';
+import client6 from '/images/clients/client-6.png';
+import client7 from '/images/clients/client-7.png';
+import client8 from '/images/clients/client-8.png';
+import client9 from '/images/clients/client-9.png';
+import client10 from '/images/clients/client-10.png';
+import client11 from '/images/clients/client-11.png';
+import client12 from '/images/clients/client-12.png';
+import civil_protection from '/images/clients/civil_protection.png';
+import kettaneh_grp from '/images/clients/kettaneh_grp.png';
+import middle_east_insurance from '/images/clients/middle_east_insurance.png';
+import national_microfinance from '/images/clients/national-microfinance.jpg';
+import safwa from '/images/clients/safwa-logo.webp';
+import omareyah from '/images/clients/omareyah.png';
+import tazkia from '/images/clients/tazkia.png';
+import abdali_views from '/images/clients/abdali-views.png';
+import royal_marine from '/images/clients/royal_marine.png';
+import JIS from '/images/clients/JIS.png';
+import xzc from '/images/clients/xzc.png';
+import baynouna from '/images/clients/baynouna.png';
+import customs from '/images/clients/customs.png';
+import JDF from '/images/clients/JDF.png';
+import JEPCO from '/images/clients/JEPCO.png';
+import orthodox from '/images/clients/orthodox.png';
+import EHS_Jordan from '/images/clients/EHS_jordan.png';
 
 // ... import all other client images
 
