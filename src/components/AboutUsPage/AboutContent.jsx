@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import '../../css/AboutUsPage/AboutContent.css';
 import { FaTrophy } from 'react-icons/fa';
-import aboutImage from '../../assets/images/banner1.jpg';
+import aboutImage from '/images/banner1.jpg';
 
 const AboutContent = () => {
     const [activeTab, setActiveTab] = useState('mission');

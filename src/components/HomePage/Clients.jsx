@@ -4,18 +4,18 @@ import { Container, Row, Col } from 'react-bootstrap';
 import '../../css/HomePage/Clients.css';
 
 // Import your client logos
-import client1 from '../../assets/images/clients/client-1.png';
-import client2 from '../../assets/images/clients/client-2.png';
-import irbid from '../../assets/images/clients/client3.png';
-import client4 from '../../assets/images/clients/client-4.png';
-import client5 from '../../assets/images/clients/client-5.png';
-import client6 from '../../assets/images/clients/client-6.png';
-import client7 from '../../assets/images/clients/client-7.png';
-import client8 from '../../assets/images/clients/client-8.png';
-import client9 from '../../assets/images/clients/client-9.png';
-import client10 from '../../assets/images/clients/client-10.png';
-import client11 from '../../assets/images/clients/client-11.png';
-import client12 from '../../assets/images/clients/client-12.png';
+import client1 from '/images/clients/client-1.png';
+import client2 from '/images/clients/client-2.png';
+import irbid from '/images/clients/client3.png';
+import client4 from '/images/clients/client-4.png';
+import client5 from '/images/clients/client-5.png';
+import client6 from '/images/clients/client-6.png';
+import client7 from '/images/clients/client-7.png';
+import client8 from '/images/clients/client-8.png';
+import client9 from '/images/clients/client-9.png';
+import client10 from '/images/clients/client-10.png';
+import client11 from '/images/clients/client-11.png';
+import client12 from '/images/clients/client-12.png';
 
 const Clients = () => {
     const [activeIndex, setActiveIndex] = useState(0);

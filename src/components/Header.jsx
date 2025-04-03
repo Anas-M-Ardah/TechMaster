@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../css/Header.css';
 
-import logo from '../assets/images/technology-master-logo.png';
+import logo from '/images/technology-master-logo.png';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

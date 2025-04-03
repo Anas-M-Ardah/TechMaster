@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 import '../../css/ServicePage/Services.css';
 
 // Import your service images
-import itServices from '../../assets/images/services/service5.webp';
-import dataCenter from '../../assets/images/services/service1.webp';
-import structureCabling from '../../assets/images/services/service2.webp';
-import smartBuilding from '../../assets/images/services/service3.webp';
-import smartClassroom from '../../assets/images/services/service7.webp';
-import smartMeeting from '../../assets/images/services/service8.webp';
-import lowCurrent from '../../assets/images/services/service6.webp';
-import ledPanel from '../../assets/images/services/service4.webp';
-import fireSystem from '../../assets/images/services/service9.webp';
+import itServices from '/images/services/service5.webp';
+import dataCenter from '/images/services/service1.webp';
+import structureCabling from '/images/services/service2.webp';
+import smartBuilding from '/images/services/service3.webp';
+import smartClassroom from '/images/services/service7.webp';
+import smartMeeting from '/images/services/service8.webp';
+import lowCurrent from '/images/services/service6.webp';
+import ledPanel from '/images/services/service4.webp';
+import fireSystem from '/images/services/service9.webp';
 
 const Services = () => {
     const services = [

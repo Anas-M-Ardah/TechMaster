@@ -4,14 +4,14 @@ import { FaFacebookF, FaPhone, FaEnvelope, FaMapMarkerAlt, FaTimes, FaPlayCircle
 import '../css/Footer.css';
 
 // Import your logo, gallery images, and videos
-import logo from '../assets/images/technology-master-logo.png';
-import movenpick from '../assets/images/gallery/movenpick-event.jpeg';
-import gallery1 from '../assets/images/gallery/gallery1.webp';
-import gallery2 from '../assets/images/gallery/gallery2.webp';
-import gallery3 from '../assets/images/gallery/gallery3.webp';
-import gallery4 from '../assets/images/gallery/gallery4.webp';
-import gallery5 from '../assets/images/gallery/gallery5.webp';
-import gallery6 from '../assets/images/gallery/gallery6.jpg';
+import logo from '/images/technology-master-logo.png';
+import movenpick from '/images/gallery/movenpick-event.jpeg';
+import gallery1 from '/images/gallery/gallery1.webp';
+import gallery2 from '/images/gallery/gallery2.webp';
+import gallery3 from '/images/gallery/gallery3.webp';
+import gallery4 from '/images/gallery/gallery4.webp';
+import gallery5 from '/images/gallery/gallery5.webp';
+import gallery6 from '/images/gallery/gallery6.jpg';
 import sampleVideo1 from '../assets/videos/sample-vid-1.mp4';
 import sampleVideo2 from '../assets/videos/sample-vid-2.mp4';
 import movenpickVideo from '../assets/videos/movenpick-event.mp4';

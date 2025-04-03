@@ -10,10 +10,10 @@ import {
 import '../../css/HomePage/Services.css';
 
 // Import service images
-import service1 from '../../assets/images/services/service1.webp';
-import service2 from '../../assets/images/services/service2.webp';
-import service3 from '../../assets/images/services/service3.webp';
-import service4 from '../../assets/images/services/service4.webp';
+import service1 from '/images/services/service1.webp';
+import service2 from '/images/services/service2.webp';
+import service3 from '/images/services/service3.webp';
+import service4 from '/images/services/service4.webp';
 
 const Services = () => {
     const [activeIndex, setActiveIndex] = useState(0);

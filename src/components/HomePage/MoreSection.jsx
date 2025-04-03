@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
-import backgroundImage from '../../assets/images/background.jpg';
+import backgroundImage from '/images/background.jpg';
 import '../../css/HomePage/MoreSection.css';
 
 const MoreSection = () => {

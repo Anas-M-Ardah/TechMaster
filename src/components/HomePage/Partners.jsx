@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 import '../../css/HomePage/Partners.css';
 
 // Import your partner logos
-import maxhub from '../../assets/images/partners/MAXHUB.png';
-import huawei from '../../assets/images/partners/huawei.png';
-import schneider from '../../assets/images/partners/schneider.png';
-import hikvision from '../../assets/images/partners/hik.png';
-import minrray from '../../assets/images/partners/logo-minrray.png';
-import visionic from '../../assets/images/partners/vissonic.png';
+import maxhub from '/images/partners/MAXHUB.png';
+import huawei from '/images/partners/huawei.png';
+import schneider from '/images/partners/schneider.png';
+import hikvision from '/images/partners/hik.png';
+import minrray from '/images/partners/logo-minrray.png';
+import visionic from '/images/partners/vissonic.png';
 
 const Partners = () => {
     const containerVariants = {

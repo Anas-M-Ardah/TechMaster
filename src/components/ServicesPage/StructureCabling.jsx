@@ -3,14 +3,14 @@ import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
 import ServiceDetails from '../Common/ServiceDetails';
-import structureCablingImage from '../../assets/images/services/structure-cabling/structured-cabling-solution-bg.webp';
+import structureCablingImage from '/images/services/structure-cabling/structured-cabling-solution-bg.webp';
 
 // Partner Logos
-import commoscope from '../../assets/images/partners/comm.png';
-import techline from '../../assets/images/partners/techline.png';
-import excel from '../../assets/images/partners/excel.png';
-import fluke from '../../assets/images/partners/fluke.png';
-import nexans from '../../assets/images/partners/nexans.png';
+import commoscope from '/images/partners/comm.png';
+import techline from '/images/partners/techline.png';
+import excel from '/images/partners/excel.png';
+import fluke from '/images/partners/fluke.png';
+import nexans from '/images/partners/nexans.png';
 
 const serviceData = {
     title: "Structure Cabling",

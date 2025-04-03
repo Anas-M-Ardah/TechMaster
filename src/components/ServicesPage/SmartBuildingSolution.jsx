@@ -3,22 +3,22 @@ import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
 import ServiceDetails from '../Common/ServiceDetails';
-import smartBuildingImage from '../../assets/images/services/smart-building/smart-city.webp';
+import smartBuildingImage from '/images/services/smart-building/smart-city.webp';
 
 // Partner Logos
-import huawei from '../../assets/images/partners/huawei.png';
-import vissonic from '../../assets/images/partners/vissonic.png';
-import maxhub from '../../assets/images/partners/MAXHUB.png';
-import absen from '../../assets/images/partners/absen.png';
-import schneider from '../../assets/images/partners/schneider.png';
-import ascom from '../../assets/images/partners/ascom.png';
-import bosch from '../../assets/images/partners/bosch.png';
-import honeyw from '../../assets/images/partners/honeyw.png';
-import navori from '../../assets/images/partners/navori-labs.png';
-import nexans from '../../assets/images/partners/nexans.png';
-import minarray from '../../assets/images/partners/logo-minrray.png';
-import jcvision from '../../assets/images/partners/jcvision.png';
-import tyco from '../../assets/images/partners/tyco.png';
+import huawei from '/images/partners/huawei.png';
+import vissonic from '/images/partners/vissonic.png';
+import maxhub from '/images/partners/MAXHUB.png';
+import absen from '/images/partners/absen.png';
+import schneider from '/images/partners/schneider.png';
+import ascom from '/images/partners/ascom.png';
+import bosch from '/images/partners/bosch.png';
+import honeyw from '/images/partners/honeyw.png';
+import navori from '/images/partners/navori-labs.png';
+import nexans from '/images/partners/nexans.png';
+import minarray from '/images/partners/logo-minrray.png';
+import jcvision from '/images/partners/jcvision.png';
+import tyco from '/images/partners/tyco.png';
 
 
 

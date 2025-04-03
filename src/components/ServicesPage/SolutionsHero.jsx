@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/ServicePage/SolutionsHero.css';
-import heroImage from '../../assets/images/theme-15.jpg';
+import heroImage from '/images/theme-15.jpg';
 
 const SolutionsHero = () => {
     const solutions = [

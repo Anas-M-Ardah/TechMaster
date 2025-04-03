@@ -7,22 +7,22 @@ import PageHeader from '../Common/PageHeader';
 import '../../css/BusinessPartnersPage/BusinessPartners.css';
 
 // Partner Logos
-import maxhub from '../../assets/images/partners/MAXHUB.png';
-import huawei from '../../assets/images/partners/huawei.png';
-import schneider from '../../assets/images/partners/schneider.png';
-import conteg from '../../assets/images/partners/Conteg-logo.png';
-import hp from '../../assets/images/partners/hp.png';
-import minrray from '../../assets/images/partners/logo-minrray.png';
-import hikvision from '../../assets/images/partners/hik.png';
-import leyard from '../../assets/images/partners/LEYARD.png';
-import howen from '../../assets/images/partners/howen.png';
-import vissonic from '../../assets/images/partners/vissonic.png';
-import navori from '../../assets/images/partners/navori-labs.png';
-import honeyw from '../../assets/images/partners/honeyw.png';
-import comm from '../../assets/images/partners/comm.png';
-import nexans from '../../assets/images/partners/nexans.png';
-import techline from '../../assets/images/partners/techline.png';
-import fireban from '../../assets/images/partners/FireBan.webp';
+import maxhub from '/images/partners/MAXHUB.png';
+import huawei from '/images/partners/huawei.png';
+import schneider from '/images/partners/schneider.png';
+import conteg from '/images/partners/Conteg-logo.png';
+import hp from '/images/partners/hp.png';
+import minrray from '/images/partners/logo-minrray.png';
+import hikvision from '/images/partners/hik.png';
+import leyard from '/images/partners/LEYARD.png';
+import howen from '/images/partners/howen.png';
+import vissonic from '/images/partners/vissonic.png';
+import navori from '/images/partners/navori-labs.png';
+import honeyw from '/images/partners/honeyw.png';
+import comm from '/images/partners/comm.png';
+import nexans from '/images/partners/nexans.png';
+import techline from '/images/partners/techline.png';
+import fireban from '/images/partners/FireBan.webp';
 
 const partners = [
     { name: "Maxhub", logo: maxhub, url: "/maxhub" },

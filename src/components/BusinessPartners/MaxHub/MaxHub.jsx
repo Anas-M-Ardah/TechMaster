@@ -11,9 +11,9 @@ import "slick-carousel/slick/slick-theme.css";
 import "./MaxHub.css";
 
 //images
-import v7 from '@/assets/images/partners/maxhub/interactive-flat-panel/v7.jpg';
-import wireless_dongle from '@/assets/images/partners/maxhub/accessories/wireless-dongle.jpg';
-import blackboard from '@/assets/images/partners/maxhub/interactive-flat-panel/blackboard.jpg';
+import v7 from '/images/partners/maxhub/interactive-flat-panel/v7.jpg';
+import wireless_dongle from '/images/partners/maxhub/accessories/wireless-dongle.jpg';
+import blackboard from '/images/partners/maxhub/interactive-flat-panel/blackboard.jpg';
 
 const MaxHub = () => {
     const featuredProducts = [
