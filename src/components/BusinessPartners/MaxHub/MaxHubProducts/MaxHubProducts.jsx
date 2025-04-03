@@ -6,7 +6,7 @@ import Footer from "../../../Footer";
 import PageHeader from "../../../Common/PageHeader";
 import CategoryNav from "./CategoryNav";
 import CategorySection from "./CategorySection";
-import "./MaxhubProducts.css";
+import "./MaxHubProducts.css";
 
 // ***** Import your product images ******
 
