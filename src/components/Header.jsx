@@ -29,6 +29,8 @@ const Header = () => {
   }, [location]);
 
   const toggleMenu = () => {
+    //set the z-index of the header to 1001 when the menu is open
+    document.querySelector('.header').style.zIndex = isOpen ? '1000' : '1001';
     setIsOpen(!isOpen);
   };
 
