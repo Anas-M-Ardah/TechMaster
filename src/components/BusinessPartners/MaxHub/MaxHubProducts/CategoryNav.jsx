@@ -1,4 +1,3 @@
-// components/BusinessPartners/MaxHub/MaxhubProducts/CategoryNav.jsx
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -38,6 +37,17 @@ const categoryIcons = {
 };
 
 const CategoryNav = ({ categories, activeCategory, setActiveCategory }) => {
+    const handleCategoryClick = (categoryId) => {
+        // Set the active category
+        setActiveCategory(categoryId);
+        
+        // Scroll to top of the page
+        window.scrollTo({
+            top: 100,
+            behavior: 'smooth'
+        });
+    };
+
     return (
         <div className="maxhub-category-nav">
             <div className="category-icons-container">
@@ -45,12 +55,12 @@ const CategoryNav = ({ categories, activeCategory, setActiveCategory }) => {
                     <div 
                         key={category.id}
                         className={`category-item ${activeCategory === category.id ? 'active' : ''}`}
-                        onClick={() => setActiveCategory(category.id)}
+                        onClick={() => handleCategoryClick(category.id)}
                     >
                         <div className="category-icon">
                             <FontAwesomeIcon 
                                 icon={categoryIcons[category.id]} 
-                                size="2x" // This will scale with the container
+                                size="2x"
                             />
                         </div>
                         <span className="category-name">{category.name}</span>
