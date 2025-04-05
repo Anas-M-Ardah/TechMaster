@@ -1,15 +1,17 @@
 /* CategoryNav.css */
 .maxhub-category-nav {
     background: #fff;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid #e9ecef;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    height: calc(var(--logo-height) + 2.4rem);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .maxhub-category-nav::-webkit-scrollbar {
@@ -31,8 +33,9 @@
     justify-content: flex-start;
     align-items: center;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
     min-width: min-content;
+    height: 100%;
 }
 
 .category-item {
@@ -100,9 +103,14 @@
 
 /* Responsive Breakpoints */
 @media (min-width: 1400px) {
+    .maxhub-category-nav {
+        height: calc(var(--logo-height-large) + 3rem);
+    }
+
     .category-icons-container {
         justify-content: center;
         max-width: 1400px;
+        padding: 0 3rem;
     }
 
     .category-item {
@@ -111,6 +119,12 @@
 
     .category-name {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .maxhub-category-nav {
+        height: calc(50px + 2.4rem);
     }
 }
 
@@ -129,13 +143,9 @@
 }
 
 @media (max-width: 767px) {
-    .maxhub-category-nav {
-        padding: 0.6rem 0;
-    }
-
     .category-icons-container {
         gap: 0.3rem;
-        padding: 0 0.5rem;
+        padding: 0 1rem;
     }
 
     .category-item {
