@@ -1,7 +1,7 @@
 .more-section {
     position: relative;
     height: 70vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/images/background.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/background.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -16,7 +16,7 @@
 .more-content {
     max-width: 800px;
     padding: 10px;
-    margin-bottom: 20px; /* Adjust spacing between content and play button */
+    margin-bottom: 20px;
 }
 
 .play-button-container {
