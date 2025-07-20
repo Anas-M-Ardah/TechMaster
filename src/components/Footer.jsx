@@ -14,10 +14,12 @@ import gallery5 from '/images/gallery/gallery5.webp';
 import gallery6 from '/images/gallery/gallery6.jpg';
 import senmarPhoto from '/images/gallery/senmar-photo.jpeg';
 
+
 import sampleVideo1 from '../assets/videos/sample-vid-1.mp4';
 import sampleVideo2 from '../assets/videos/sample-vid-2.mp4';
 import movenpickVideo from '../assets/videos/movenpick-event.mp4';
-import senmarVideo from '../assets/videos/SENMAR-ACADEMY.mp4';
+import senmarVideo from '../assets/videos/senmar.mp4';
+
 
 const Footer = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -34,7 +36,7 @@ const Footer = () => {
         { id: 8, src: movenpickVideo, alt: "Movenpick Event Video", type: "video" },
         { id: 9, src: sampleVideo1, alt: "Sample Video 1", type: "video" },
         { id: 10, src: sampleVideo2, alt: "Sample Video 2", type: "video" },
-        { id: 11, src: senmarVideo, alt: "SENMAR-ACADEMY", type: "video" },
+        { id: 11, src: senmarVideo, alt: "Senmar Video", type: "video" },
     ];
 
     const handleVideoClick = (videoSrc) => {
