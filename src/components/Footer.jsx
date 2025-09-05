@@ -13,12 +13,14 @@ import gallery4 from '/images/gallery/gallery4.webp';
 import gallery5 from '/images/gallery/gallery5.webp';
 import gallery6 from '/images/gallery/gallery6.jpg';
 import senmarPhoto from '/images/gallery/senmar-photo.jpeg';
+import finnishSchools from '/images/gallery/finnish-school.jpeg';
 
 
 import sampleVideo1 from '../assets/videos/sample-vid-1.mp4';
 import sampleVideo2 from '../assets/videos/sample-vid-2.mp4';
 import movenpickVideo from '../assets/videos/movenpick-event.mp4';
 import senmarVideo from '../assets/videos/senmar.mp4';
+import finnishSchoolsVideo from '../assets/videos/finnish-school-vid.mp4';
 
 
 const Footer = () => {
@@ -33,10 +35,12 @@ const Footer = () => {
         { id: 5, src: gallery5, alt: "Gallery 5", type: "image" },
         { id: 6, src: gallery6, alt: "Gallery 6", type: "image" },
         { id: 7, src: senmarPhoto, alt: "Senmar Photo", type: "image" },
+        { id: 8, src: finnishSchools, alt: "Finnish Schools", type: "image" },
         { id: 8, src: movenpickVideo, alt: "Movenpick Event Video", type: "video" },
         { id: 9, src: sampleVideo1, alt: "Sample Video 1", type: "video" },
         { id: 10, src: sampleVideo2, alt: "Sample Video 2", type: "video" },
         { id: 11, src: senmarVideo, alt: "Senmar Video", type: "video" },
+        { id: 12, src: finnishSchoolsVideo, alt: "Finnish Schools Video", type: "video" },
     ];
 
     const handleVideoClick = (videoSrc) => {
