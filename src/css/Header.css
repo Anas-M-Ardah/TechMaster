@@ -18,6 +18,7 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px var(--shadow-color);
   z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .header-container {
@@ -27,6 +28,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Shrunk navbar styles */
+.header.shrunk .header-container {
+  padding: 0.6rem 2rem;
+}
+
+.header.shrunk .logo img {
+  height: 40px;
+}
+
+.header.shrunk .nav-links a {
+  font-size: 1rem;
 }
 
 .logo {
@@ -173,6 +187,10 @@
     height: 50px;
   }
 
+  .header.shrunk .logo img {
+    height: 40px;
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -281,6 +299,19 @@
 
   .nav-links a {
     font-size: var(--header-font-size-large);
+  }
+
+  /* Shrunk styles for large screens */
+  .header.shrunk .header-container {
+    padding: 0.8rem 3rem;
+  }
+
+  .header.shrunk .logo img {
+    height: 50px;
+  }
+
+  .header.shrunk .nav-links a {
+    font-size: 1.1rem;
   }
 }
 
