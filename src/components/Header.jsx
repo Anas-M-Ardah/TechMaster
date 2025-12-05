@@ -10,6 +10,7 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   // Check if mobile view
@@ -27,6 +28,15 @@ const Header = () => {
     setIsOpen(false);
     setIsServicesOpen(false);
   }, [location]);
+
+  // Handle scroll for navbar shrinking
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     //set the z-index of the header to 1001 when the menu is open
@@ -46,7 +56,7 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="header"
+      className={`header ${isScrolled ? 'shrunk' : ''}`}
     >
       <div className="header-container">
         <Link to="/" className="logo">
