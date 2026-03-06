@@ -21,6 +21,8 @@ import sampleVideo2 from '../assets/videos/sample-vid-2.mp4';
 import movenpickVideo from '../assets/videos/movenpick-event.mp4';
 import senmarVideo from '../assets/videos/senmar.mp4';
 import finnishSchoolsVideo from '../assets/videos/finnish-school-vid.mp4';
+import ammanArabUni from '../assets/videos/amman-arab-university.mp4';
+import crownPlaza from '../assets/videos/crown-plaza.mp4';
 
 
 const Footer = () => {
@@ -41,6 +43,8 @@ const Footer = () => {
         { id: 10, src: sampleVideo2, alt: "Sample Video 2", type: "video" },
         { id: 11, src: senmarVideo, alt: "Senmar Video", type: "video" },
         { id: 12, src: finnishSchoolsVideo, alt: "Finnish Schools Video", type: "video" },
+        { id: 13, src: ammanArabUni, alt: "Amman Arab University", type: "video" },
+        { id: 14, src: crownPlaza, alt: "Crown Plaza", type: "video" },
     ];
 
     const handleVideoClick = (videoSrc) => {
