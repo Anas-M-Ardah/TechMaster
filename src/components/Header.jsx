@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import CartLink from './Cart/CartLink';
 import '../css/Header.css';
 
 import logo from '/images/technology-master-logo.png';
@@ -111,6 +112,8 @@ const Header = () => {
           <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
             Contact Us
           </Link>
+
+          <CartLink />
         </nav>
       </div>
     </motion.header>

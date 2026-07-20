@@ -1,0 +1,296 @@
+/* QuotePage.css
+   Literal colours rather than custom properties — see the note in Cart.css
+   about the two conflicting :root declarations of --primary-color. */
+
+.quote-page {
+    background: #fff;
+}
+
+.quote-page .container {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+}
+
+/* Shared primary button (also used by the empty and success states) */
+.quote-primary-btn {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quote-primary-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.quote-primary-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Empty + success states */
+.quote-empty,
+.quote-success {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+}
+
+.quote-empty h2,
+.quote-success h2 {
+    font-size: 1.9rem;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.quote-empty p,
+.quote-success p {
+    color: #596775;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.quote-success-icon {
+    font-size: 3.5rem;
+    color: #28a745;
+    margin-bottom: 1.5rem;
+}
+
+/* Two-column layout: items on the left, form on the right */
+.quote-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+}
+
+.quote-items-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.quote-items-header h2,
+.quote-form-section h2 {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    font-weight: 700;
+    margin: 0;
+}
+
+.quote-items-header h2 span {
+    color: #596775;
+    font-weight: 500;
+}
+
+.quote-clear-btn {
+    background: none;
+    border: none;
+    color: #596775;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.quote-clear-btn:hover {
+    color: #dc3545;
+}
+
+.quote-item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.quote-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.quote-item-image {
+    width: 88px;
+    height: 66px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #f8f9fa;
+    flex-shrink: 0;
+}
+
+.quote-item-text {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.quote-item-name {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+}
+
+.quote-item-category {
+    font-size: 0.88rem;
+    color: #596775;
+    margin: 0;
+}
+
+.quote-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.quote-remove-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    background: none;
+    border: 1px solid #e6e9ed;
+    border-radius: 5px;
+    color: #97a1ac;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quote-remove-btn:hover {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Form */
+.quote-form-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 2rem;
+    position: sticky;
+    top: 6rem;
+}
+
+.quote-form-intro {
+    color: #596775;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.quote-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.quote-field label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.4rem;
+}
+
+.quote-field input,
+.quote-field textarea {
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #d8dee5;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #2c3e50;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quote-field input:focus,
+.quote-field textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.quote-field input[aria-invalid="true"] {
+    border-color: #dc3545;
+}
+
+.quote-field textarea {
+    resize: vertical;
+}
+
+.quote-error {
+    color: #dc3545;
+    font-size: 0.82rem;
+    margin-top: 0.3rem;
+}
+
+.quote-submit-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.quote-submit-error {
+    color: #dc3545;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* Honeypot — must stay in the DOM but never visible to a human */
+.quote-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+@media (max-width: 992px) {
+    .quote-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .quote-form-section {
+        position: static;
+    }
+}
+
+@media (max-width: 576px) {
+    .quote-item {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .quote-item-text {
+        flex-basis: calc(100% - 88px - 1rem);
+    }
+
+    .quote-item-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .quote-form-section {
+        padding: 1.5rem;
+    }
+}

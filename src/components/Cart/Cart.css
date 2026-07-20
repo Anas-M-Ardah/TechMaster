@@ -1,0 +1,130 @@
+/* Cart.css — shared styles for the quote-cart controls.
+   Deliberately uses literal colours rather than custom properties: the repo
+   declares `--primary-color` in two different :root blocks with two different
+   values, so anything relying on it resolves by CSS import order. */
+
+.add-to-quote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 1.25rem;
+    background-color: #fff;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.add-to-quote-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-quote-btn:focus-visible,
+.quote-qty-btn:focus-visible {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
+}
+
+/* Quantity stepper (shown once the product is in the quote) */
+.quote-qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.quote-qty-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2.1rem;
+    padding: 0;
+    background: #fff;
+    color: #007bff;
+    border: none;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.quote-qty-btn:hover:not(:disabled) {
+    background: #007bff;
+    color: #fff;
+}
+
+.quote-qty-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.quote-qty-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 3.25rem;
+    height: 2.1rem;
+    padding: 0 0.5rem;
+    justify-content: center;
+    background: #eaf3ff;
+    color: #0056b3;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-left: 1px solid #cde1ff;
+    border-right: 1px solid #cde1ff;
+}
+
+.quote-qty-check {
+    font-size: 0.7rem;
+}
+
+/* Header cart link */
+.cart-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.cart-link-icon {
+    font-size: 1.15rem;
+}
+
+.cart-link-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.35rem;
+    background: #007bff;
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+@media (max-width: 576px) {
+    .add-to-quote-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .quote-qty {
+        width: 100%;
+    }
+
+    .quote-qty-value {
+        flex-grow: 1;
+    }
+}

@@ -29,6 +29,22 @@
     <link rel="canonical" href="https://technology-master.com/" />
   </head>
   <body>
+    <!--
+      Netlify detects forms by parsing the built HTML. The real form is rendered
+      by React and does not exist at build time, so this hidden twin is what
+      registers the "quote-request" form and its fields. Every field the React
+      form posts must be listed here or it is dropped from the submission.
+    -->
+    <form name="quote-request" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <textarea name="notes"></textarea>
+      <textarea name="items"></textarea>
+      <textarea name="items_json"></textarea>
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

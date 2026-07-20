@@ -1,6 +1,6 @@
 // CategorySection.jsx
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import AddToQuoteButton from '../../../Cart/AddToQuoteButton';
 import './CategorySection.css';
 
 const CategorySection = ({ category, isActive }) => {
@@ -31,14 +31,15 @@ const CategorySection = ({ category, isActive }) => {
                                     <p className="product-description">{product.description}</p>
                                 </div>
                                 <div className="product-action">
-                                    <a 
-                                        href={product.url} 
-                                        target="_blank" 
+                                    <a
+                                        href={product.url}
+                                        target="_blank"
                                         rel="noopener noreferrer"
                                         className="learn-more-btn"
                                     >
                                         Learn More
                                     </a>
+                                    <AddToQuoteButton sku={product.sku} />
                                 </div>
                             </div>
                         </div>
@@ -49,6 +50,24 @@ const CategorySection = ({ category, isActive }) => {
             </div>
         </div>
     );
+};
+
+CategorySection.propTypes = {
+    category: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string,
+        products: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                sku: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+                image: PropTypes.string,
+                description: PropTypes.string,
+                url: PropTypes.string,
+            })
+        ),
+    }).isRequired,
+    isActive: PropTypes.bool,
 };
 
 export default CategorySection;
