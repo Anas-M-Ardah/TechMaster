@@ -1,11 +1,18 @@
-/* Category tiles — one ruled row of icon + short label. Not sticky: a bar
-   that follows you down the page while carrying eight items is exactly what
-   made this feel busy. */
+/* Category tiles — one ruled row of icon + short label, stuck beneath the
+   fixed header so the categories stay reachable down a long catalogue.
+   Kept deliberately short: this bar and the header are both permanently on
+   screen, so every pixel here is taken from the products. */
 
 .cat-nav {
-  padding-block: clamp(2rem, 4vw, 3rem);
+  position: sticky;
+  /* -1px so its top rule sits under the header's bottom rule rather than
+     doubling it. */
+  top: calc(var(--header-height) - 1px);
+  z-index: 500;
   background: var(--tm-bg);
-  scroll-margin-top: calc(var(--header-height) + 16px);
+  /* Lands the nav at its flow position, header-clear, when a tile is
+     pressed — which puts the newly revealed category directly beneath it. */
+  scroll-margin-top: var(--header-height);
 }
 
 .cat-nav-list {
@@ -14,7 +21,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--tm-border);
   border-left: 1px solid var(--tm-border);
 }
 
@@ -24,10 +30,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
+  gap: 0.45rem;
   width: 100%;
   height: 100%;
-  padding: clamp(1.1rem, 2vw, 1.5rem) 0.5rem;
+  padding: clamp(0.8rem, 1.5vw, 1.05rem) 0.5rem;
   border: 0;
   border-right: 1px solid var(--tm-border);
   border-bottom: 1px solid var(--tm-border);
@@ -64,7 +70,7 @@
 .cat-nav-icon {
   display: grid;
   place-items: center;
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   line-height: 1;
   color: var(--tm-ink-muted);
   transition: color 0.35s var(--tm-ease-soft), transform 0.4s var(--tm-ease);
@@ -79,7 +85,7 @@
 }
 
 .cat-nav-name {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.25;
@@ -95,18 +101,37 @@
 
 /* --- Responsive ----------------------------------------------------------- */
 
+/* Narrower than eight-across, the tiles become a single scrolling row rather
+   than wrapping. A wrapped grid would make the stuck bar two to four rows
+   tall — on a phone that is most of the screen permanently occupied. */
 @media (max-width: 1100px) {
   .cat-nav-list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cat-nav-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cat-nav-list li {
+    flex: 0 0 auto;
+  }
+
+  .cat-nav-tab {
+    min-width: 108px;
   }
 }
 
 @media (max-width: 480px) {
-  .cat-nav-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .cat-nav-tab {
+    min-width: 96px;
+    padding-inline: 0.35rem;
   }
 
   .cat-nav-icon {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
