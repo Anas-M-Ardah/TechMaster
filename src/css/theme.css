@@ -1,0 +1,452 @@
+/* theme.css — Technology Master design system.
+   Light, editorial base with a dark "bookend" palette reserved for the hero
+   and footer. Single typeface used across every weight/size instead of
+   mixing families — hierarchy comes from scale and spacing, not font-switching. */
+
+:root {
+  /* Surfaces — light */
+  --tm-bg: #ffffff;
+  --tm-bg-alt: #f5f6f8;
+  --tm-surface: #ffffff;
+  --tm-surface-2: #f5f6f8;
+  --tm-surface-3: #ebedf0;
+  --tm-border: rgba(20, 23, 28, 0.09);
+  --tm-border-strong: rgba(20, 23, 28, 0.15);
+  --tm-glass: rgba(255, 255, 255, 0.82);
+
+  /* Text — light */
+  --tm-ink: #14171c;
+  --tm-ink-soft: #4b5058;
+  --tm-ink-muted: #868c94;
+
+  /* Back-compat aliases for the pre-revamp dark-theme token names — lets
+     not-yet-migrated component CSS keep resolving to sane light values
+     instead of breaking outright. New/updated CSS should use --tm-ink*. */
+  --tm-text: var(--tm-ink);
+  --tm-text-soft: var(--tm-ink-soft);
+  --tm-text-muted: var(--tm-ink-muted);
+  --tm-ivory: var(--tm-bg-alt);
+  --tm-ivory-dim: var(--tm-bg-alt);
+
+  /* Accent — brand blue, derived from the logo mark (#1b5da1) */
+  --tm-accent: #1b5da1;
+  --tm-accent-strong: #123f70;
+  --tm-accent-tint: rgba(27, 93, 161, 0.07);
+  --tm-accent-glow: rgba(27, 93, 161, 0.22);
+
+  /* Dark bookend palette — hero + footer only */
+  --tm-void: #0b0c0f;
+  --tm-void-surface: #16181d;
+  --tm-void-surface-2: #1d2027;
+  --tm-void-border: rgba(244, 246, 248, 0.12);
+  --tm-void-text: #f4f6f8;
+  --tm-void-text-soft: rgba(244, 246, 248, 0.72);
+  --tm-void-text-muted: rgba(244, 246, 248, 0.5);
+  --tm-accent-light: #4f97e0;
+
+  /* Shadows — soft, low-opacity, used sparingly */
+  --tm-shadow-sm: 0 1px 2px rgba(20, 23, 28, 0.05);
+  --tm-shadow-md: 0 20px 44px -24px rgba(20, 23, 28, 0.18);
+  --tm-shadow-lg: 0 32px 70px -28px rgba(20, 23, 28, 0.22);
+
+  /* Type */
+  --tm-font: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --tm-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Motion */
+  --tm-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --tm-ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Radius */
+  --tm-r-sm: 8px;
+  --tm-r-md: 18px;
+  --tm-r-lg: 30px;
+
+  /* Fixed header's rendered height — single source of truth for anything
+     that offsets against it (sticky bars, page-header margin). The header
+     itself keeps this height constant across its scrolled/"shrunk" state
+     so these offsets never drift out of sync with it. */
+  --header-height: 80px;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --header-height: 70px;
+  }
+}
+
+@media (max-width: 575px) {
+  :root {
+    --header-height: 60px;
+  }
+}
+
+body {
+  background-color: var(--tm-bg);
+  color: var(--tm-ink);
+  font-family: var(--tm-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--tm-font);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--tm-ink);
+}
+
+::selection {
+  background: var(--tm-accent);
+  color: #ffffff;
+}
+
+/* Webkit scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tm-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tm-border-strong);
+  border-radius: 999px;
+  border: 2px solid var(--tm-bg-alt);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tm-accent);
+}
+
+/* Small uppercase technical label — the one place mono type appears */
+.tm-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--tm-font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tm-accent-strong);
+}
+
+.tm-eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--tm-accent);
+  display: inline-block;
+}
+
+/* Eyebrow variant for use on the dark hero/footer sections */
+.tm-eyebrow-on-dark {
+  color: var(--tm-accent-light);
+}
+
+.tm-eyebrow-on-dark::before {
+  background: var(--tm-accent-light);
+}
+
+/* Alternating section band — the light/off-white rhythm device used to
+   separate sections without borders or shadows */
+.tm-band-alt {
+  background-color: var(--tm-bg-alt);
+}
+
+/* ------------------------------------------------------------------ *\
+   Dark bands
+
+   Rather than writing a second set of colours for every component that
+   appears on a dark background, a section can opt into `.tm-on-dark` and
+   the palette tokens are remapped underneath it. Because custom properties
+   resolve at the point of use, any descendant styled with --tm-ink /
+   --tm-border / --tm-accent flips automatically.
+\* ------------------------------------------------------------------ */
+
+.tm-on-dark {
+  --tm-bg: var(--tm-void);
+  --tm-bg-alt: var(--tm-void-surface);
+  --tm-surface: var(--tm-void-surface);
+  --tm-surface-2: var(--tm-void-surface-2);
+  --tm-surface-3: var(--tm-void-surface-2);
+  --tm-border: var(--tm-void-border);
+  --tm-border-strong: rgba(244, 246, 248, 0.24);
+  --tm-ink: var(--tm-void-text);
+  --tm-ink-soft: var(--tm-void-text-soft);
+  --tm-ink-muted: var(--tm-void-text-muted);
+  --tm-accent: var(--tm-accent-light);
+  --tm-accent-strong: var(--tm-accent-light);
+  --tm-accent-tint: rgba(79, 151, 224, 0.14);
+  --tm-accent-glow: rgba(79, 151, 224, 0.3);
+
+  background-color: var(--tm-void);
+  color: var(--tm-ink);
+}
+
+.tm-on-dark h1,
+.tm-on-dark h2,
+.tm-on-dark h3,
+.tm-on-dark h4,
+.tm-on-dark h5,
+.tm-on-dark h6 {
+  color: var(--tm-ink);
+}
+
+/* ------------------------------------------------------------------ *\
+   Layout
+
+   One shell width and one vertical rhythm for the whole site. Sections
+   are separated by space and hairlines, never by shadows or cards.
+\* ------------------------------------------------------------------ */
+
+.tm-shell {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4.5rem);
+}
+
+.tm-section {
+  position: relative;
+  padding-block: clamp(4.5rem, 9vw, 9rem);
+}
+
+.tm-section-tight {
+  padding-block: clamp(3rem, 5vw, 4.5rem);
+}
+
+/* Section masthead: eyebrow + title on the left, supporting line and any
+   link on the right. Collapses to a single column below the lg breakpoint. */
+.tm-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  padding-bottom: clamp(2rem, 3.5vw, 3.25rem);
+}
+
+.tm-section-head-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .tm-section-head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* ------------------------------------------------------------------ *\
+   Type scale
+\* ------------------------------------------------------------------ */
+
+.tm-display {
+  font-size: clamp(2.6rem, 7.2vw, 5.6rem);
+  line-height: 0.97;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.tm-h2 {
+  font-size: clamp(1.9rem, 4.2vw, 3.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  margin: 0.9rem 0 0;
+  text-wrap: balance;
+}
+
+.tm-h3 {
+  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tm-lede {
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--tm-ink-soft);
+  max-width: 52ch;
+  margin: 0;
+}
+
+.tm-accent-text {
+  color: var(--tm-accent);
+}
+
+/* Mono numerals — tabular so columns of figures stay optically aligned */
+.tm-num {
+  font-family: var(--tm-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ------------------------------------------------------------------ *\
+   Buttons — square-ish and flat. The only "lift" is a colour shift.
+\* ------------------------------------------------------------------ */
+
+.tm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.95rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.35s var(--tm-ease-soft), color 0.35s var(--tm-ease-soft),
+    border-color 0.35s var(--tm-ease-soft);
+}
+
+.tm-btn svg {
+  flex: none;
+  transition: transform 0.4s var(--tm-ease);
+}
+
+.tm-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.tm-btn-solid {
+  background: var(--tm-accent);
+  border-color: var(--tm-accent);
+  color: #ffffff;
+}
+
+.tm-btn-solid:hover {
+  background: var(--tm-accent-strong);
+  border-color: var(--tm-accent-strong);
+  color: #ffffff;
+}
+
+.tm-on-dark .tm-btn-solid {
+  background: var(--tm-void-text);
+  border-color: var(--tm-void-text);
+  color: var(--tm-void);
+}
+
+.tm-on-dark .tm-btn-solid:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--tm-void);
+}
+
+.tm-btn-outline {
+  border-color: var(--tm-border-strong);
+  color: var(--tm-ink);
+}
+
+.tm-btn-outline:hover {
+  border-color: var(--tm-ink);
+  color: var(--tm-ink);
+  background: var(--tm-accent-tint);
+}
+
+/* Quiet tertiary action: a label sitting on a hairline that draws itself
+   in from the left on hover */
+.tm-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  color: var(--tm-ink);
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.tm-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--tm-border-strong);
+}
+
+.tm-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--tm-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--tm-ease);
+  z-index: 1;
+}
+
+.tm-link:hover {
+  color: var(--tm-accent);
+}
+
+.tm-link:hover::before {
+  transform: scaleX(1);
+}
+
+.tm-link svg {
+  transition: transform 0.4s var(--tm-ease);
+}
+
+.tm-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* ------------------------------------------------------------------ *\
+   Texture — a single fine grain layer, used only on the dark bands to
+   stop large flat blacks from banding on cheap panels.
+\* ------------------------------------------------------------------ */
+
+.tm-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------------------ *\
+   Focus — visible, square, brand-coloured. Applied globally so the whole
+   site keyboard-navigates consistently.
+\* ------------------------------------------------------------------ */
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--tm-accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+.tm-on-dark :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline-color: var(--tm-accent-light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

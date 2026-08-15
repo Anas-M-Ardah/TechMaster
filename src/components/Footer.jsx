@@ -38,13 +38,13 @@ const Footer = () => {
         { id: 6, src: gallery6, alt: "Gallery 6", type: "image" },
         { id: 7, src: senmarPhoto, alt: "Senmar Photo", type: "image" },
         { id: 8, src: finnishSchools, alt: "Finnish Schools", type: "image" },
-        { id: 8, src: movenpickVideo, alt: "Movenpick Event Video", type: "video" },
-        { id: 9, src: sampleVideo1, alt: "Sample Video 1", type: "video" },
-        { id: 10, src: sampleVideo2, alt: "Sample Video 2", type: "video" },
-        { id: 11, src: senmarVideo, alt: "Senmar Video", type: "video" },
-        { id: 12, src: finnishSchoolsVideo, alt: "Finnish Schools Video", type: "video" },
-        { id: 13, src: ammanArabUni, alt: "Amman Arab University", type: "video" },
-        { id: 14, src: crownPlaza, alt: "Crown Plaza", type: "video" },
+        { id: 9, src: movenpickVideo, alt: "Movenpick Event Video", type: "video" },
+        { id: 10, src: sampleVideo1, alt: "Sample Video 1", type: "video" },
+        { id: 11, src: sampleVideo2, alt: "Sample Video 2", type: "video" },
+        { id: 12, src: senmarVideo, alt: "Senmar Video", type: "video" },
+        { id: 13, src: finnishSchoolsVideo, alt: "Finnish Schools Video", type: "video" },
+        { id: 14, src: ammanArabUni, alt: "Amman Arab University", type: "video" },
+        { id: 15, src: crownPlaza, alt: "Crown Plaza", type: "video" },
     ];
 
     const handleVideoClick = (videoSrc) => {
@@ -68,8 +68,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="footer">
-            <div className="footer-overlay"></div>
+        <footer className="footer tm-on-dark tm-grain">
             <div className="footer-content">
                 {/* Company Info Section */}
                 <div className="footer-section">

@@ -1,551 +1,287 @@
-/* Footer Styles */
-.footer {
-    position: relative;
-    color: white;
-    padding: 60px 0 20px;
-    background-image: url('/images/footerbg12.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+/* Footer — the second half of the dark bookend. It carries the same rules,
+   mono labels and grayscale imagery as the rest of the page, so it reads as
+   the end of the document rather than a separate slab. */
 
-.footer-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(0, 21, 41, 0.85), rgba(0, 21, 41, 0.9));
+.footer {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--tm-border);
+  padding-top: clamp(3.5rem, 7vw, 5.5rem);
 }
 
 .footer-content {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1.2fr 1fr;
-    gap: 60px;
-    padding: 0 40px;
-    z-index: 1;
+  position: relative;
+  z-index: 3;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4.5rem);
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  display: grid;
+  grid-template-columns: 1.25fr 0.8fr 1.1fr 1.15fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
 }
 
-.footer-section {
-    display: flex;
-    flex-direction: column;
-    animation: fadeInUp 0.5s ease forwards;
+/* --- Section headings ------------------------------------------------- */
+
+.footer-section h3 {
+  margin: 0 0 1.5rem;
+  font-family: var(--tm-font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--tm-accent-light);
 }
 
-/* Company Info Section */
+/* --- Brand column ------------------------------------------------------ */
+
 .footer-logo {
-    max-width: 180px;
-    margin-bottom: 25px;
+  height: 44px;
+  width: auto;
+  margin-bottom: 1.5rem;
+  /* Dark artwork on a dark ground — invert it to white. */
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
 }
 
 .company-description {
-    color: #a8b2c0;
-    margin-bottom: 25px;
-    line-height: 1.8;
-    font-size: 15px;
-    max-width: 90%;
+  margin: 0 0 1.75rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--tm-ink-muted);
+  max-width: 34ch;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.6rem;
 }
 
 .social-links a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    margin-right: 10px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--tm-border);
+  color: var(--tm-ink-soft);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.35s var(--tm-ease-soft), color 0.35s var(--tm-ease-soft),
+    border-color 0.35s var(--tm-ease-soft);
 }
 
 .social-links a:hover {
-    background-color: #4361ee;
+  background: var(--tm-accent-light);
+  border-color: var(--tm-accent-light);
+  color: var(--tm-void);
 }
 
-.social-links a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.5s;
-}
-
-.social-links a:hover::before {
-    left: 100%;
-}
-
-/* Quick Links Section */
-.footer-section h3 {
-    color: white;
-    margin-bottom: 30px;
-    position: relative;
-    padding-bottom: 15px;
-    font-size: 22px;
-    text-align: left;
-}
-
-h3::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 40px;
-    height: 3px;
-    background-color: #4361ee;
-    transition: width 0.3s ease;
-}
-
-.footer-section:hover h3::after {
-    width: 60px;
-}
+/* --- Quick links -------------------------------------------------------- */
 
 .quick-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.quick-links li {
-    margin-bottom: 18px;
-    transform: translateX(0);
-    transition: transform 0.3s ease;
-    position: relative;
+.quick-links li + li {
+  margin-top: 0.15rem;
 }
 
-.quick-links li::before {
-    content: '›';
-    position: absolute;
-    left: -20px;
-    color: #4361ee;
-    opacity: 0;
-    transition: all 0.3s ease;
+.quick-links a {
+  display: inline-block;
+  padding: 0.35rem 0;
+  font-size: 0.93rem;
+  color: var(--tm-ink-soft);
+  text-decoration: none;
+  transition: color 0.3s var(--tm-ease-soft), transform 0.35s var(--tm-ease);
 }
 
-.quick-links li:hover {
-    transform: translateX(20px);
+.quick-links a:hover {
+  color: var(--tm-ink);
+  transform: translateX(4px);
 }
 
-.quick-links li:hover::before {
-    opacity: 1;
+/* --- Contact ------------------------------------------------------------ */
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
 }
 
-.quick-links li a {
-    color: #a8b2c0;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 15px;
-    display: inline-block;
-    position: relative;
-}
-
-.quick-links li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -2px;
-    left: 0;
-    background-color: #4361ee;
-    transition: width 0.3s ease;
-}
-
-.quick-links li:hover a {
-    color: #4361ee;
-}
-
-.quick-links li:hover a::after {
-    width: 100%;
-}
-
-/* Contact Section */
 .contact-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 25px;
-    transition: transform 0.3s ease;
+  display: flex;
+  gap: 0.9rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--tm-border);
 }
 
-.contact-item:hover {
-    transform: translateX(10px);
+.contact-item:first-child {
+  border-top: 0;
+  padding-top: 0;
 }
 
 .contact-icon {
-    color: #4361ee;
-    margin-right: 15px;
-    font-size: 18px;
-    margin-top: 4px;
-    transition: transform 0.3s ease;
-}
-
-.contact-item:hover .contact-icon {
-    transform: scale(1.2);
+  flex: none;
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--tm-accent-light);
 }
 
 .contact-item p {
-    margin: 0 0 5px 0;
-    color: #a8b2c0;
-    font-size: 14px;
+  margin: 0 0 0.2rem;
+  font-family: var(--tm-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tm-ink-muted);
 }
 
 .contact-item a,
 .contact-item address {
-    color: white;
-    text-decoration: none;
-    margin: 0;
-    font-style: normal;
-    font-size: 15px;
-    line-height: 1.5;
+  margin: 0;
+  font-size: 0.93rem;
+  font-style: normal;
+  line-height: 1.5;
+  color: var(--tm-ink-soft);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 0.3s var(--tm-ease-soft);
 }
 
-/* Gallery Section */
+.contact-item a:hover {
+  color: var(--tm-ink);
+}
+
+/* --- Gallery -------------------------------------------------------------- */
+
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.gallery-image,
+.gallery-video-container {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--tm-void-surface);
 }
 
 .gallery-image,
 .gallery-video {
-    width: 100%;
-    height: 75px;
-    object-fit: cover;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) brightness(0.8);
+  transition: filter 0.45s var(--tm-ease-soft), transform 0.8s var(--tm-ease);
 }
 
 .gallery-image:hover,
-.gallery-video:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-    z-index: 2;
-}
-
-/* Gallery Modal */
-.gallery-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px;
-    animation: modalFadeIn 0.3s ease;
-}
-
-.modal-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90vh;
-    animation: modalZoomIn 0.3s ease;
-}
-
-.modal-content img,
-.modal-content video {
-    max-width: 100%;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-    padding-bottom: 5%;
-}
-
-.modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
-}
-
-.modal-close:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg);
-}
-
-/* Footer Bottom */
-.footer-bottom {
-    position: relative;
-    text-align: center;
-    margin-top: 50px;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 1;
-}
-
-.footer-bottom p {
-    color: #a8b2c0;
-    margin: 0;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-.footer-bottom:hover p {
-    color: white;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes modalZoomIn {
-    from {
-        transform: scale(0.9);
-    }
-    to {
-        transform: scale(1);
-    }
-}
-
-/* Stagger the animation for each section */
-.footer-section:nth-child(1) { animation-delay: 0.1s; }
-.footer-section:nth-child(2) { animation-delay: 0.2s; }
-.footer-section:nth-child(3) { animation-delay: 0.3s; }
-.footer-section:nth-child(4) { animation-delay: 0.4s; }
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 0 20px;
-    }
-
-    .footer-section {
-        margin-bottom: 20px;
-    }
-
-    .company-description {
-        max-width: 100%;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .modal-close {
-        top: 10px;
-        right: 10px;
-        font-size: 20px;
-        width: 35px;
-        height: 35px;
-    }
-
-    ul li:hover {
-        transform: translateX(10px);
-    }
-
-    .contact-item:hover {
-        transform: translateX(5px);
-    }
-}
-
-.gallery-video-container {
-    position: relative;
-    cursor: pointer;
+.gallery-video-container:hover .gallery-video {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.06);
 }
 
 .play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    color: white;
-    opacity: 0.8;
-    pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.15rem;
+  color: #ffffff;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
 }
 
-.gallery-video {
-    width: 100%;
-    height: 75px;
-    object-fit: cover;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+/* --- Image lightbox --------------------------------------------------------- */
+
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 5vw, 3rem);
+  background: rgba(11, 12, 15, 0.94);
 }
 
-.gallery-video:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-    z-index: 2;
+.gallery-modal .modal-content {
+  max-width: min(100%, 1100px);
+  max-height: 85vh;
 }
 
-/* make everything centered on mobile and tablet */
-
-@media (max-width: 1024px) {
-    /* Center text alignment for all footer sections */
-    .footer-section {
-        text-align: center;
-        align-items: center;
-    }
-
-    /* Center company description */
-    .company-description {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Center footer logo */
-    .footer-logo {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Center social links */
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    /* Center section headings */
-    .footer-section h3 {
-        text-align: center;
-    }
-
-    /* Center the heading underline */
-    h3::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /* Center list items */
-    ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding-left: 0;
-    }
-
-    ul li::before {
-        display: none; /* Remove the arrow since it won't work well with center alignment */
-    }
-
-    ul li:hover {
-        transform: translateX(0); /* Remove horizontal movement on hover */
-    }
-
-    /* Center contact items */
-    .contact-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .contact-icon {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    .contact-item:hover {
-        transform: translateY(-5px); /* Change horizontal to vertical movement */
-    }
-
-    /* Center gallery grid */
-    .gallery-grid {
-        justify-content: center;
-    }
-
-    /* Center modal close button */
-    .modal-close {
-        top: 20px;
-        right: 50%;
-        transform: translateX(50%);
-    }
-
-    /* Adjust footer bottom */
-    .footer-bottom {
-        text-align: center;
-    }
-
-    /* Center footer content padding */
-    .footer-content {
-        padding: 0 20px;
-    }
+.gallery-modal .modal-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid var(--tm-void-border);
 }
 
-/* Additional mobile-specific adjustments */
-@media (max-width: 480px) {
-    .footer-content {
-        gap: 40px;
-    }
+.modal-close {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(244, 246, 248, 0.28);
+  background: transparent;
+  color: rgba(244, 246, 248, 0.8);
+  font-size: 1.05rem;
+  transition: border-color 0.3s var(--tm-ease-soft), color 0.3s var(--tm-ease-soft);
+}
 
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-    }
+.modal-close:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
 
-    .footer {
-        padding: 40px 0 20px;
-    }
+/* --- Bottom bar ------------------------------------------------------------- */
 
-    .footer-section h3 {
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
+.footer-bottom {
+  position: relative;
+  z-index: 3;
+  border-top: 1px solid var(--tm-border);
+}
 
-    .company-description {
-        font-size: 14px;
-    }
+.footer-bottom p {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.6rem clamp(1.25rem, 5vw, 4.5rem);
+  font-family: var(--tm-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--tm-ink-muted);
+}
 
-    ul li a {
-        font-size: 14px;
-    }
+/* --- Responsive -------------------------------------------------------------- */
 
-    .contact-item p,
-    .contact-item a,
-    .contact-item address {
-        font-size: 14px;
-    }
+@media (max-width: 1100px) {
+  .footer-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 6vw, 3rem);
+  }
+}
+
+@media (max-width: 575px) {
+  .footer-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .company-description {
+    max-width: none;
+  }
 }

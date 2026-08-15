@@ -1,15 +1,20 @@
 // App.jsx
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, useState, Suspense } from 'react';
+// Stylesheet order matters and is deliberate: vendor CSS first, then the design
+// system, then component CSS (pulled in transitively by the imports below), so
+// our own rules win over Bootstrap's without needing !important everywhere.
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'aos/dist/aos.css';
+import './css/theme.css';
+
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Home from './components/HomePage/Home';
 import AboutUs from './components/AboutUsPage/AboutUs';
 import Service from './components/ServicesPage/Service';
 import Client from './components/ClientsPage/Client';
 import BusinessPartners from './components/BusinessPartnersPage/BusinessPartners';
 import ContactUs from './components/ContactUsPage/ContactUs';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import AOS from 'aos';
-import 'aos/dist/aos.css';
 import LoadingSpinner from './components/Common/LoadingSpinner';
 import DataCenter from './components/ServicesPage/DataCenter';
 import StructureCabling from './components/ServicesPage/StructureCabling';
@@ -67,6 +72,9 @@ function App() {
         <Route path="/services/smart-building" element={<SmartBuildingSolutions />} />
         <Route path="/maxhub" element={<MaxHub />} />
         <Route path="maxhub/products" element={<MaxHubProducts />} />
+        {/* Without this, an unknown path matched no route and rendered a blank
+            page — no header, no footer, nothing. */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

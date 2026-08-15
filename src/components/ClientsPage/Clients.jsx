@@ -1,9 +1,7 @@
-// components/Clients/Clients.jsx
-import React from 'react';
+// components/ClientsPage/Clients.jsx
+import LogoWall from '../Common/LogoWall';
 import '../../css/ClientsPage/Clients.css';
 
-// Import all client logos
-// Import your client logos
 import client1 from '/images/clients/client-1.png';
 import client2 from '/images/clients/client-2.png';
 import client3 from '/images/clients/client3.png';
@@ -16,88 +14,74 @@ import client9 from '/images/clients/client-9.png';
 import client10 from '/images/clients/client-10.png';
 import client11 from '/images/clients/client-11.png';
 import client12 from '/images/clients/client-12.png';
-import civil_protection from '/images/clients/civil_protection.png';
-import kettaneh_grp from '/images/clients/kettaneh_grp.png';
-import middle_east_insurance from '/images/clients/middle_east_insurance.png';
-import national_microfinance from '/images/clients/national-microfinance.jpg';
+import civilProtection from '/images/clients/civil_protection.png';
+import kettaneh from '/images/clients/kettaneh_grp.png';
+import middleEastInsurance from '/images/clients/middle_east_insurance.png';
+import nationalMicrofinance from '/images/clients/national-microfinance.jpg';
 import safwa from '/images/clients/safwa-logo.webp';
 import omareyah from '/images/clients/omareyah.png';
 import tazkia from '/images/clients/tazkia.png';
-import abdali_views from '/images/clients/abdali-views.png';
-import royal_marine from '/images/clients/royal_marine.png';
-import JIS from '/images/clients/JIS.png';
+import abdaliViews from '/images/clients/abdali-views.png';
+import royalMarine from '/images/clients/royal_marine.png';
+import jis from '/images/clients/JIS.png';
 import xzc from '/images/clients/xzc.png';
 import baynouna from '/images/clients/baynouna.png';
 import customs from '/images/clients/customs.png';
-import JDF from '/images/clients/JDF.png';
-import JEPCO from '/images/clients/JEPCO.png';
+import jdf from '/images/clients/JDF.png';
+import jepco from '/images/clients/JEPCO.png';
 import orthodox from '/images/clients/orthodox.png';
-import EHS_Jordan from '/images/clients/EHS_jordan.png';
+import ehsJordan from '/images/clients/EHS_jordan.png';
 
-// ... import all other client images
+// Named entries first — they are the recognisable ones, and leading with them
+// makes the wall read as institutions rather than an anonymous logo dump.
+const CLIENTS = [
+  { src: civilProtection, name: 'Civil Protection' },
+  { src: customs, name: 'Jordan Customs' },
+  { src: jdf, name: 'JDF' },
+  { src: jepco, name: 'JEPCO' },
+  { src: kettaneh, name: 'Kettaneh Group' },
+  { src: middleEastInsurance, name: 'Middle East Insurance' },
+  { src: nationalMicrofinance, name: 'National Microfinance' },
+  { src: safwa, name: 'Safwa' },
+  { src: abdaliViews, name: 'Abdali Views' },
+  { src: baynouna, name: 'Baynouna' },
+  { src: royalMarine, name: 'Royal Marine' },
+  { src: jis, name: 'JIS' },
+  { src: orthodox, name: 'Orthodox' },
+  { src: omareyah, name: 'Omareyah' },
+  { src: tazkia, name: 'Tazkia' },
+  { src: ehsJordan, name: 'EHS Jordan' },
+  { src: xzc, name: 'XZC' },
+  { src: client1, name: 'Client 1' },
+  { src: client2, name: 'Client 2' },
+  { src: client3, name: 'Client 3' },
+  { src: client4, name: 'Client 4' },
+  { src: client5, name: 'Client 5' },
+  { src: client6, name: 'Client 6' },
+  { src: client7, name: 'Client 7' },
+  { src: client8, name: 'Client 8' },
+  { src: client9, name: 'Client 9' },
+  { src: client10, name: 'Client 10' },
+  { src: client11, name: 'Client 11' },
+  { src: client12, name: 'Client 12' },
+];
 
 const Clients = () => {
-    const clientsList = [
-        { id: 1, name: "Client 1", image: client1 },
-        { id: 2, name: "Client 2", image: client2 },
-        { id: 3, name: "Client 3", image: client3 },
-        { id: 4, name: "Client 4", image: client4 },
-        { id: 5, name: "Client 5", image: client5 },
-        { id: 6, name: "Client 6", image: client6 },
-        { id: 7, name: "Client 7", image: client7 },
-        { id: 8, name: "Client 8", image: client8 },
-        { id: 9, name: "Client 9", image: client9 },
-        { id: 10, name: "Client 10", image: client10 },
-        { id: 11, name: "Client 11", image: client11 },
-        { id: 12, name: "Client 12", image: client12 },
-        { id: 13, name: "Client 13", image: civil_protection },
-        { id: 14, name: "Client 14", image: kettaneh_grp },
-        { id: 15, name: "Client 15", image: middle_east_insurance },
-        { id: 16, name: "Client 16", image: national_microfinance },
-        { id: 17, name: "Client 17", image: safwa },
-        { id: 18, name: "Client 18", image: omareyah },
-        { id: 19, name: "Client 19", image: tazkia },
-        { id: 20, name: "Client 20", image: abdali_views },
-        { id: 21, name: "Client 21", image: royal_marine },
-        { id: 22, name: "Client 22", image: JIS },
-        { id: 23, name: "Client 23", image: xzc },
-        { id: 24, name: "Client 24", image: baynouna },
-        { id: 25, name: "Client 25", image: customs },
-        { id: 26, name: "Client 26", image: JDF },
-        { id: 27, name: "Client 27", image: JEPCO },
-        { id: 28, name: "Client 28", image: orthodox },
-        { id: 29, name: "Client 29", image: EHS_Jordan },
-        
-        // ... add all clients
-    ];
+  return (
+    <section className="cl tm-section">
+      <div className="tm-shell">
+        <header className="cl-head">
+          <p className="cl-count">
+            <span className="tm-num">{CLIENTS.length}</span>
+            organisations pictured — part of the 150+ we have delivered for across government,
+            education, banking and hospitality.
+          </p>
+        </header>
 
-    return (
-        <section className="tm-clients-section">
-        <div className="tm-clients-container">
-            <h2 className="tm-clients-title" data-aos="fade-up">OUR DEAR CLIENTS</h2>
-            
-            <div className="tm-clients-grid" data-aos="fade-up">
-                {clientsList.map((client) => (
-                    <div 
-                        key={client.id} 
-                        className="tm-clients-item"
-                        data-aos="fade-up"
-                        data-aos-delay={(client.id - 1) * 100}
-                    >
-                        <div className="tm-clients-logo">
-                            <img 
-                                src={client.image} 
-                                alt={client.name}
-                                loading="lazy"
-                                style={{ filter: 'none' }}
-                            />
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+        <LogoWall items={CLIENTS} />
+      </div>
     </section>
-    );
+  );
 };
 
 export default Clients;

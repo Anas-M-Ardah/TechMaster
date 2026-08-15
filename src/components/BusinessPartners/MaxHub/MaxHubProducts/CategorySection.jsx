@@ -1,54 +1,78 @@
 // CategorySection.jsx
-import React from 'react';
-import { Button } from 'react-bootstrap';
+// One category of the MAXHUB catalogue. Product artwork is manufacturer
+// supplied on white, so the cells stay white and the grid rules do the
+// separating — no card fills, borders or shadows on top of the product shots.
+import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
+import { FiArrowUpRight } from 'react-icons/fi';
 import './CategorySection.css';
 
-const CategorySection = ({ category, isActive }) => {
-    if (!isActive) return null;
+const cell = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+};
 
-    return (
-        <div className="category-section">
-            <div className="category-header">
-                <h2 className="category-title">{category.name.toUpperCase()}</h2>
-                <div className="title-underline"></div>
-                <p className="category-description">{category.description}</p>
-            </div>
-            
-            <div className="products-grid">
-                {category.products && category.products.length > 0 ? (
-                    category.products.map((product) => (
-                        <div key={product.id} className="product-card">
-                            <div className="product-image-container">
-                                <img 
-                                    src={product.image} 
-                                    alt={product.name}
-                                    className="product-image"
-                                />
-                            </div>
-                            <div className="product-info">
-                                <div className="product-text">
-                                    <h3 className="product-title">{product.name}</h3>
-                                    <p className="product-description">{product.description}</p>
-                                </div>
-                                <div className="product-action">
-                                    <a 
-                                        href={product.url} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="learn-more-btn"
-                                    >
-                                        Learn More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <p className="no-products">No products available in this category.</p>
-                )}
-            </div>
-        </div>
-    );
+const CategorySection = ({ category, isActive }) => {
+  if (!isActive) return null;
+
+  const products = category.products || [];
+
+  return (
+    <section className="cs">
+      <header className="cs-head">
+        <span className="tm-eyebrow">{category.name}</span>
+        {category.description && <p className="tm-lede cs-description">{category.description}</p>}
+        <span className="cs-count tm-num">
+          {products.length} {products.length === 1 ? 'product' : 'products'}
+        </span>
+      </header>
+
+      {products.length > 0 ? (
+        <motion.ul
+          className="cs-grid"
+          initial="hidden"
+          animate="visible"
+          transition={{ staggerChildren: 0.05 }}
+        >
+          {products.map((product) => (
+            <motion.li className="cs-cell" key={product.id} variants={cell}>
+              <a
+                className="cs-link"
+                href={product.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="cs-plate">
+                  <img src={product.image} alt={product.name} loading="lazy" />
+                </span>
+
+                <span className="cs-meta">
+                  <span className="cs-name">{product.name}</span>
+                  {product.description && <span className="cs-note">{product.description}</span>}
+                </span>
+
+                <span className="cs-more">
+                  Learn more
+                  <FiArrowUpRight aria-hidden="true" />
+                </span>
+              </a>
+            </motion.li>
+          ))}
+        </motion.ul>
+      ) : (
+        <p className="cs-empty">No products listed in this category yet.</p>
+      )}
+    </section>
+  );
+};
+
+CategorySection.propTypes = {
+  category: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    products: PropTypes.array,
+  }).isRequired,
+  isActive: PropTypes.bool.isRequired,
 };
 
 export default CategorySection;

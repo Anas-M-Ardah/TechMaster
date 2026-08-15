@@ -1,298 +1,111 @@
-/* TimelineSection.css */
-.tm-timeline-section {
-    padding: 80px 0;
-    background-color: #f8f9fa;
+/* Timeline — a measured scale rather than a carousel. The rule runs across
+   the top of the row and each stage hangs a node from it. */
+
+.tl-track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--tm-border-strong);
 }
 
-.tm-timeline-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.tl-stage {
+  position: relative;
+  padding: clamp(2rem, 3.2vw, 3rem) clamp(1rem, 2.2vw, 2rem) 0;
+  border-left: 1px solid var(--tm-border);
 }
 
-.tm-timeline {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 40px 0;
+.tl-stage:first-child {
+  border-left: 0;
+  padding-left: 0;
 }
 
-.tm-timeline-item {
-    position: relative;
-    z-index: 2;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 15px;
-    transition: transform 0.3s ease;
+/* The node sits astride the rule, so the row reads as measured positions
+   along a line rather than four separate blocks. */
+.tl-node {
+  position: absolute;
+  top: -5px;
+  left: clamp(1rem, 2.2vw, 2rem);
+  width: 9px;
+  height: 9px;
+  background: var(--tm-bg-alt);
+  border: 1px solid var(--tm-border-strong);
 }
 
-.tm-timeline-item:hover {
-    transform: translateY(-10px);
+.tl-stage:first-child .tl-node {
+  left: 0;
 }
 
-.tm-timeline-icon-container {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    margin-bottom: 20px;
+.tl-stage.is-current .tl-node {
+  background: var(--tm-accent);
+  border-color: var(--tm-accent);
 }
 
-.tm-timeline-item:hover .tm-timeline-icon-container {
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.tl-index {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tm-ink-muted);
 }
 
-.tm-timeline-icon-container svg {
-    font-size: 30px;
-    color: white;
-    transition: transform 0.3s ease;
+.tl-stage.is-current .tl-index {
+  color: var(--tm-accent);
 }
 
-.tm-timeline-item:hover .tm-timeline-icon-container svg {
-    transform: scale(1.2);
+.tl-now {
+  letter-spacing: 0.13em;
 }
 
-.tm-timeline-content {
-    max-width: 200px;
+.tl-name {
+  color: var(--tm-ink);
 }
 
-.tm-timeline-content h3 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    transition: transform 0.3s ease;
+.tl-subtitle {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--tm-ink-soft);
 }
 
-.tm-timeline-content h4 {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 10px;
-    color: #333;
+.tl-description {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--tm-ink-muted);
+  max-width: 30ch;
 }
 
-.tm-timeline-content p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
-    transition: opacity 0.3s ease;
-}
+/* --- Responsive ---------------------------------------------------------- */
 
-.tm-timeline-item:hover .tm-timeline-content p {
-    opacity: 0.8;
-}
+@media (max-width: 900px) {
+  /* Below the row breakpoint the scale turns vertical: the rule moves to the
+     left edge and the nodes ride down it. */
+  .tl-track {
+    grid-template-columns: minmax(0, 1fr);
+    border-top: 0;
+    border-left: 1px solid var(--tm-border-strong);
+    padding-left: clamp(1.5rem, 6vw, 2.5rem);
+  }
 
-.tm-timeline-arrow {
-    position: absolute;
-    top: 40px;
-    right: -25px;
-    color: #ccc;
-    font-size: 24px;
-    transition: all 0.3s ease;
-}
+  .tl-stage,
+  .tl-stage:first-child {
+    border-left: 0;
+    padding: 0 0 clamp(2rem, 6vw, 2.75rem);
+  }
 
-.tm-timeline-arrow svg {
-    transition: transform 0.3s ease;
-}
+  .tl-stage:last-child {
+    padding-bottom: 0;
+  }
 
-.tm-timeline-item:hover + .tm-timeline-item .tm-timeline-arrow svg,
-.tm-timeline-item:hover .tm-timeline-arrow svg {
-    transform: translateX(5px);
-    color: #2196F3;
-}
+  .tl-node,
+  .tl-stage:first-child .tl-node {
+    top: 4px;
+    left: calc(clamp(1.5rem, 6vw, 2.5rem) * -1 - 5px);
+  }
 
-/* Mobile Slider Styles */
-.tm-timeline.mobile {
-    position: relative;
-    padding: 20px 40px 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.tm-timeline-mobile-wrapper {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    padding: 0 20px;
-}
-
-.tm-timeline-mobile-slider {
-    display: flex;
-    transition: transform 0.5s ease;
-    width: 100%;
-}
-
-.tm-timeline.mobile .tm-timeline-item {
-    flex: 0 0 100%;
-    opacity: 0.5;
-    transform: scale(0.9);
-    transition: all 0.5s ease;
-    padding: 0 20px;
-}
-
-.tm-timeline.mobile .tm-timeline-item.active {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Navigation Arrows */
-.tm-timeline-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 2;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.tm-timeline-nav:hover {
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.tm-timeline-nav.prev {
-    left: 0;
-}
-
-.tm-timeline-nav.next {
-    right: 0;
-}
-
-/* Dots Container */
-.tm-timeline-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 0 20px;
-}
-
-.tm-timeline-dots .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ccc;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.tm-timeline-dots .dot.active {
-    background: #2196F3;
-    transform: scale(1.2);
-}
-
-/* Mobile Content Styles */
-.tm-timeline.mobile .tm-timeline-content {
-    max-width: 280px;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-
-.tm-timeline.mobile .tm-timeline-content h3 {
-    font-size: 22px;
-    margin-bottom: 8px;
-}
-
-.tm-timeline.mobile .tm-timeline-content h4 {
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-.tm-timeline.mobile .tm-timeline-content p {
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-/* Responsive styles */
-@media (max-width: 992px) {
-    .tm-timeline {
-        flex-wrap: wrap;
-    }
-
-    .tm-timeline-item {
-        flex: 0 0 50%;
-        margin-bottom: 40px;
-    }
-
-    .tm-timeline-arrow {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .tm-timeline-section {
-        padding: 40px 0;
-    }
-
-    .tm-timeline-container {
-        padding: 0;
-    }
-
-    .tm-timeline.mobile .tm-timeline-item {
-        padding: 0 30px;
-    }
-
-    .tm-timeline-icon-container {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 15px;
-    }
-
-    .tm-timeline-icon-container svg {
-        font-size: 24px;
-    }
-}
-
-@media (max-width: 375px) {
-    .tm-timeline.mobile {
-        padding: 20px 30px 60px;
-    }
-
-    .tm-timeline.mobile .tm-timeline-item {
-        padding: 0 20px;
-    }
-
-    .tm-timeline-nav {
-        width: 35px;
-        height: 35px;
-    }
-
-    .tm-timeline.mobile .tm-timeline-content {
-        max-width: 240px;
-    }
-}
-
-/* Animation keyframes */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  .tl-description {
+    max-width: none;
+  }
 }

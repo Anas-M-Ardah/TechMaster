@@ -1,115 +1,188 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FiChevronDown } from 'react-icons/fi';
 import '../css/Header.css';
 
 import logo from '/images/technology-master-logo.png';
 
+const SERVICE_LINKS = [
+  { to: '/services', label: 'All services' },
+  { to: '/services/data-center', label: 'Data center' },
+  { to: '/services/structure-cabling', label: 'Structure cabling' },
+  { to: '/services/smart-building', label: 'Smart building' },
+];
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  // Check if mobile view
+  // The home page opens on a dark hero, so the bar starts transparent there and
+  // only takes on a surface once the visitor has scrolled past it.
+  const isOverlay = location.pathname === '/' && !isScrolled;
+
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Close menu when route changes
   useEffect(() => {
     setIsOpen(false);
     setIsServicesOpen(false);
   }, [location]);
 
-  // Handle scroll for navbar shrinking
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    //set the z-index of the header to 1001 when the menu is open
-    document.querySelector('.header').style.zIndex = isOpen ? '1000' : '1001';
-    setIsOpen(!isOpen);
+  // Hold the page still while the mobile panel is open.
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isOpen]);
+
+  const handleServicesClick = (event) => {
+    if (!isMobile) return;
+    event.preventDefault();
+    setIsServicesOpen((open) => !open);
   };
 
-  const handleServicesClick = (e) => {
-    if (isMobile) {
-      e.preventDefault();
-      setIsServicesOpen(!isServicesOpen);
-    }
-  };
+  const isServicesRoute = location.pathname.startsWith('/services');
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`header ${isScrolled ? 'shrunk' : ''}`}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className={`header${isScrolled ? ' is-solid' : ''}${isOverlay ? ' is-overlay' : ''}${
+        isOpen ? ' is-open' : ''
+      }`}
     >
-      <div className="header-container">
-        <Link to="/" className="logo">
-          <img src={logo} alt="Company Logo" />
+      <div className="header-bar">
+        <Link to="/" className="header-logo" aria-label="Technology Master — home">
+          <img src={logo} alt="Technology Master" />
         </Link>
 
-        {/* Mobile Menu Button */}
-        {isMobile && (
-          <button className="mobile-menu-btn" onClick={toggleMenu}>
-            <span className={`hamburger ${isOpen ? 'open' : ''}`}></span>
-          </button>
-        )}
-
-        {/* Navigation Links */}
-        <nav className={`nav-links ${isMobile ? (isOpen ? 'show' : 'hide') : ''}`}>
-          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
+        <nav className="header-nav" aria-label="Primary">
+          <Link to="/" className={`header-link${location.pathname === '/' ? ' is-active' : ''}`}>
             Home
           </Link>
-          
-          <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
-            About Us
+
+          <Link
+            to="/about"
+            className={`header-link${location.pathname === '/about' ? ' is-active' : ''}`}
+          >
+            About
           </Link>
 
-          <div 
-            className={`services-dropdown ${isServicesOpen ? 'active' : ''}`}
-            onMouseEnter={() => !isMobile && setShowDropdown(true)}
-            onMouseLeave={() => !isMobile && setShowDropdown(false)}
-          >
+          <div className="header-dropdown">
             <Link
               to="/services"
-              className={`services-link ${location.pathname.includes('/services') ? 'active' : ''}`}
+              className={`header-link${isServicesRoute ? ' is-active' : ''}`}
               onClick={handleServicesClick}
             >
-              Services {isMobile && <span className="dropdown-arrow">›</span>}
+              Services
+              <FiChevronDown className="header-caret" aria-hidden="true" />
             </Link>
-            <div className={`dropdown-content ${(showDropdown || (isMobile && isServicesOpen)) ? 'show' : ''}`}>
-              <Link to="/services/" className="all-services-link">All Services</Link>
-              <Link to="/services/data-center">Data Center</Link>
-              <Link to="/services/structure-cabling">Structure Cabling</Link>
-              <Link to="/services/smart-building">Smart Building</Link>
+
+            <div className="header-menu">
+              {SERVICE_LINKS.map((link) => (
+                <Link key={link.to} to={link.to}>
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
 
-          <Link to="/partners" className={location.pathname === '/partners' ? 'active' : ''}>
-            Business Partners
+          <Link
+            to="/partners"
+            className={`header-link${location.pathname === '/partners' ? ' is-active' : ''}`}
+          >
+            Partners
           </Link>
 
-          <Link to="/clients" className={location.pathname === '/clients' ? 'active' : ''}>
+          <Link
+            to="/clients"
+            className={`header-link${location.pathname === '/clients' ? ' is-active' : ''}`}
+          >
             Clients
           </Link>
 
-          <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
-            Contact Us
+          <Link to="/contact" className="header-cta">
+            Contact us
+          </Link>
+        </nav>
+
+        <button
+          type="button"
+          className="header-toggle"
+          onClick={() => setIsOpen((open) => !open)}
+          aria-expanded={isOpen}
+          aria-controls="header-panel"
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        >
+          <span className="header-toggle-bar" />
+          <span className="header-toggle-bar" />
+        </button>
+      </div>
+
+      <div className="header-panel" id="header-panel" hidden={!isOpen}>
+        <nav aria-label="Mobile">
+          <Link to="/" className="header-panel-link">
+            Home
+          </Link>
+          <Link to="/about" className="header-panel-link">
+            About
+          </Link>
+
+          <button
+            type="button"
+            className={`header-panel-link header-panel-toggle${isServicesOpen ? ' is-open' : ''}`}
+            onClick={() => setIsServicesOpen((open) => !open)}
+            aria-expanded={isServicesOpen}
+          >
+            Services
+            <FiChevronDown aria-hidden="true" />
+          </button>
+
+          {isServicesOpen && (
+            <div className="header-panel-sub">
+              {SERVICE_LINKS.map((link) => (
+                <Link key={link.to} to={link.to}>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <Link to="/partners" className="header-panel-link">
+            Partners
+          </Link>
+          <Link to="/clients" className="header-panel-link">
+            Clients
+          </Link>
+          <Link to="/contact" className="header-panel-link">
+            Contact us
           </Link>
         </nav>
       </div>

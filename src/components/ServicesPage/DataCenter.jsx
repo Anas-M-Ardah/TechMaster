@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
@@ -83,15 +83,15 @@ function DataCenter() {
     return (
         <>
             <Header />
-            <PageHeader 
-                title="Data Center" 
-                breadcrumb={[
-                    { title: "Home", url: "/" },
-                    { title: "Services", url: "/services" },
-                    { title: "Data Center", url: "/services/data-center" }
-                ]}
-            />
-            <ServiceDetails {...serviceData} />
+            <main>
+                <PageHeader
+                    title="Data Center"
+                    eyebrow="Service line 02"
+                    lede="Racks, power, cooling and containment, engineered as one system and commissioned as one system."
+                    crumbs={[{ to: '/services', label: 'Services' }]}
+                />
+                <ServiceDetails {...serviceData} />
+            </main>
             <Footer />
         </>
     );

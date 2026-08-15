@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
@@ -65,15 +65,15 @@ function StructureCabling() {
     return (
         <>
             <Header />
-            <PageHeader 
-                title="Structure Cabling" 
-                breadcrumb={[
-                    { title: "Home", url: "/" },
-                    { title: "Services", url: "/services" },
-                    { title: "Structure Cabling", url: "/services/structure-cabling" }
-                ]}
-            />
-            <ServiceDetails {...serviceData} />
+            <main>
+                <PageHeader
+                    title="Structure Cabling"
+                    eyebrow="Service line 03"
+                    lede="The copper and fibre backbone a building runs on — installed, tested and certified to standard."
+                    crumbs={[{ to: '/services', label: 'Services' }]}
+                />
+                <ServiceDetails {...serviceData} />
+            </main>
             <Footer />
         </>
     );

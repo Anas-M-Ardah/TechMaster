@@ -1,82 +1,239 @@
-.contact-us-section {
-    background-color: #f8f9fa;
+/* Contact — details left, form right, map full width beneath. Inputs are flat
+   and square: a hairline box that darkens on focus, no rounding, no inner
+   shadow, no Bootstrap blue glow. */
+
+.ct {
+  background: var(--tm-bg);
 }
 
-.contact-us-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #000;
+.ct-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
 }
 
-.contact-us-description {
-    color: #666;
-    font-size: 1rem;
-    line-height: 1.6;
+/* --- Aside ---------------------------------------------------------------- */
+
+.ct-title {
+  margin-top: 0;
 }
 
-.contact-info-box {
-    background-color: #e9f0f7;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+.ct-note {
+  margin: clamp(1.1rem, 2vw, 1.6rem) 0 clamp(2rem, 4vw, 3rem);
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--tm-ink-muted);
+  max-width: 42ch;
 }
 
-.contact-info-box h5 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #1a1a1a;
+.ct-details {
+  margin: 0;
+  border-top: 1px solid var(--tm-border);
 }
 
-.contact-info-box p {
-    margin: 0;
-    color: #333;
+.ct-detail {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--tm-border);
 }
 
-.form-control {
-    border-radius: 4px;
-    margin-bottom: 15px;
+.ct-detail dt {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tm-accent);
 }
 
-.btn-primary {
-    background-color: #0066FF;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+.ct-detail dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--tm-ink-soft);
+  overflow-wrap: anywhere;
 }
 
-.btn-primary:hover {
-    background-color: #0056d2;
+.ct-detail a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s var(--tm-ease-soft), border-color 0.3s var(--tm-ease-soft);
 }
 
-.response-message {
-    font-size: 1.2rem;
-    position: relative;
+.ct-detail a:hover {
+  color: var(--tm-ink);
+  border-bottom-color: var(--tm-accent);
 }
 
-.response-message::after {
-    content: '';
-    position: absolute;
-    left: 100%;
-    top: 0;
-    width: 0.5em;
-    height: 0.5em;
-    background: currentColor;
-    border-radius: 50%;
-    animation: dot-blink 1s infinite;
+/* --- Form ------------------------------------------------------------------ */
+
+.ct-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
-@keyframes dot-blink {
-    0%, 20% {
-        opacity: 0;
-    }
-    40% {
-        opacity: 1;
-    }
-    60% {
-        opacity: 0;
-    }
-    80%, 100% {
-        opacity: 0;
-    }
+.ct-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.ct-field.is-wide {
+  grid-column: 1 / -1;
+}
+
+.ct-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--tm-ink);
+}
+
+.ct-label em {
+  font-family: var(--tm-font-mono);
+  font-style: normal;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tm-ink-muted);
+}
+
+.ct-field input,
+.ct-field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--tm-border-strong);
+  border-radius: 2px;
+  background: var(--tm-surface);
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--tm-ink);
+  transition: border-color 0.3s var(--tm-ease-soft), background-color 0.3s var(--tm-ease-soft);
+}
+
+.ct-field textarea {
+  resize: vertical;
+  min-height: 9rem;
+  line-height: 1.6;
+}
+
+.ct-field input:hover,
+.ct-field textarea:hover {
+  border-color: var(--tm-ink-muted);
+}
+
+.ct-field input:focus,
+.ct-field textarea:focus {
+  outline: none;
+  border-color: var(--tm-accent);
+  background: var(--tm-bg);
+}
+
+/* The global focus ring is for keyboard traversal; inside a form the border
+   colour already signals focus, so keep the ring for keyboard users only. */
+.ct-field input:focus-visible,
+.ct-field textarea:focus-visible {
+  outline: 2px solid var(--tm-accent);
+  outline-offset: 2px;
+}
+
+/* --- Submit ---------------------------------------------------------------- */
+
+.ct-submit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.ct-submit button[disabled] {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.ct-feedback {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--tm-ink-muted);
+}
+
+.ct-feedback.is-sent {
+  color: var(--tm-accent-strong);
+}
+
+.ct-feedback.is-error {
+  color: #a3341f;
+}
+
+/* --- Map -------------------------------------------------------------------- */
+
+.ct-map {
+  margin: clamp(3rem, 6vw, 5rem) 0 0;
+  border: 1px solid var(--tm-border);
+}
+
+.ct-map-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--tm-border);
+  font-size: 0.85rem;
+  color: var(--tm-ink-muted);
+}
+
+.ct-map-caption .tm-num {
+  flex: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tm-accent);
+}
+
+.ct-map iframe {
+  display: block;
+  width: 100%;
+  height: clamp(280px, 42vh, 420px);
+  border: 0;
+  /* Google's tile colours are the loudest thing on the page otherwise. */
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 0.6s var(--tm-ease-soft);
+}
+
+.ct-map:hover iframe {
+  filter: grayscale(0) contrast(1);
+}
+
+/* --- Responsive -------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .ct-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .ct-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ct-submit button {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (hover: none) {
+  .ct-map iframe {
+    filter: none;
+  }
 }

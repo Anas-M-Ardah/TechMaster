@@ -1,195 +1,151 @@
-import React, { useState, useEffect } from 'react';
+// components/Common/ServiceDetails.jsx
+// Shared body for the three service detail pages. Same prop contract as before,
+// so the pages that spread serviceData into it need no changes.
+//
+// The partner strip used to be an auto-advancing carousel that hid most of the
+// logos most of the time; it is now a static wall, which is both calmer and
+// shows every partner at once.
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FiArrowRight, FiPhone } from 'react-icons/fi';
+import LogoWall from './LogoWall';
 import '../../css/Common/ServiceDetails.css';
-import { Carousel, Container, Row, Col } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-const SDQuickLinks = ({ links }) => (
-    <div className="sd-quick-links">
-        <h3>Quick Services Links</h3>
-        <ul>
-            {links.map((link, index) => (
-                <li key={`sd-quick-link-${index}`}>
-                    <Link to={link.url}>{link.title}</Link>
-                </li>
-            ))}
-        </ul>
-    </div>
+const SDCategory = ({ category, index }) => (
+  <section className="sd-cat">
+    <header className="sd-cat-head">
+      <span className="sd-cat-index tm-num">{String(index + 1).padStart(2, '0')}</span>
+      <h3 className="tm-h3">{category.title}</h3>
+    </header>
+
+    <ol className="sd-cat-list">
+      {category.items.map((item, i) => (
+        <li key={item}>
+          <span className="sd-cat-item-index tm-num">{String(i + 1).padStart(2, '0')}</span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ol>
+  </section>
 );
 
-const SDContactBox = ({ number }) => (
-    <div className="sd-contact-box">
-        <h4>Contact Us Now</h4>
-        <div className="sd-contact-title">For Help</div>
-        <div className="sd-contact-number">
-            <a href={`tel:${number}`}>{number}</a>
-        </div>
-    </div>
-);
-
-const SDCategory = ({ category }) => (
-    <div className="sd-category">
-        <h3>{category.title}</h3>
-        <ol>
-            {category.items.map((item, idx) => (
-                <li key={`sd-category-item-${idx}`}>
-                    <span className="sd-category-number">{idx + 1}</span>
-                    {item}
-                </li>
-            ))}
-        </ol>
-    </div>
-);
-
-const SDPartners = ({ partners }) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    const slidesToShow = window.innerWidth <= 576 ? 1 : 
-                        window.innerWidth <= 768 ? 2 : 
-                        window.innerWidth <= 991 ? 3 : 4;
-
-    const maxIndex = partners.length - slidesToShow;
-
-    const nextSlide = () => {
-        setActiveIndex(prev => 
-            prev >= maxIndex ? 0 : prev + 1
-        );
-    };
-
-    const prevSlide = () => {
-        setActiveIndex(prev => 
-            prev <= 0 ? maxIndex : prev - 1
-        );
-    };
-
-    useEffect(() => {
-        const interval = setInterval(nextSlide, 5000);
-        return () => clearInterval(interval);
-    }, []);
-
-    return (
-        <section className="sd-partners-section py-5">
-            <Container>
-                <h3 className="text-left mb-4">Brought to you by:</h3>
-                <Row className="align-items-center">
-                    <Col>
-                        <div className="partners-slider">
-                            <button 
-                                className="slider-arrow prev" 
-                                onClick={prevSlide}
-                                aria-label="Previous"
-                            >
-                                ‹
-                            </button>
-                            
-                            <div className="slider-container">
-                                <div 
-                                    className="slider-track"
-                                    style={{
-                                        transform: `translateX(-${activeIndex * (100 / slidesToShow)}%)`
-                                    }}
-                                >
-                                    {partners.map((partner, index) => (
-                                        <div 
-                                            key={index} 
-                                            className="slider-item"
-                                            style={{ width: `${100 / slidesToShow}%` }}
-                                        >
-                                            <div className="logo-container">
-                                                <img
-                                                    src={partner.logo}
-                                                    alt={partner.name}
-                                                    className="partner-logo"
-                                                    style={{ width: '150px', height: 'auto'}} // Fixed size
-                                                />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <button 
-                                className="slider-arrow next" 
-                                onClick={nextSlide}
-                                aria-label="Next"
-                            >
-                                ›
-                            </button>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-    );
+SDCategory.propTypes = {
+  category: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
-const ServiceDetailsView = ({ 
-    title,
-    mainImage,
-    quickLinks,
-    contactNumber,
-    serviceCategories,
-    partners,
-    description
+const ServiceDetailsView = ({
+  title,
+  mainImage,
+  quickLinks,
+  contactNumber,
+  serviceCategories,
+  partners,
+  description,
 }) => {
-    return (
-        <section className="sd-wrapper">
-            <div className="sd-container">
-                <aside className="sd-sidebar">
-                    <SDQuickLinks links={quickLinks} />
-                    <SDContactBox number={contactNumber} />
-                </aside>
+  return (
+    <>
+      <section className="sd tm-section">
+        <div className="tm-shell">
+          <div className="sd-grid">
+            <aside className="sd-aside">
+              <nav className="sd-links" aria-label="Related services">
+                <h2 className="sd-aside-label tm-num">Related services</h2>
+                <ul>
+                  {quickLinks.map((link) => (
+                    <li key={link.url}>
+                      <Link to={link.url}>
+                        {link.title}
+                        <FiArrowRight aria-hidden="true" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
 
-                <main className="sd-main-content">
-                    <h1>{title}</h1>
-                    {description && <p className="sd-description">{description}</p>}
-                    
-                    <div className="sd-main-image">
-                        <img 
-                            src={mainImage} 
-                            alt={title}
-                            loading="lazy"
-                        />
-                    </div>
+              <div className="sd-contact">
+                <span className="sd-aside-label tm-num">Talk it through</span>
+                <a className="sd-contact-number" href={`tel:${contactNumber.replace(/[^+\d]/g, '')}`}>
+                  <FiPhone aria-hidden="true" />
+                  {contactNumber}
+                </a>
+                <Link to="/contact" className="tm-link sd-contact-link">
+                  Send a message
+                  <FiArrowRight aria-hidden="true" />
+                </Link>
+              </div>
+            </aside>
 
-                    {serviceCategories.map((category, index) => (
-                        <SDCategory 
-                            key={`sd-category-${index}`} 
-                            category={category} 
-                        />
-                    ))}
-                </main>
+            <div className="sd-main">
+              {/* h2, not h1 — PageHeader above already owns the page's h1. */}
+              <h2 className="tm-h2 sd-title">{title}</h2>
+              {description && <p className="tm-lede sd-description">{description}</p>}
+
+              <motion.figure
+                className="sd-plate"
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <img src={mainImage} alt={title} loading="lazy" />
+                <span className="sd-tick sd-tick-tl" aria-hidden="true" />
+                <span className="sd-tick sd-tick-tr" aria-hidden="true" />
+                <span className="sd-tick sd-tick-bl" aria-hidden="true" />
+                <span className="sd-tick sd-tick-br" aria-hidden="true" />
+              </motion.figure>
+
+              {serviceCategories.map((category, index) => (
+                <SDCategory key={category.title} category={category} index={index} />
+              ))}
             </div>
+          </div>
+        </div>
+      </section>
 
-            <SDPartners partners={partners} />
-        </section>
-    );
+      <section className="sd-partners tm-section tm-band-alt">
+        <div className="tm-shell">
+          <header className="sd-partners-head">
+            <span className="tm-eyebrow">Brought to you by</span>
+            <p className="tm-lede">
+              The manufacturers behind this service line — all direct partnerships.
+            </p>
+          </header>
+
+          <LogoWall items={partners.map((p) => ({ name: p.name, src: p.logo }))} captions />
+        </div>
+      </section>
+    </>
+  );
 };
 
 ServiceDetailsView.propTypes = {
-    title: PropTypes.string.isRequired,
-    mainImage: PropTypes.string.isRequired,
-    quickLinks: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    contactNumber: PropTypes.string.isRequired,
-    serviceCategories: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            items: PropTypes.arrayOf(PropTypes.string).isRequired,
-        })
-    ).isRequired,
-    partners: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            logo: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    description: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  mainImage: PropTypes.string.isRequired,
+  quickLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  contactNumber: PropTypes.string.isRequired,
+  serviceCategories: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ).isRequired,
+  partners: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      logo: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  description: PropTypes.string,
 };
 
 export default ServiceDetailsView;

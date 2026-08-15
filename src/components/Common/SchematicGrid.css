@@ -1,0 +1,12 @@
+.tm-schematic {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  /* The grid should read as a substrate, not a pattern competing with the
+     headline — it fades out toward the bottom where content is densest. */
+  mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+}

@@ -1,0 +1,142 @@
+/* MAXHUB — dark band, image left, argument right. Mirrors the hero's
+   composition so the page alternates rather than repeats. */
+
+.mx {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(4.5rem, 9vw, 9rem);
+}
+
+.mx-grid {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+/* --- Product plate -------------------------------------------------- */
+
+.mx-plate {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--tm-border);
+  background: var(--tm-void-surface);
+  overflow: hidden;
+}
+
+.mx-plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.4s var(--tm-ease);
+}
+
+.mx-plate:hover img {
+  transform: scale(1.03);
+}
+
+.mx-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(244, 246, 248, 0.5);
+  border-radius: 50%;
+  background: rgba(11, 12, 15, 0.45);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 1.25rem;
+  transition: background-color 0.4s var(--tm-ease-soft), border-color 0.4s var(--tm-ease-soft),
+    transform 0.5s var(--tm-ease);
+}
+
+.mx-play:hover {
+  background: var(--tm-accent-light);
+  border-color: var(--tm-accent-light);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+/* --- Content -------------------------------------------------------- */
+
+.mx-title {
+  max-width: 18ch;
+}
+
+.mx-lede {
+  margin-top: clamp(1.1rem, 2vw, 1.6rem);
+}
+
+/* Range of kit, set as ruled tags rather than pills — flat, square, quiet. */
+.mx-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: clamp(1.5rem, 2.6vw, 2rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mx-range li {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--tm-border);
+  font-family: var(--tm-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--tm-ink-soft);
+}
+
+.mx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.mx-watch svg:first-child {
+  font-size: 0.85rem;
+}
+
+.mx-watch:hover svg {
+  transform: none;
+}
+
+/* The overlay player lives in Common/VideoModal — the hero opens the same one. */
+
+/* --- Responsive ------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .mx-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 3rem);
+  }
+
+  .mx-title {
+    max-width: none;
+  }
+
+  .mx-plate {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 575px) {
+  .mx-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mx-actions .tm-magnetic,
+  .mx-actions .tm-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

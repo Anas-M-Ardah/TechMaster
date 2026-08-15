@@ -1,12 +1,11 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // Add this import
+import { Link } from 'react-router-dom';
+import { FiArrowRight } from 'react-icons/fi';
 import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
+import LogoWall from '../Common/LogoWall';
 import '../../css/BusinessPartnersPage/BusinessPartners.css';
 
-// Partner Logos
 import maxhub from '/images/partners/MAXHUB.png';
 import huawei from '/images/partners/huawei.png';
 import schneider from '/images/partners/schneider.png';
@@ -18,73 +17,63 @@ import leyard from '/images/partners/LEYARD.png';
 import howen from '/images/partners/howen.png';
 import vissonic from '/images/partners/vissonic.png';
 import navori from '/images/partners/navori-labs.png';
-import honeyw from '/images/partners/honeyw.png';
+import honeywell from '/images/partners/honeyw.png';
 import comm from '/images/partners/comm.png';
 import nexans from '/images/partners/nexans.png';
 import techline from '/images/partners/techline.png';
 import fireban from '/images/partners/FireBan.webp';
 
-const partners = [
-    { name: "Maxhub", logo: maxhub, url: "/maxhub" },
-    { name: "Huawei", logo: huawei },
-    { name: "Schneider Electric", logo: schneider },
-    { name: "Conteg", logo: conteg },
-    { name: "HP", logo: hp },
-    { name: "Minrray", logo: minrray },
-    { name: "Hikvision", logo: hikvision },
-    { name: "Leyard", logo: leyard },
-    { name: "Howen", logo: howen },
-    { name: "Vissonic", logo: vissonic },
-    { name: "Navori Labs", logo: navori },
-    { name: "Honeywell", logo: honeyw },
-    { name: "Comm", logo: comm },
-    { name: "Nexans", logo: nexans },
-    { name: "Techline", logo: techline },
-    { name: "FireBan", logo: fireban },
+const PARTNERS = [
+  { name: 'MAXHUB', src: maxhub, to: '/maxhub' },
+  { name: 'Huawei', src: huawei },
+  { name: 'Schneider Electric', src: schneider },
+  { name: 'Conteg', src: conteg },
+  { name: 'HP', src: hp },
+  { name: 'Minrray', src: minrray },
+  { name: 'Hikvision', src: hikvision },
+  { name: 'Leyard', src: leyard },
+  { name: 'Howen', src: howen },
+  { name: 'Vissonic', src: vissonic },
+  { name: 'Navori Labs', src: navori },
+  { name: 'Honeywell', src: honeywell },
+  { name: 'Comm', src: comm },
+  { name: 'Nexans', src: nexans },
+  { name: 'Techline', src: techline },
+  { name: 'FireBan', src: fireban },
 ];
 
 function BusinessPartners() {
-    return (
-        <>
-            <Header />
-            <PageHeader
-                title="Our Business Partners"
-                breadcrumb={[
-                    { title: "Home", url: "/" },
-                    { title: "Business Partners", url: "/business-partners" }
-                ]}
-            />
-            <section className="business-partners-section py-5">
-                <Container>
-                    <h2 className="business-partners-title text-center mb-5">OUR BUSINESS PARTNERS</h2>
-                    <Row className="justify-content-center business-partners-row">
-                        {partners.map((partner, index) => (
-                            <Col key={index} xs={6} md={3} className="text-center mb-4">
-                                <div className="business-partner-logo-container">
-                                    {partner.url ? (
-                                        <Link to={partner.url}>
-                                            <img
-                                                src={partner.logo}
-                                                alt={partner.name}
-                                                className="business-partner-logo"
-                                            />
-                                        </Link>
-                                    ) : (
-                                        <img
-                                            src={partner.logo}
-                                            alt={partner.name}
-                                            className="business-partner-logo"
-                                        />
-                                    )}
-                                </div>
-                            </Col>
-                        ))}
-                    </Row>
-                </Container>
-            </section>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <main>
+        <PageHeader
+          title="Business partners"
+          eyebrow="Direct manufacturer relationships"
+          lede="Specification, warranty and support all run through one line, because we hold the partnership with the manufacturer whose equipment we install."
+          crumbs={[]}
+        />
+
+        <section className="bp tm-section">
+          <div className="tm-shell">
+            <LogoWall items={PARTNERS} captions />
+
+            <div className="bp-note">
+              <p>
+                MAXHUB is our flagship partnership — interactive flat panels, LED walls and
+                conferencing systems, carried and supported in country.
+              </p>
+              <Link to="/maxhub" className="tm-link">
+                Go to MAXHUB
+                <FiArrowRight aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 export default BusinessPartners;
