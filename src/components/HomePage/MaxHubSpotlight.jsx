@@ -2,12 +2,14 @@
 // The one product moment on the page, and the only dark band between the hero
 // and the closing bookend — so the partnership lands as a change of register
 // rather than another section.
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiArrowRight, FiPlay, FiX } from 'react-icons/fi';
+import { FiArrowRight, FiPlay } from 'react-icons/fi';
 import BlurText from '../Common/BlurText';
 import MagneticButton from '../Common/MagneticButton';
+import VideoModal from '../Common/VideoModal';
+import { MAXHUB_VIDEO } from '../../constants/video';
 import '../../css/HomePage/MaxHubSpotlight.css';
 
 import maxhubPanel from '/images/partners/maxhub/interactive-flat-panel/v7.webp';
@@ -16,25 +18,6 @@ const RANGE = ['Interactive flat panels', 'LED walls', 'Conferencing', 'Digital 
 
 const MaxHubSpotlight = () => {
   const [showVideo, setShowVideo] = useState(false);
-  const close = useCallback(() => setShowVideo(false), []);
-
-  // Trap the page behind the overlay and let Escape dismiss it.
-  useEffect(() => {
-    if (!showVideo) return undefined;
-
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') close();
-    };
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    document.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener('keydown', onKeyDown);
-    };
-  }, [showVideo, close]);
 
   return (
     <section className="mx tm-on-dark tm-grain">
@@ -102,28 +85,12 @@ const MaxHubSpotlight = () => {
         </div>
       </div>
 
-      {showVideo && (
-        <div
-          className="mx-modal"
-          role="dialog"
-          aria-modal="true"
-          aria-label="MAXHUB XBoard V7 overview"
-          onClick={close}
-        >
-          <button type="button" className="mx-modal-close" onClick={close} aria-label="Close video">
-            <FiX aria-hidden="true" />
-          </button>
-
-          <div className="mx-modal-frame" onClick={(event) => event.stopPropagation()}>
-            <iframe
-              src="https://www.youtube.com/embed/6fK0hEoKNd4?autoplay=1"
-              title="The MAXHUB XBoard V7 Series — Features Overview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
+      <VideoModal
+        open={showVideo}
+        onClose={() => setShowVideo(false)}
+        src={MAXHUB_VIDEO.src}
+        title={MAXHUB_VIDEO.title}
+      />
     </section>
   );
 };

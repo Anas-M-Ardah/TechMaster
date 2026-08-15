@@ -109,62 +109,7 @@
   transform: none;
 }
 
-/* --- Video overlay --------------------------------------------------- */
-
-.mx-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: grid;
-  place-items: center;
-  padding: clamp(1rem, 5vw, 3rem);
-  background: rgba(11, 12, 15, 0.92);
-  animation: mx-modal-in 0.35s var(--tm-ease-soft);
-}
-
-@keyframes mx-modal-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.mx-modal-frame {
-  width: min(100%, 1100px);
-  aspect-ratio: 16 / 9;
-  border: 1px solid var(--tm-void-border);
-  background: #000000;
-}
-
-.mx-modal-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
-
-.mx-modal-close {
-  position: absolute;
-  top: clamp(1rem, 3vw, 2rem);
-  right: clamp(1rem, 3vw, 2rem);
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  border: 1px solid rgba(244, 246, 248, 0.28);
-  background: transparent;
-  color: rgba(244, 246, 248, 0.8);
-  font-size: 1.15rem;
-  transition: border-color 0.3s var(--tm-ease-soft), color 0.3s var(--tm-ease-soft);
-}
-
-.mx-modal-close:hover {
-  border-color: #ffffff;
-  color: #ffffff;
-}
+/* The overlay player lives in Common/VideoModal — the hero opens the same one. */
 
 /* --- Responsive ------------------------------------------------------ */
 

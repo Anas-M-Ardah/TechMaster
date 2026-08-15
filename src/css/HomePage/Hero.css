@@ -121,18 +121,69 @@
   border-right-width: 1px;
 }
 
+/* Raised to sit above the watch bar (56px) rather than behind it. */
 .hero-tick-bl {
-  bottom: 9px;
+  bottom: 65px;
   left: 9px;
   border-bottom-width: 1px;
   border-left-width: 1px;
 }
 
 .hero-tick-br {
-  bottom: 9px;
+  bottom: 65px;
   right: 9px;
   border-bottom-width: 1px;
   border-right-width: 1px;
+}
+
+/* Watch control — a labelled bar across the foot of the plate rather than a
+   play triangle floating in the middle of the footage, so it is obvious both
+   that it is clickable and what it opens. */
+.hero-watch {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  /* Fixed height so the frame's bottom registration marks have a known
+     offset to clear. */
+  height: 56px;
+  padding: 0 1.15rem;
+  border: 0;
+  border-top: 1px solid rgba(244, 246, 248, 0.16);
+  background: rgba(11, 12, 15, 0.62);
+  backdrop-filter: blur(10px);
+  color: var(--tm-void-text);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-align: left;
+  transition: background-color 0.4s var(--tm-ease-soft);
+}
+
+.hero-watch:hover {
+  background: rgba(11, 12, 15, 0.82);
+}
+
+.hero-watch-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(244, 246, 248, 0.34);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  transition: background-color 0.4s var(--tm-ease-soft), border-color 0.4s var(--tm-ease-soft),
+    color 0.4s var(--tm-ease-soft);
+}
+
+.hero-watch:hover .hero-watch-icon {
+  background: var(--tm-accent-light);
+  border-color: var(--tm-accent-light);
+  color: var(--tm-void);
 }
 
 .hero-plate-caption {

@@ -2,12 +2,15 @@
 // Asymmetric dark hero: statement on the left, a framed working plate on the
 // right. The video is deliberately *contained* rather than used as wallpaper —
 // a piece of evidence with a caption, not a mood backdrop.
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FiArrowRight, FiArrowDown } from 'react-icons/fi';
+import { FiArrowRight, FiArrowDown, FiPlay } from 'react-icons/fi';
 import BlurText from '../Common/BlurText';
 import MagneticButton from '../Common/MagneticButton';
 import SchematicGrid from '../Common/SchematicGrid';
+import VideoModal from '../Common/VideoModal';
+import { MAXHUB_VIDEO } from '../../constants/video';
 import '../../css/HomePage/Hero.css';
 
 import heroVideo from '../../assets/videos/vid-1.mp4';
@@ -22,6 +25,8 @@ const rise = {
 };
 
 const Hero = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
   return (
     <section className="hero tm-on-dark tm-grain">
       <SchematicGrid />
@@ -106,6 +111,16 @@ const Hero = () => {
               <span className="hero-tick hero-tick-tr" aria-hidden="true" />
               <span className="hero-tick hero-tick-bl" aria-hidden="true" />
               <span className="hero-tick hero-tick-br" aria-hidden="true" />
+
+              {/* The plate's own footage is silent atmosphere, so the control
+                  says exactly which video it opens rather than sitting there
+                  as a bare play triangle. */}
+              <button type="button" className="hero-watch" onClick={() => setShowVideo(true)}>
+                <span className="hero-watch-icon">
+                  <FiPlay aria-hidden="true" />
+                </span>
+                Watch the MAXHUB overview
+              </button>
             </div>
 
             <figcaption className="hero-plate-caption">
@@ -127,6 +142,13 @@ const Hero = () => {
         <span className="tm-num">Scroll</span>
         <FiArrowDown aria-hidden="true" />
       </motion.a>
+
+      <VideoModal
+        open={showVideo}
+        onClose={() => setShowVideo(false)}
+        src={MAXHUB_VIDEO.src}
+        title={MAXHUB_VIDEO.title}
+      />
     </section>
   );
 };
