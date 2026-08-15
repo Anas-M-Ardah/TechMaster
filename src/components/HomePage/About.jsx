@@ -1,93 +1,79 @@
-// About.jsx
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { FaServer, FaUsers, FaPhoneAlt } from 'react-icons/fa';
-import { BsArrowRight } from 'react-icons/bs';
+// HomePage/About.jsx
+// The positioning statement, kept to one paragraph, followed by the four verbs
+// the company already uses to describe itself — plan, design, optimise, support
+// — laid out as a numbered process row instead of feature cards.
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { FiArrowRight } from 'react-icons/fi';
+import BlurText from '../Common/BlurText';
 import '../../css/HomePage/About.css';
 
+const PHASES = [
+  { index: '01', name: 'Plan', detail: 'Site survey, requirements and budget.' },
+  { index: '02', name: 'Design', detail: 'System architecture and drawings.' },
+  { index: '03', name: 'Optimise', detail: 'Integration, commissioning and tuning.' },
+  { index: '04', name: 'Support', detail: 'Maintenance and on-call response.' },
+];
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
 const About = () => {
-    return (
-        <section className="about-section py-5">
-            <div className="pattern-overlay"></div>
-            <Container style={{ width: '95%', maxWidth: '95%' }}>
-                <Row className="align-items-center justify-content-center">
-                    <Col lg={5} className="about-content pe-lg-4" data-aos="fade-right">
-                        <div className="mb-4">
-                            <span className="subtitle text-primary fw-semibold text-uppercase">
-                                About Technology Master
-                            </span>
-                            <h2 className="title fw-bold mt-2">
-                                A Team of <span className="text-primary">Experts</span>
-                            </h2>
-                        </div>
+  return (
+    <section className="about tm-section">
+      <div className="tm-shell">
+        <div className="about-head">
+          <div>
+            <span className="tm-eyebrow">Who we are</span>
+            <BlurText
+              as="h2"
+              className="tm-h2 about-title"
+              segments={[
+                { text: 'One team, from first drawing', breakAfter: true },
+                { text: 'to final handover.' },
+              ]}
+            />
+          </div>
 
-                        <p className="description text-muted">
-                            We are an ICT (Information & Communication Technology) 
-                            Solutions & Services Provider. We help clients 
-                            <span className="fw-semibold text-dark"> plan, design, optimize,</span> and 
-                            <span className="fw-semibold text-dark"> support</span> the mission of IT Infrastructure, 
-                            Data Centers & Smart Solutions.
-                        </p>
+          <div className="about-aside">
+            <p className="tm-lede">
+              Technology Master is an ICT solutions and services provider based in Amman. Our own
+              engineers carry a project from site survey through to long-term support, so there is
+              one team accountable for the result.
+            </p>
 
-                        <div className="features">
-                            <div className="feature-card p-3 mb-3 bg-white rounded shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                                <div className="d-flex align-items-start">
-                                    <div className="feature-icon-wrapper">
-                                        <FaServer className="feature-icon" />
-                                    </div>
-                                    <div className="ms-3">
-                                        <h3 className="h5 fw-bold mb-2">Constant Technical Support</h3>
-                                        <p className="text-muted mb-0">
-                                            Technology Master provides its customers with professional 
-                                            technical support services making sure That Technology Master 
-                                            clients will get the assistance they need.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+            <Link to="/about" className="tm-link">
+              More about us
+              <FiArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
 
-                            <div className="feature-card p-3 mb-3 bg-white rounded shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                                <div className="d-flex align-items-start">
-                                    <div className="feature-icon-wrapper">
-                                        <FaUsers className="feature-icon" />
-                                    </div>
-                                    <div className="ms-3">
-                                        <h3 className="h5 fw-bold mb-2">Expert Team Member</h3>
-                                        <p className="text-muted mb-0">
-                                            Technology Master has an elite team of highly qualified 
-                                            professionals who provide specialist solutions for clients
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="d-flex flex-wrap gap-3 mt-4" data-aos="fade-up" data-aos-delay="300">
-                            <Button variant="primary" className="contact-btn d-inline-flex align-items-center">
-                                <FaPhoneAlt className="me-2" />
-                                Contact Us: +962-79-909-4176
-                            </Button>
-
-                            <Link to="/about" className="text-decoration-none">
-                                <Button variant="outline-primary" className="more-btn d-inline-flex align-items-center">
-                                    More About Us <BsArrowRight className="ms-2" />
-                                </Button>
-                            </Link>
-                        </div>
-                    </Col>
-
-                    <Col lg={6} className="about-image-col" data-aos="fade-left">
-                        <div className="image-wrapper">
-                            <div className="experience-badge" data-aos="zoom-in" data-aos-delay="300">
-                                <span className="number">15+</span>
-                                <span className="text">Years of Experience</span>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-    );
+        <motion.ol
+          className="about-phases"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {PHASES.map((phase) => (
+            <motion.li className="about-phase" key={phase.index} variants={item}>
+              <span className="about-phase-index tm-num">{phase.index}</span>
+              <h3 className="tm-h3 about-phase-name">{phase.name}</h3>
+              <p className="about-phase-detail">{phase.detail}</p>
+            </motion.li>
+          ))}
+        </motion.ol>
+      </div>
+    </section>
+  );
 };
 
 export default About;

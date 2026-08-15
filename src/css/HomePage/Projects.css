@@ -1,0 +1,189 @@
+/* Selected work — a deliberately uneven grid. Two tiles are offset downward
+   so the block reads as a spread rather than a row of equal cards. */
+
+.work {
+  background: var(--tm-bg);
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.work-item {
+  margin: 0;
+  grid-column: span 4;
+}
+
+.work-item:nth-child(1) {
+  grid-column: 1 / span 7;
+}
+
+.work-item:nth-child(2) {
+  grid-column: 9 / span 4;
+  margin-top: clamp(2rem, 6vw, 5rem);
+}
+
+.work-item:nth-child(3) {
+  grid-column: 1 / span 4;
+}
+
+.work-item:nth-child(4) {
+  grid-column: 5 / span 4;
+  margin-top: clamp(1.25rem, 3.5vw, 3rem);
+}
+
+.work-item:nth-child(5) {
+  grid-column: 9 / span 4;
+}
+
+/* --- Plate ---------------------------------------------------------- */
+
+.work-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--tm-border);
+  background: var(--tm-surface-3);
+  overflow: hidden;
+}
+
+.work-frame-button {
+  cursor: pointer;
+}
+
+.work-item:nth-child(1) .work-frame {
+  aspect-ratio: 16 / 10;
+}
+
+.work-item:nth-child(2) .work-frame {
+  aspect-ratio: 4 / 5;
+}
+
+.work-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Colour arrives on hover — until then the grid reads as one material. */
+  filter: grayscale(1) contrast(1.03);
+  transform: scale(1.01);
+  transition: filter 0.7s var(--tm-ease-soft), transform 1.2s var(--tm-ease);
+}
+
+.work-item:hover .work-media {
+  filter: grayscale(0) contrast(1);
+  transform: scale(1.04);
+}
+
+/* Square play affordance rather than the usual big circle. */
+.work-play {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  background: rgba(11, 12, 15, 0.62);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 0.9rem;
+  transition: background-color 0.4s var(--tm-ease-soft), width 0.4s var(--tm-ease),
+    height 0.4s var(--tm-ease);
+}
+
+.work-frame-button:hover .work-play {
+  background: var(--tm-accent);
+  width: 54px;
+  height: 54px;
+}
+
+/* --- Caption -------------------------------------------------------- */
+
+.work-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--tm-border);
+}
+
+.work-index {
+  flex: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--tm-accent);
+}
+
+.work-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.work-name {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--tm-ink);
+}
+
+.work-note {
+  font-size: 0.86rem;
+  color: var(--tm-ink-muted);
+}
+
+/* --- Responsive ------------------------------------------------------ */
+
+@media (max-width: 1024px) {
+  .work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .work-item,
+  .work-item:nth-child(1),
+  .work-item:nth-child(2),
+  .work-item:nth-child(3),
+  .work-item:nth-child(4),
+  .work-item:nth-child(5) {
+    grid-column: auto / span 1;
+    margin-top: 0;
+  }
+
+  .work-item:nth-child(1) {
+    grid-column: 1 / span 2;
+  }
+
+  .work-item:nth-child(2) .work-frame {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .work-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .work-item,
+  .work-item:nth-child(1) {
+    grid-column: 1 / -1;
+  }
+
+  .work-item:nth-child(1) .work-frame {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Without a cursor there is no hover state to earn the desaturation, so the
+   work simply shows in colour. */
+@media (hover: none) {
+  .work-media {
+    filter: none;
+    transform: none;
+  }
+}

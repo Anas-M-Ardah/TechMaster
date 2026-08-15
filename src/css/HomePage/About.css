@@ -1,281 +1,122 @@
-/* About.css */
-.about-section {
-    position: relative;
-    min-height: 90vh;
-    background-color: #f0f4f8;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
+/* About — the page's quiet section. Its job is breathing room between the
+   hero and the capability index, so it carries no imagery at all. */
+
+.about {
+  background: var(--tm-bg);
 }
 
-.pattern-overlay {
-    position: absolute;
-    top: 0;
+.about-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+}
+
+.about-title {
+  max-width: 16ch;
+}
+
+.about-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  padding-bottom: 0.4rem;
+}
+
+/* --- Process row --------------------------------------------------- */
+
+.about-phases {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(3.5rem, 7vw, 6rem) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--tm-border);
+}
+
+.about-phase {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: clamp(1.75rem, 2.6vw, 2.5rem) clamp(1rem, 2.2vw, 2rem) 0;
+  border-left: 1px solid var(--tm-border);
+  position: relative;
+}
+
+.about-phase:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+/* A short accent tick riding the top rule above each phase — the marker that
+   makes the row read as a scale rather than four columns of text. */
+.about-phase::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: clamp(1rem, 2.2vw, 2rem);
+  width: 28px;
+  height: 1px;
+  background: var(--tm-accent);
+}
+
+.about-phase:first-child::before {
+  left: 0;
+}
+
+.about-phase-index {
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  color: var(--tm-accent);
+}
+
+.about-phase-name {
+  color: var(--tm-ink);
+}
+
+.about-phase-detail {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--tm-ink-muted);
+  max-width: 26ch;
+}
+
+/* --- Responsive ---------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .about-head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  .about-title {
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-phases {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-phase:nth-child(odd) {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .about-phase:nth-child(odd)::before {
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: radial-gradient(#007bff 0.5px, transparent 0.5px), 
-                      radial-gradient(#007bff 0.5px, transparent 0.5px);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-    opacity: 0.05;
-    pointer-events: none;
+  }
+
+  .about-phase:nth-child(n + 3) {
+    margin-top: clamp(1.5rem, 5vw, 2rem);
+    border-top: 1px solid var(--tm-border);
+  }
+
+  .about-phase-detail {
+    max-width: none;
+  }
 }
-
-.about-content {
-    position: relative;
-    z-index: 2;
-}
-
-.subtitle {
-    color: #007bff;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-.title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-}
-
-.highlight {
-    color: #007bff;
-}
-
-.description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #6c757d;
-    margin-bottom: 2rem;
-}
-
-.text-emphasis {
-    font-weight: 600;
-    color: #343a40;
-}
-
-.features {
-    margin-bottom: 2rem;
-}
-
-.feature-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
-}
-
-.feature-icon-wrapper {
-    width: 46px;
-    height: 46px;
-    min-width: 46px;
-    background-color: rgba(0, 123, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.feature-icon {
-    width: 20px;
-    height: 20px;
-    color: #007bff;
-}
-
-.contact-btn, 
-.more-btn {
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.contact-btn:hover,
-.more-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
-}
-
-.about-image-col {
-    position: relative;
-    height: 75vh;
-    max-height: 650px;
-    background-color: #e7eef8;
-}
-
-.image-wrapper {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background-image: url('/images/about-image.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.experience-badge {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    background: #007bff;
-    color: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-    animation: float 3s ease-in-out infinite;
-    z-index: 2;
-}
-
-.experience-badge .number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    display: block;
-    line-height: 1;
-}
-
-.experience-badge .text {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-top: 0.5rem;
-}
-
-@keyframes float {
-    0%, 100% { 
-        transform: translateY(0); 
-    }
-    50% { 
-        transform: translateY(-10px); 
-    }
-}
-
-[data-aos] {
-    opacity: 0;
-    transition: all 0.8s ease;
-}
-
-[data-aos="fade-right"] {
-    transform: translateX(-50px);
-}
-
-[data-aos="fade-left"] {
-    transform: translateX(50px);
-}
-
-[data-aos="fade-up"] {
-    transform: translateY(30px);
-}
-
-[data-aos="zoom-in"] {
-    transform: scale(0.9);
-}
-
-[data-aos].aos-animate {
-    opacity: 1;
-    transform: translate(0) scale(1);
-}
-
-@media (max-width: 991px) {
-    .about-section {
-        min-height: auto;
-        padding: 3rem 0;
-    }
-
-    .about-content {
-        padding-right: 0;
-        margin-bottom: 2rem;
-    }
-
-    .about-image-col {
-        height: 450px;
-        margin-top: 2rem;
-    }
-
-    .experience-badge {
-        padding: 1rem;
-    }
-
-    .experience-badge .number {
-        font-size: 2rem;
-    }
-
-    .title {
-        font-size: 2.2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .about-image-col {
-        height: 350px;
-    }
-
-    .title {
-        font-size: 2rem;
-    }
-
-    .description {
-        font-size: 1rem;
-    }
-
-    .feature-card {
-        padding: 1rem !important;
-    }
-}
-
-@media (max-width: 576px) {
-    .about-image-col {
-        height: 250px;
-    }
-
-    .experience-badge {
-        padding: 0.8rem;
-        top: 20px;
-        left: 20px;
-    }
-
-    .experience-badge .number {
-        font-size: 1.8rem;
-    }
-
-    .experience-badge .text {
-        font-size: 0.9rem;
-    }
-
-    .contact-btn, 
-    .more-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 0.7rem 1.2rem;
-        font-size: 0.9rem;
-    }
-
-    .feature-icon-wrapper {
-        width: 40px;
-        height: 40px;
-    }
-
-    .feature-icon {
-        width: 18px;
-        height: 18px;
-    }
-}
-
-/* on mobile and tablets */
-
-@media screen and (max-width: 1300px) {
-    .experience-badge{
-        top: 70%;
-        right: 10%;
-    }
-    
-}
-
