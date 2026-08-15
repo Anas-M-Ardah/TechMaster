@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiChevronDown } from 'react-icons/fi';
+import { FiChevronDown, FiArrowUpRight, FiArrowRight } from 'react-icons/fi';
 import '../css/Header.css';
 
 import logo from '/images/technology-master-logo.png';
@@ -11,6 +11,16 @@ const SERVICE_LINKS = [
   { to: '/services/data-center', label: 'Data center' },
   { to: '/services/structure-cabling', label: 'Structure cabling' },
   { to: '/services/smart-building', label: 'Smart building' },
+];
+
+// Numbered in the panel, matching the index language used across the site.
+const PANEL_LINKS = [
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/services', label: 'Services', group: true },
+  { to: '/partners', label: 'Partners' },
+  { to: '/clients', label: 'Clients' },
+  { to: '/contact', label: 'Contact' },
 ];
 
 const Header = () => {
@@ -139,52 +149,71 @@ const Header = () => {
           onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
           aria-controls="header-panel"
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
-          <span className="header-toggle-bar" />
-          <span className="header-toggle-bar" />
+          <span className="header-toggle-mark" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="header-toggle-label tm-num">{isOpen ? 'Close' : 'Menu'}</span>
         </button>
       </div>
 
       <div className="header-panel" id="header-panel" hidden={!isOpen}>
-        <nav aria-label="Mobile">
-          <Link to="/" className="header-panel-link">
-            Home
-          </Link>
-          <Link to="/about" className="header-panel-link">
-            About
-          </Link>
+        <nav className="header-panel-nav" aria-label="Mobile">
+          {PANEL_LINKS.map((link, i) => {
+            const index = String(i + 1).padStart(2, '0');
 
-          <button
-            type="button"
-            className={`header-panel-link header-panel-toggle${isServicesOpen ? ' is-open' : ''}`}
-            onClick={() => setIsServicesOpen((open) => !open)}
-            aria-expanded={isServicesOpen}
-          >
-            Services
-            <FiChevronDown aria-hidden="true" />
-          </button>
+            if (link.group) {
+              return (
+                <div className="header-panel-group" key={link.to} style={{ '--i': i }}>
+                  <button
+                    type="button"
+                    className={`header-panel-link header-panel-toggle${
+                      isServicesOpen ? ' is-open' : ''
+                    }`}
+                    onClick={() => setIsServicesOpen((open) => !open)}
+                    aria-expanded={isServicesOpen}
+                  >
+                    <span className="header-panel-index tm-num">{index}</span>
+                    <span className="header-panel-label">{link.label}</span>
+                    <FiChevronDown className="header-panel-caret" aria-hidden="true" />
+                  </button>
 
-          {isServicesOpen && (
-            <div className="header-panel-sub">
-              {SERVICE_LINKS.map((link) => (
-                <Link key={link.to} to={link.to}>
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          )}
+                  {isServicesOpen && (
+                    <div className="header-panel-sub">
+                      {SERVICE_LINKS.map((sub) => (
+                        <Link key={sub.to} to={sub.to}>
+                          {sub.label}
+                          <FiArrowRight aria-hidden="true" />
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
 
-          <Link to="/partners" className="header-panel-link">
-            Partners
-          </Link>
-          <Link to="/clients" className="header-panel-link">
-            Clients
-          </Link>
-          <Link to="/contact" className="header-panel-link">
-            Contact us
-          </Link>
+            return (
+              <Link to={link.to} className="header-panel-link" key={link.to} style={{ '--i': i }}>
+                <span className="header-panel-index tm-num">{index}</span>
+                <span className="header-panel-label">{link.label}</span>
+                <FiArrowUpRight className="header-panel-arrow" aria-hidden="true" />
+              </Link>
+            );
+          })}
         </nav>
+
+        <div className="header-panel-foot" style={{ '--i': PANEL_LINKS.length }}>
+          <span className="header-panel-foot-label tm-num">Talk to us</span>
+          <a href="tel:+962799094176">+962 79 909 4176</a>
+          <a href="mailto:malardah@technology-master.com">malardah@technology-master.com</a>
+
+          <Link to="/contact" className="tm-btn tm-btn-solid header-panel-cta">
+            Start a conversation
+            <FiArrowRight aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </motion.header>
   );

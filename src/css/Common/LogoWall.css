@@ -1,8 +1,10 @@
 /* Logo wall — one ruled grid, shared by Clients and Partners. */
 
+/* Four columns rather than five: the cells are wide enough that a 7:1 logo
+   like Hikvision is still legible instead of collapsing to ~18px tall. */
 .wall {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 0;
   padding: 0;
   list-style: none;
@@ -15,7 +17,12 @@
   border-bottom: 1px solid var(--tm-border);
 }
 
+/* Cells stay pure white in every state. Several logos ship with an opaque
+   white background baked in (FireBan, Safwa, National Microfinance,
+   client-4); on any tinted ground those show up as a hard white rectangle
+   around the mark. Holding the cell at #fff makes them sit flush. */
 .wall-inner {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,13 +31,23 @@
   height: 100%;
   aspect-ratio: 3 / 2;
   padding: clamp(1rem, 2.2vw, 1.75rem);
-  background: var(--tm-surface);
+  background: #ffffff;
   text-decoration: none;
-  transition: background-color 0.4s var(--tm-ease-soft);
 }
 
-.wall-inner:hover {
-  background: var(--tm-bg-alt);
+/* Hover reads on the rule, not the fill — a tint would bring the white
+   rectangles back. */
+.wall-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.35s var(--tm-ease-soft);
+}
+
+.wall-inner:hover::before {
+  border-color: var(--tm-accent);
 }
 
 .wall-logo {
@@ -43,18 +60,15 @@
 
 .wall-logo img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 72px;
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.55;
-  transition: filter 0.45s var(--tm-ease-soft), opacity 0.45s var(--tm-ease-soft);
+  transition: transform 0.45s var(--tm-ease);
 }
 
 .wall-inner:hover .wall-logo img {
-  filter: grayscale(0);
-  opacity: 1;
+  transform: scale(1.04);
 }
 
 /* Captions are opt-in: they help for partner brands, but the client logos
@@ -92,25 +106,16 @@
 
 @media (max-width: 1100px) {
   .wall {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 767px) {
   .wall {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 460px) {
-  .wall {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
 
-@media (hover: none) {
   .wall-logo img {
-    filter: none;
-    opacity: 0.85;
+    max-height: 56px;
   }
 }
