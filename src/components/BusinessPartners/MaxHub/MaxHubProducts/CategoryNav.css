@@ -1,87 +1,112 @@
-/* Sticky category bar — sits under the fixed header and rules off the
-   catalogue below it. */
+/* Category tiles — one ruled row of icon + short label. Not sticky: a bar
+   that follows you down the page while carrying eight items is exactly what
+   made this feel busy. */
 
 .cat-nav {
-  position: sticky;
-  top: calc(var(--header-height) - 1px);
-  z-index: 500;
-  background: var(--tm-glass);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--tm-border);
+  padding-block: clamp(2rem, 4vw, 3rem);
+  background: var(--tm-bg);
+  scroll-margin-top: calc(var(--header-height) + 16px);
 }
 
 .cat-nav-list {
-  display: flex;
-  gap: clamp(0.5rem, 2vw, 2rem);
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   margin: 0;
   padding: 0;
   list-style: none;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.cat-nav-list::-webkit-scrollbar {
-  display: none;
+  border-top: 1px solid var(--tm-border);
+  border-left: 1px solid var(--tm-border);
 }
 
 .cat-nav-tab {
   position: relative;
   display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
-  padding: 1.05rem 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 100%;
+  height: 100%;
+  padding: clamp(1.1rem, 2vw, 1.5rem) 0.5rem;
   border: 0;
-  background: none;
-  white-space: nowrap;
-  color: var(--tm-ink-muted);
-  transition: color 0.35s var(--tm-ease-soft);
+  border-right: 1px solid var(--tm-border);
+  border-bottom: 1px solid var(--tm-border);
+  background: var(--tm-surface);
+  transition: background-color 0.35s var(--tm-ease-soft);
 }
 
-/* The active rule sits on the bar's own bottom border, so switching tabs
-   reads as the underline sliding rather than a pill lighting up. */
-.cat-nav-tab::after {
+.cat-nav-tab:hover {
+  background: var(--tm-bg-alt);
+}
+
+/* The active tile is marked by a rule riding its top edge, in keeping with
+   the accent ticks used elsewhere, rather than a filled pill. */
+.cat-nav-tab::before {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
+  top: -1px;
+  left: -1px;
+  right: -1px;
   height: 2px;
   background: var(--tm-accent);
   transform: scaleX(0);
   transition: transform 0.4s var(--tm-ease);
 }
 
-.cat-nav-tab:hover {
-  color: var(--tm-ink);
-}
-
-.cat-nav-tab.is-active {
-  color: var(--tm-ink);
-}
-
-.cat-nav-tab.is-active::after {
+.cat-nav-tab.is-active::before {
   transform: scaleX(1);
 }
 
-.cat-nav-index {
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--tm-ink-muted);
-  transition: color 0.35s var(--tm-ease-soft);
+.cat-nav-tab.is-active {
+  background: var(--tm-bg-alt);
 }
 
-.cat-nav-tab.is-active .cat-nav-index {
+.cat-nav-icon {
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--tm-ink-muted);
+  transition: color 0.35s var(--tm-ease-soft), transform 0.4s var(--tm-ease);
+}
+
+.cat-nav-tab:hover .cat-nav-icon {
+  transform: translateY(-2px);
+}
+
+.cat-nav-tab.is-active .cat-nav-icon {
   color: var(--tm-accent);
 }
 
 .cat-nav-name {
-  font-size: 0.93rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--tm-ink-muted);
+  transition: color 0.35s var(--tm-ease-soft);
 }
 
-@media (max-width: 767px) {
-  .cat-nav-name {
-    font-size: 0.88rem;
+.cat-nav-tab:hover .cat-nav-name,
+.cat-nav-tab.is-active .cat-nav-name {
+  color: var(--tm-ink);
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .cat-nav-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .cat-nav-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cat-nav-icon {
+    font-size: 1.2rem;
   }
 }
