@@ -518,12 +518,13 @@ const MaxHubProducts = () => {
                     setActiveCategory={setActiveCategory}
                 />
 
-                <div className="maxhub-category-content" id="maxhub-catalogue">
+                <div className="maxhub-category-content">
                     <div className="tm-shell">
-                        {categories.map((category) => (
+                        {categories.map((category, index) => (
                             <CategorySection
                                 key={category.id}
                                 category={category}
+                                index={index}
                                 isActive={activeCategory === category.id}
                             />
                         ))}

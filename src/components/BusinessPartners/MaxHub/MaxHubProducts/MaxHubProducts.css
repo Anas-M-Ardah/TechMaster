@@ -4,11 +4,8 @@
   background: var(--tm-bg);
 }
 
-/* The anchor the category tabs scroll to. The margin keeps it clear of the
-   fixed header and the sticky category bar stacked beneath it. */
-#maxhub-catalogue {
-  scroll-margin-top: calc(var(--header-height) + 56px);
-}
+/* CategoryNav owns its own scroll target now — see .cat-nav's
+   scroll-margin-top. */
 
 .maxhub-category-content {
   padding-bottom: clamp(3rem, 6vw, 5rem);

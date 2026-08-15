@@ -4,17 +4,31 @@
   padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
+/* Category masthead, using the same two-column head as every other section
+   on the site rather than a stack of loose lines. */
 .cs-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.cs-title {
+  margin-top: 0.85rem;
+}
+
+.cs-aside {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
-  padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  gap: 0.9rem;
+  padding-bottom: 0.35rem;
 }
 
 .cs-description {
   margin: 0;
-  max-width: 62ch;
+  max-width: 52ch;
 }
 
 .cs-count {
@@ -22,6 +36,17 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--tm-ink-muted);
+}
+
+@media (max-width: 900px) {
+  .cs-head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .cs-aside {
+    padding-bottom: 0;
+  }
 }
 
 .cs-grid {
@@ -54,18 +79,24 @@
   background: var(--tm-bg-alt);
 }
 
+/* A plain block, not a centred grid. Percentage heights do not resolve
+   against a `place-items: center` grid area, so a square product shot was
+   sizing to its intrinsic height (265px) inside a 198px plate and losing
+   67px top and bottom to the overflow. As a block with a definite
+   aspect-ratio the child's height:100% resolves, and object-fit does the
+   centring that place-items used to. */
 .cs-plate {
-  display: grid;
-  place-items: center;
+  display: block;
   aspect-ratio: 4 / 3;
+  padding: clamp(0.6rem, 1.4vw, 1.1rem);
+  /* A faint ground so product shots — nearly all of them cut out on white —
+     read as objects on a surface rather than floating in the cell. */
+  background: var(--tm-bg-alt);
   overflow: hidden;
 }
 
-/* Fill the plate and let object-fit letterbox the artwork inside it. Sizing
-   with max-height:100% is unreliable on a centred grid item — the percentage
-   may not resolve against the row, and the plate's overflow then crops the
-   product shot instead of scaling it. */
 .cs-plate img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
