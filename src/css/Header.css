@@ -215,38 +215,84 @@
 
 /* --- Mobile toggle ------------------------------------------------------ */
 
+/* Mark: three measured rules of different lengths rather than three equal
+   bars — it belongs to the same drawing language as the section indices.
+   Opening collapses them into a cross. */
 .header-toggle {
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  width: 40px;
+  align-items: center;
+  gap: 0.7rem;
   height: 40px;
-  padding: 0;
+  padding: 0 0.9rem 0 0.8rem;
   background: none;
-  border: 0;
+  border: 1px solid var(--tm-border-strong);
+  border-radius: 2px;
+  transition: border-color 0.4s var(--tm-ease-soft), background-color 0.4s var(--tm-ease-soft);
 }
 
-.header-toggle-bar {
+.header-toggle-mark {
+  position: relative;
   display: block;
-  width: 22px;
-  height: 1.5px;
-  margin-inline: auto;
-  background: var(--tm-ink);
-  transition: transform 0.4s var(--tm-ease), opacity 0.3s var(--tm-ease-soft),
-    background-color 0.45s var(--tm-ease-soft);
+  width: 20px;
+  height: 12px;
+  flex: none;
 }
 
-.header.is-overlay .header-toggle-bar {
+.header-toggle-mark span {
+  position: absolute;
+  left: 0;
+  height: 1.5px;
+  background: var(--tm-ink);
+  transition: transform 0.45s var(--tm-ease), opacity 0.25s var(--tm-ease-soft),
+    width 0.45s var(--tm-ease), background-color 0.45s var(--tm-ease-soft);
+}
+
+.header-toggle-mark span:nth-child(1) {
+  top: 0;
+  width: 20px;
+}
+
+.header-toggle-mark span:nth-child(2) {
+  top: 5.25px;
+  width: 13px;
+}
+
+.header-toggle-mark span:nth-child(3) {
+  top: 10.5px;
+  width: 20px;
+}
+
+.header-toggle-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tm-ink);
+  transition: color 0.45s var(--tm-ease-soft);
+}
+
+.header.is-open .header-toggle-mark span:nth-child(1) {
+  transform: translateY(5.25px) rotate(45deg);
+}
+
+.header.is-open .header-toggle-mark span:nth-child(2) {
+  width: 20px;
+  opacity: 0;
+}
+
+.header.is-open .header-toggle-mark span:nth-child(3) {
+  transform: translateY(-5.25px) rotate(-45deg);
+}
+
+.header.is-overlay .header-toggle {
+  border-color: rgba(244, 246, 248, 0.32);
+}
+
+.header.is-overlay .header-toggle-mark span {
   background: var(--tm-void-text);
 }
 
-.header.is-open .header-toggle-bar:first-child {
-  transform: translateY(3.75px) rotate(45deg);
-}
-
-.header.is-open .header-toggle-bar:last-child {
-  transform: translateY(-3.75px) rotate(-45deg);
+.header.is-overlay .header-toggle-label {
+  color: var(--tm-void-text);
 }
 
 /* --- Mobile panel -------------------------------------------------------- */
@@ -255,61 +301,143 @@
   display: none;
   height: calc(100dvh - var(--header-height));
   overflow-y: auto;
-  padding: clamp(1rem, 5vw, 2rem) clamp(1.25rem, 5vw, 2.5rem) 3rem;
+  padding: clamp(1.5rem, 6vw, 2.5rem) clamp(1.25rem, 5vw, 2.5rem) 3rem;
   background: var(--tm-bg);
   border-top: 1px solid var(--tm-border);
 }
 
-.header-panel nav {
+.header-panel-nav {
   display: flex;
   flex-direction: column;
+  border-top: 1px solid var(--tm-border);
+}
+
+/* Each row fades up in sequence. --i is set per item in the markup; the
+   reduced-motion rule in theme.css collapses the duration, and `forwards`
+   leaves everything at its final state. */
+.header-panel-link,
+.header-panel-group {
+  opacity: 0;
+  animation: header-panel-in 0.5s var(--tm-ease) forwards;
+  animation-delay: calc(var(--i) * 55ms + 70ms);
+}
+
+@keyframes header-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header-panel-link {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) 1.5rem;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.75rem;
   width: 100%;
-  padding: 1.15rem 0;
+  padding: 1.05rem 0;
   border: 0;
   border-bottom: 1px solid var(--tm-border);
   background: none;
-  font-size: 1.35rem;
-  font-weight: 500;
-  letter-spacing: -0.025em;
   color: var(--tm-ink);
   text-align: left;
   text-decoration: none;
 }
 
-.header-panel-toggle svg {
+.header-panel-index {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--tm-accent);
+}
+
+.header-panel-label {
+  font-size: clamp(1.5rem, 7vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.header-panel-arrow,
+.header-panel-caret {
+  justify-self: end;
   font-size: 1.1rem;
   color: var(--tm-ink-muted);
   transition: transform 0.35s var(--tm-ease);
 }
 
-.header-panel-toggle.is-open svg {
+.header-panel-toggle.is-open .header-panel-caret {
   transform: rotate(180deg);
+  color: var(--tm-accent);
 }
 
 .header-panel-sub {
   display: flex;
   flex-direction: column;
-  padding: 0.4rem 0 0.9rem 1rem;
+  margin-left: 2.5rem;
+  padding: 0.35rem 0 1rem;
   border-bottom: 1px solid var(--tm-border);
-  border-left: 1px solid var(--tm-accent);
-  margin-left: 0.1rem;
 }
 
 .header-panel-sub a {
-  padding: 0.6rem 0;
-  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  font-size: 1rem;
   color: var(--tm-ink-soft);
   text-decoration: none;
 }
 
+.header-panel-sub a svg {
+  font-size: 0.9rem;
+  color: var(--tm-border-strong);
+}
+
 .header-panel-sub a:hover {
   color: var(--tm-accent);
+}
+
+/* --- Panel footer --------------------------------------------------------- */
+
+.header-panel-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: clamp(2rem, 7vw, 3rem);
+  opacity: 0;
+  animation: header-panel-in 0.5s var(--tm-ease) forwards;
+  animation-delay: calc(var(--i) * 55ms + 70ms);
+}
+
+.header-panel-foot-label {
+  margin-bottom: 0.4rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tm-accent);
+}
+
+.header-panel-foot a:not(.tm-btn) {
+  font-size: 1rem;
+  color: var(--tm-ink-soft);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.header-panel-foot a:not(.tm-btn):hover {
+  color: var(--tm-ink);
+}
+
+.header-panel-cta {
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 1.25rem;
 }
 
 /* --- Breakpoint ----------------------------------------------------------- */

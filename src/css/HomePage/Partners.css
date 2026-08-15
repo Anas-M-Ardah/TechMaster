@@ -1,12 +1,15 @@
 /* Ecosystem — partner brands as a ruled grid, clients as a slow marquee.
-   Logos arrive in wildly different colours, so both are neutralised to keep
-   the palette down to ink plus one blue. */
+   Both are shown in their own colours; the cells stay white so the logos
+   that carry a baked-in white background sit flush instead of reading as
+   pasted-on rectangles. */
 
 /* --- Partner grid ---------------------------------------------------- */
 
+/* Four across, not six. At six the cells were 163px wide and a 7:1 logo
+   like Hikvision came out ~18px tall — present, but not readable. */
 .eco-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 0;
   padding: 0;
   list-style: none;
@@ -15,41 +18,53 @@
 }
 
 .eco-cell {
+  position: relative;
   display: grid;
   place-items: center;
   aspect-ratio: 3 / 2;
   padding: clamp(1rem, 2.2vw, 1.75rem);
   border-right: 1px solid var(--tm-border);
   border-bottom: 1px solid var(--tm-border);
-  background: var(--tm-surface);
-  transition: background-color 0.4s var(--tm-ease-soft);
+  background: #ffffff;
 }
 
-.eco-cell:hover {
-  background: var(--tm-bg-alt);
+.eco-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.35s var(--tm-ease-soft);
+}
+
+.eco-cell:hover::before {
+  border-color: var(--tm-accent);
 }
 
 .eco-cell img {
   max-width: 100%;
-  max-height: 46px;
+  max-height: 66px;
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.55;
-  transition: filter 0.45s var(--tm-ease-soft), opacity 0.45s var(--tm-ease-soft);
+  transition: transform 0.45s var(--tm-ease);
 }
 
 .eco-cell:hover img {
-  filter: grayscale(0);
-  opacity: 1;
+  transform: scale(1.04);
 }
 
 /* --- Client marquee --------------------------------------------------- */
 
+/* White ground for the same reason as the cells: several client marks carry
+   an opaque white background, which would show as a box on the alt band. */
 .eco-clients {
+  /* One source of truth for the row height and the logo cap. */
+  --marquee-h: 68px;
   margin-top: clamp(3.5rem, 7vw, 6rem);
-  padding-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(2.5rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  background: #ffffff;
   border-top: 1px solid var(--tm-border);
 }
 
@@ -107,22 +122,24 @@
   display: grid;
   place-items: center;
   flex: none;
-  height: 52px;
+  height: var(--marquee-h);
 }
 
+/* max-height must be a length, not 100%. As a centred grid item the
+   percentage did not resolve against the row, so square marks (Civil
+   Protection, JEPCO, Kettaneh — all 500x500) rendered at their full 180px
+   width and were cropped to a band by the marquee's overflow. */
 .eco-track img {
-  max-height: 100%;
-  max-width: 140px;
+  max-height: var(--marquee-h);
+  max-width: 180px;
   width: auto;
+  height: auto;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.42;
-  transition: filter 0.4s var(--tm-ease-soft), opacity 0.4s var(--tm-ease-soft);
+  transition: transform 0.4s var(--tm-ease);
 }
 
 .eco-track li:hover img {
-  filter: grayscale(0);
-  opacity: 1;
+  transform: scale(1.05);
 }
 
 /* The list is rendered twice; shifting by exactly half its width returns it
@@ -140,17 +157,17 @@
 
 @media (max-width: 991px) {
   .eco-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 575px) {
   .eco-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .eco-cell img {
-    max-height: 34px;
+    max-height: 52px;
   }
 }
 
