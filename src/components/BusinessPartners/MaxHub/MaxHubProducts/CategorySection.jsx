@@ -12,7 +12,7 @@ const cell = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
 };
 
-const CategorySection = ({ category, isActive }) => {
+const CategorySection = ({ category, isActive, index = 0 }) => {
   if (!isActive) return null;
 
   const products = category.products || [];
@@ -20,11 +20,19 @@ const CategorySection = ({ category, isActive }) => {
   return (
     <section className="cs">
       <header className="cs-head">
-        <span className="tm-eyebrow">{category.name}</span>
-        {category.description && <p className="tm-lede cs-description">{category.description}</p>}
-        <span className="cs-count tm-num">
-          {products.length} {products.length === 1 ? 'product' : 'products'}
-        </span>
+        <div>
+          {/* The category name is the section's heading — it was a styled span
+              before, which left this page with no headings under the h1. */}
+          <span className="tm-eyebrow">Category {String(index + 1).padStart(2, '0')}</span>
+          <h2 className="tm-h2 cs-title">{category.name}</h2>
+        </div>
+
+        <div className="cs-aside">
+          {category.description && <p className="tm-lede cs-description">{category.description}</p>}
+          <span className="cs-count tm-num">
+            {products.length} {products.length === 1 ? 'product' : 'products'}
+          </span>
+        </div>
       </header>
 
       {products.length > 0 ? (
@@ -73,6 +81,7 @@ CategorySection.propTypes = {
     products: PropTypes.array,
   }).isRequired,
   isActive: PropTypes.bool.isRequired,
+  index: PropTypes.number,
 };
 
 export default CategorySection;
