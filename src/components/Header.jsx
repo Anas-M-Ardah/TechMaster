@@ -32,7 +32,13 @@ const Header = () => {
 
   // The home page opens on a dark hero, so the bar starts transparent there and
   // only takes on a surface once the visitor has scrolled past it.
-  const isOverlay = location.pathname === '/' && !isScrolled;
+  //
+  // It must also drop out while the panel is open: the panel turns the bar into
+  // an opaque white sheet, and the overlay treatment paints the logo, the
+  // burger rules and the MENU/CLOSE label white for the dark hero — leaving all
+  // of them invisible against it. At the top of the home page `isScrolled` is
+  // still false, so without this the close control disappears on first open.
+  const isOverlay = location.pathname === '/' && !isScrolled && !isOpen;
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 1024);
