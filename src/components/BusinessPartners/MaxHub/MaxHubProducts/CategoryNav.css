@@ -1,177 +1,87 @@
-/* CategoryNav.css */
-.maxhub-category-nav {
-    background: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    height: calc(var(--logo-height) + 2.4rem);
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e9ecef;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+/* Sticky category bar — sits under the fixed header and rules off the
+   catalogue below it. */
+
+.cat-nav {
+  position: sticky;
+  top: calc(var(--header-height) - 1px);
+  z-index: 500;
+  background: var(--tm-glass);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--tm-border);
 }
 
-.maxhub-category-nav::-webkit-scrollbar {
-    height: 4px;
+.cat-nav-list {
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 2rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-.maxhub-category-nav::-webkit-scrollbar-track {
-    background: #f1f1f1;
+.cat-nav-list::-webkit-scrollbar {
+  display: none;
 }
 
-.maxhub-category-nav::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
+.cat-nav-tab {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 1.05rem 0;
+  border: 0;
+  background: none;
+  white-space: nowrap;
+  color: var(--tm-ink-muted);
+  transition: color 0.35s var(--tm-ease-soft);
 }
 
-.category-icons-container {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0 auto;
-    padding: 0 2rem;
-    min-width: min-content;
-    height: 100%;
+/* The active rule sits on the bar's own bottom border, so switching tabs
+   reads as the underline sliding rather than a pill lighting up. */
+.cat-nav-tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--tm-accent);
+  transform: scaleX(0);
+  transition: transform 0.4s var(--tm-ease);
 }
 
-.category-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    flex: 0 0 auto;
-    width: 120px;
-    position: relative;
+.cat-nav-tab:hover {
+  color: var(--tm-ink);
 }
 
-.category-item::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 10%;
-    width: 80%;
-    height: 3px;
-    background-color: #007bff;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+.cat-nav-tab.is-active {
+  color: var(--tm-ink);
 }
 
-.category-item.active::after {
-    transform: scaleX(1);
+.cat-nav-tab.is-active::after {
+  transform: scaleX(1);
 }
 
-.category-item:hover {
-    background-color: #f8f9fa;
+.cat-nav-index {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--tm-ink-muted);
+  transition: color 0.35s var(--tm-ease-soft);
 }
 
-.category-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    transition: color 0.2s ease;
-    margin-bottom: 0.4rem;
+.cat-nav-tab.is-active .cat-nav-index {
+  color: var(--tm-accent);
 }
 
-.category-name {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #333;
-    text-align: center;
-    transition: color 0.2s ease;
-    line-height: 1.2;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    word-break: break-word;
-    max-width: 100%;
-}
-
-.category-item.active .category-icon,
-.category-item.active .category-name {
-    color: #007bff;
-}
-
-/* Responsive Breakpoints */
-@media (min-width: 1400px) {
-    .maxhub-category-nav {
-        height: calc(var(--logo-height-large) + 3rem);
-    }
-
-    .category-icons-container {
-        justify-content: center;
-        max-width: 1400px;
-        padding: 0 3rem;
-    }
-
-    .category-item {
-        width: 140px;
-    }
-
-    .category-name {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 1024px) {
-    .maxhub-category-nav {
-        height: calc(50px + 2.4rem);
-    }
-}
-
-@media (max-width: 991px) {
-    .category-item {
-        width: 110px;
-    }
-
-    .category-icon svg {
-        font-size: 1.3rem;
-    }
-
-    .category-name {
-        font-size: 0.7rem;
-    }
+.cat-nav-name {
+  font-size: 0.93rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
 }
 
 @media (max-width: 767px) {
-    .category-icons-container {
-        gap: 0.3rem;
-        padding: 0 1rem;
-    }
-
-    .category-item {
-        width: 90px;
-        padding: 0.4rem;
-    }
-
-    .category-icon svg {
-        font-size: 1.2rem;
-    }
-
-    .category-name {
-        font-size: 0.65rem;
-    }
-}
-
-@media (max-width: 575px) {
-    .category-item {
-        width: 80px;
-    }
-
-    .category-icon svg {
-        font-size: 1.1rem;
-    }
-
-    .category-name {
-        font-size: 0.6rem;
-    }
+  .cat-nav-name {
+    font-size: 0.88rem;
+  }
 }

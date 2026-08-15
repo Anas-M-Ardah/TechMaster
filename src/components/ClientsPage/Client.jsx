@@ -8,8 +8,14 @@ function Client() {
   return (
     <>
       <Header />
-      <PageHeader title="Clients" />
-      <Clients />
+      <main>
+        <PageHeader
+          title="Clients"
+          eyebrow="150+ organisations"
+          lede="Government bodies, universities, banks, hotels and schools across the Kingdom."
+        />
+        <Clients />
+      </main>
       <Footer />
     </>
   );

@@ -1,68 +1,75 @@
-// components/SolutionsHero/SolutionsHero.jsx
-import React from 'react';
+// components/ServicesPage/SolutionsHero.jsx
+// Closing band for the services page, pointing at the three solutions that
+// have a page behind them.
+//
+// The previous version linked to /services/lc-solution and
+// /services/fire-fighting, neither of which is a registered route — both
+// rendered a blank page. These now point at the routes that actually exist.
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FiArrowRight } from 'react-icons/fi';
+import BlurText from '../Common/BlurText';
 import '../../css/ServicePage/SolutionsHero.css';
+
 import heroImage from '/images/theme-15.jpg';
 
+const SOLUTIONS = [
+  { id: 'data-center', title: 'Data Center', note: 'Racks, power, cooling, containment', link: '/services/data-center' },
+  { id: 'structure-cabling', title: 'Structure Cabling', note: 'Copper and fibre, certified', link: '/services/structure-cabling' },
+  { id: 'smart-building', title: 'Smart Building', note: 'Management, access, automation', link: '/services/smart-building' },
+];
+
 const SolutionsHero = () => {
-    const solutions = [
-        {
-            id: 1,
-            title: "Data Center",
-            icon: "🗄️",
-            link: "/services/data-center"
-        },
-        {
-            id: 2,
-            title: "LC Solution",
-            icon: "⚡",
-            link: "/services/lc-solution"
-        },
-        {
-            id: 3,
-            title: "Fire Fighting",
-            icon: "🧯",
-            link: "/services/fire-fighting"
-        }
-    ];
+  return (
+    <section className="sh tm-section tm-band-alt">
+      <div className="tm-shell">
+        <div className="sh-grid">
+          <motion.figure
+            className="sh-plate"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <img src={heroImage} alt="Technology Master solutions" loading="lazy" />
+          </motion.figure>
 
-    return (
-        <section className="tm-solutions-hero">
-            <div className="tm-solutions-grid">
-                {/* Left Section */}
-                <div className="tm-solutions-left" style={{ backgroundImage: `url(${heroImage})` }}>
-                    <div className="tm-solutions-left-content">
-                        <span className="tm-solutions-label">More Into Our Services →</span>
-                        <h2>A Variety of Solutions For You</h2>
-                        <p>We deliver best-in-class solutions that will significantly enhance your business</p>
-                    </div>
-                </div>
+          <div className="sh-content">
+            <span className="tm-eyebrow">In depth</span>
 
-                {/* Right Section */}
-                <div className="tm-solutions-right">
-                    <div className="tm-solutions-right-content">
-                        <div className="tm-solutions-header">
-                            <span className="tm-solutions-subtitle">Giving Deep Care →</span>
-                            <h2>Highly <span className="highlight">Professional</span> Solutions Provider Team</h2>
-                            <p>We provide the full spectrum of IT services, solutions and consultations for various industries.</p>
-                        </div>
+            <BlurText
+              as="h2"
+              className="tm-h2 sh-title"
+              segments={[{ text: 'Three solutions,', breakAfter: true }, { text: 'documented properly.' }]}
+            />
 
-                        <div className="tm-solutions-cards">
-                            {solutions.map((solution) => (
-                                <Link to={solution.link} key={solution.id} className="tm-solution-card">
-                                    <div className="tm-solution-icon">{solution.icon}</div>
-                                    <h3 className='tm-solution-title'>{solution.title}</h3>
-                                    <div className="tm-solution-line"></div>
-                                </Link>
-                            ))}
-                        </div>
+            <p className="tm-lede sh-lede">
+              We provide the full spectrum of IT services, solutions and consultation across
+              industries. These three carry a page of their own.
+            </p>
 
-                        <Link to="/about" className="tm-about-btn">About Us</Link>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+            <ul className="sh-list">
+              {SOLUTIONS.map((solution, i) => (
+                <li key={solution.id}>
+                  <Link to={solution.link} className="sh-row">
+                    <span className="sh-row-index tm-num">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="sh-row-title">{solution.title}</span>
+                    <span className="sh-row-note">{solution.note}</span>
+                    <FiArrowRight className="sh-row-arrow" aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Link to="/contact" className="tm-btn tm-btn-outline sh-cta">
+              Scope a project with us
+              <FiArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default SolutionsHero;

@@ -1,6 +1,5 @@
 // components/BusinessPartners/MaxHub/MaxHubProducts/MaxHubProducts.jsx
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import { useState } from "react";
 import Header from "../../../Header";
 import Footer from "../../../Footer";
 import PageHeader from "../../../Common/PageHeader";
@@ -502,25 +501,25 @@ const MaxHubProducts = () => {
     return (
         <div className="maxhub-products-page">
             <Header />
-            <PageHeader
-                title="MAXHUB Products"
-                breadcrumb={[
-                    { title: "Home", url: "/" },
-                    { title: "MAXHUB", url: "/maxhub" },
-                    { title: "Products", url: "/maxhub/products" }
-                ]}
-            />
+            <main>
+                <PageHeader
+                    title="MAXHUB Products"
+                    eyebrow="Full catalogue"
+                    lede="Interactive panels, commercial displays, LED, conferencing, capture and the software behind them."
+                    crumbs={[
+                        { to: '/partners', label: 'Business partners' },
+                        { to: '/maxhub', label: 'MAXHUB' },
+                    ]}
+                />
 
-            <div className="maxhub-products-container">
-                {/* Remove Container wrapper here */}
                 <CategoryNav
                     categories={categories}
                     activeCategory={activeCategory}
                     setActiveCategory={setActiveCategory}
                 />
 
-                <div className="maxhub-category-content">
-                    <Container>
+                <div className="maxhub-category-content" id="maxhub-catalogue">
+                    <div className="tm-shell">
                         {categories.map((category) => (
                             <CategorySection
                                 key={category.id}
@@ -528,9 +527,9 @@ const MaxHubProducts = () => {
                                 isActive={activeCategory === category.id}
                             />
                         ))}
-                    </Container>
+                    </div>
                 </div>
-            </div>
+            </main>
 
             <Footer />
         </div>

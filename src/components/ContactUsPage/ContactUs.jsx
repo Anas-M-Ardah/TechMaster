@@ -1,169 +1,181 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
 import axios from 'axios';
+import { FiArrowRight } from 'react-icons/fi';
 import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
+import BlurText from '../Common/BlurText';
 import '../../css/ContactUsPage/ContactUs.css';
 
+const ENDPOINT = 'https://techmaster-emailservice.onrender.com/api/contact';
+
+const DETAILS = [
+  { label: 'Office', value: 'Building 219, Wasfi Tal St, Khalda, Amman, Jordan' },
+  { label: 'Call', value: '+962 79 909 4176', href: 'tel:+962799094176' },
+  { label: 'Email', value: 'malardah@technology-master.com', href: 'mailto:malardah@technology-master.com' },
+];
+
+const EMPTY = { name: '', email: '', phone: '', message: '' };
+
 function ContactUs() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-    });
+  const [formData, setFormData] = useState(EMPTY);
+  // 'idle' | 'sending' | 'sent' | 'error' — replaces the previous hand-rolled
+  // setInterval that animated dots into the response string.
+  const [status, setStatus] = useState('idle');
+  const [feedback, setFeedback] = useState('');
 
-    const [responseMessage, setResponseMessage] = useState('');
-    const [dots, setDots] = useState('');
+  const handleChange = (event) => {
+    setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
+  };
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus('sending');
+    setFeedback('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setResponseMessage('Email is being sent');
-        setDots('');
+    try {
+      const response = await axios.post(ENDPOINT, formData);
+      setStatus('sent');
+      setFeedback(response?.data?.message || 'Thanks — your message is on its way.');
+      setFormData(EMPTY);
+    } catch {
+      setStatus('error');
+      setFeedback('That did not go through. Please try again, or call us directly.');
+    }
+  };
 
-        const interval = setInterval(() => {
-            setDots(prev => (prev.length < 3 ? prev + '.' : ''));
-        }, 500);
+  return (
+    <>
+      <Header />
+      <main>
+        <PageHeader
+          title="Contact"
+          eyebrow="Amman, Jordan"
+          lede="Tell us what you are building and we will scope it against your site."
+        />
 
-        try {
-            const response = await axios.post('https://techmaster-emailservice.onrender.com/api/contact', formData);
-            clearInterval(interval);
-            setResponseMessage(response.data.message);
-            setDots('');
-        } catch (error) {
-            clearInterval(interval);
-            setResponseMessage('Failed to send message. Please try again later.');
-            setDots('');
-        }
-    };
+        <section className="ct tm-section">
+          <div className="tm-shell">
+            <div className="ct-grid">
+              <div className="ct-aside">
+                <BlurText
+                  as="h2"
+                  className="tm-h2 ct-title"
+                  segments={[{ text: 'Start with a', breakAfter: true }, { text: 'site survey.' }]}
+                />
 
-    return (
-        <>
-            <Header />
-            <PageHeader 
-                title="Contact Us" 
-                breadcrumb={[
-                    { title: "Home", url: "/" },
-                    { title: "Contact Us", url: "/contact-us" }
-                ]}
-            />
-            <section className="contact-us-section py-5">
-                <Container>
-                    <Row className="mb-5">
-                        <Col md={6}>
-                            <h2 className="contact-us-title">
-                                Grow Your Business With <span className="text-primary">Our Expertise</span>
-                            </h2>
-                            <p className="contact-us-description">
-                                Technology Master provides its customers with professional technical support services making sure that Technology Master clients will get the assistance they need.
-                            </p>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md={4} className="mb-4">
-                            <div className="contact-info-box">
-                                <h5>Office Address</h5>
-                                <p>Building 219, Wasfi Tal St, Khalda, Amman, Jordan</p>
-                            </div>
-                            <div className="contact-info-box">
-                                <h5>Telephone Number</h5>
-                                <p>+962-79-909-4176</p>
-                            </div>
-                            <div className="contact-info-box">
-                                <h5>Email Address</h5>
-                                <p>malardah@technology-master.com</p>
-                            </div>
-                        </Col>
-                        <Col md={8}>
-                            <Form onSubmit={handleSubmit}>
-                                <Row>
-                                    <Col md={6}>
-                                        <Form.Group controlId="formName">
-                                            <Form.Label>Name (required)</Form.Label>
-                                            <Form.Control 
-                                                type="text" 
-                                                name="name"
-                                                placeholder="Your Name*" 
-                                                value={formData.name}
-                                                onChange={handleChange}
-                                                required 
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col md={6}>
-                                        <Form.Group controlId="formEmail">
-                                            <Form.Label>Email Address (required)</Form.Label>
-                                            <Form.Control 
-                                                type="email" 
-                                                name="email"
-                                                placeholder="Your Email Address*" 
-                                                value={formData.email}
-                                                onChange={handleChange}
-                                                required 
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={6}>
-                                        <Form.Group controlId="formPhone">
-                                            <Form.Label>Phone (optional)</Form.Label>
-                                            <Form.Control 
-                                                type="text" 
-                                                name="phone"
-                                                placeholder="Your Phone Number" 
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-                                <Form.Group controlId="formMessage">
-                                    <Form.Label>Your message</Form.Label>
-                                    <Form.Control 
-                                        as="textarea" 
-                                        name="message"
-                                        rows={4} 
-                                        placeholder="Type your message*" 
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required 
-                                    />
-                                </Form.Group>
-                                <Button variant="primary" type="submit" className="mt-3">
-                                    Send message
-                                </Button>
-                                {responseMessage && <p className="mt-3">{responseMessage}{dots}</p>}
-                            </Form>
-                        </Col>
-                    </Row>
-                    <Row className="mt-5">
-                        <Col>
-                            <h5 className="mb-3">Our Location</h5>
-                            <div className="location-map">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3383.809706026183!2d35.85956907508888!3d31.993173673631727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sBuilding%20219%2C%20Wasfi%20Tal%20St%2C%20Khalda%2C%20Amman%2C%20Jordan!5e0!3m2!1sen!2sjo!4v1736099352663!5m2!1sen!2sjo"
-                                    width="100%"
-                                    height="300"
-                                    frameBorder="0"
-                                    style={{ border: 0 }}
-                                    allowFullScreen=""
-                                    aria-hidden="false"
-                                    tabIndex="0"
-                                ></iframe>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-            <Footer />
-        </>
-    );
+                <p className="ct-note">
+                  Technology Master provides its customers with professional technical support
+                  services, making sure clients get the assistance they need.
+                </p>
+
+                <dl className="ct-details">
+                  {DETAILS.map((detail) => (
+                    <div className="ct-detail" key={detail.label}>
+                      <dt className="tm-num">{detail.label}</dt>
+                      <dd>
+                        {detail.href ? <a href={detail.href}>{detail.value}</a> : detail.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+
+              <form className="ct-form" onSubmit={handleSubmit}>
+                <div className="ct-fields">
+                  <label className="ct-field">
+                    <span className="ct-label">
+                      Name <em>required</em>
+                    </span>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      autoComplete="name"
+                      required
+                    />
+                  </label>
+
+                  <label className="ct-field">
+                    <span className="ct-label">
+                      Email <em>required</em>
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      autoComplete="email"
+                      required
+                    />
+                  </label>
+
+                  <label className="ct-field">
+                    <span className="ct-label">
+                      Phone <em>optional</em>
+                    </span>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      autoComplete="tel"
+                    />
+                  </label>
+
+                  <label className="ct-field is-wide">
+                    <span className="ct-label">
+                      Message <em>required</em>
+                    </span>
+                    <textarea
+                      name="message"
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    />
+                  </label>
+                </div>
+
+                <div className="ct-submit">
+                  <button type="submit" className="tm-btn tm-btn-solid" disabled={status === 'sending'}>
+                    {status === 'sending' ? 'Sending…' : 'Send message'}
+                    {status !== 'sending' && <FiArrowRight aria-hidden="true" />}
+                  </button>
+
+                  <p
+                    className={`ct-feedback${status === 'error' ? ' is-error' : ''}${
+                      status === 'sent' ? ' is-sent' : ''
+                    }`}
+                    role="status"
+                    aria-live="polite"
+                  >
+                    {feedback}
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            <figure className="ct-map">
+              <figcaption className="ct-map-caption">
+                <span className="tm-num">Location</span>
+                <span>Building 219, Wasfi Tal St, Khalda, Amman</span>
+              </figcaption>
+              <iframe
+                title="Technology Master office location on Google Maps"
+                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3383.809706026183!2d35.85956907508888!3d31.993173673631727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sBuilding%20219%2C%20Wasfi%20Tal%20St%2C%20Khalda%2C%20Amman%2C%20Jordan!5e0!3m2!1sen!2sjo!4v1736099352663!5m2!1sen!2sjo"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </figure>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 export default ContactUs;

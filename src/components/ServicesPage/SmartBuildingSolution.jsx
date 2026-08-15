@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import PageHeader from '../Common/PageHeader';
@@ -77,15 +77,15 @@ function SmartBuildingSolutions() {
     return (
         <>
             <Header />
-            <PageHeader 
-                title="Smart Building Solutions" 
-                breadcrumb={[
-                    { title: "Home", url: "/" },
-                    { title: "Services", url: "/services" },
-                    { title: "Smart Building Solutions", url: "/services/smart-building" }
-                ]}
-            />
-            <ServiceDetails {...serviceData} />
+            <main>
+                <PageHeader
+                    title="Smart Building Solutions"
+                    eyebrow="Service line 04"
+                    lede="Building management, access control and automation, tied into one platform rather than five."
+                    crumbs={[{ to: '/services', label: 'Services' }]}
+                />
+                <ServiceDetails {...serviceData} />
+            </main>
             <Footer />
         </>
     );

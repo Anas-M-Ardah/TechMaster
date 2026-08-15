@@ -1,141 +1,165 @@
 // MaxHub.jsx
-import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import Header from "../../Header";
-import Footer from "../../Footer";
-import PageHeader from "../../Common/PageHeader";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./MaxHub.css";
+// Partner landing page.
+//
+// Two fixes carried in with the redesign: the featured products used
+// react-router <Link> for absolute maxhub.com URLs, which routed in-app to
+// "/https://www.maxhub.com/..." instead of leaving the site; and one card
+// pointed at /maxhub/uc-bm21, which is not a registered route. External
+// destinations now use <a>, and the internal one points at the catalogue.
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FiArrowRight, FiArrowUpRight } from 'react-icons/fi';
+import Header from '../../Header';
+import Footer from '../../Footer';
+import PageHeader from '../../Common/PageHeader';
+import BlurText from '../../Common/BlurText';
+import MagneticButton from '../../Common/MagneticButton';
+import './MaxHub.css';
 
-//images
 import v7 from '/images/partners/maxhub/interactive-flat-panel/v7.jpg';
-import wireless_dongle from '/images/partners/maxhub/accessories/wireless-dongle.jpg';
+import wirelessDongle from '/images/partners/maxhub/accessories/wireless-dongle.jpg';
 import blackboard from '/images/partners/maxhub/interactive-flat-panel/blackboard.jpg';
 
+const FEATURED = [
+  {
+    id: 'xboard-v7',
+    name: 'XBoard V7 Series',
+    note: 'Interactive flat panel',
+    image: v7,
+    href: 'https://www.maxhub.com/en/xboard_v7_series/',
+    external: true,
+  },
+  {
+    id: 'wireless-dongle',
+    name: 'Wireless Dongle',
+    note: 'One-touch screen sharing',
+    image: wirelessDongle,
+    href: 'https://www.maxhub.com/en/wireless-dongle',
+    external: true,
+  },
+  {
+    id: 'blackboard',
+    name: 'Interactive Blackboard',
+    note: 'Classroom writing surface and display',
+    image: blackboard,
+    href: '/maxhub/products',
+  },
+];
+
+const cell = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
 const MaxHub = () => {
-    const featuredProducts = [
-        {
-            id: 1,
-            name: "XBoard V7 Series",
-            image: v7,
-            description: "",
-            url: "https://www.maxhub.com/en/xboard_v7_series/"
-        },
-        {
-            id: 2,
-            name: "Wireless Dongle",
-            image: wireless_dongle,
-            description: "",
-            url: "https://www.maxhub.com/en/wireless-dongle",
-        },
-        {
-            id: 3,
-            name: "MAXHUB UC BM21",
-            description: "Bluetooth Speakerphone",
-            image: blackboard,
-            url: "/maxhub/uc-bm21"
-        }
-    ];
+  return (
+    <>
+      <Header />
+      <main>
+        <PageHeader
+          title="MAXHUB"
+          eyebrow="Official partner — Jordan"
+          lede="Interactive displays and audio-visual collaboration systems, carried and supported in country by our own engineers."
+          crumbs={[{ to: '/partners', label: 'Business partners' }]}
+        />
 
-    const sliderSettings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                }
-            }
-        ]
-    };
+        <section className="mh tm-section">
+          <div className="tm-shell">
+            <div className="mh-intro">
+              <div>
+                <span className="tm-eyebrow">About MAXHUB</span>
+                <BlurText
+                  as="h2"
+                  className="tm-h2 mh-intro-title"
+                  text="Displays built for rooms that have to work."
+                />
+              </div>
 
-    return (
-        <div className="maxhub-page">
-            <Header />
-            <PageHeader
-                title="MAXHUB"
-                breadcrumb={[
-                    { title: "Home", url: "/" },
-                    { title: "Business Partners", url: "/business-partners" },
-                    { title: "MAXHUB", url: "/maxhub" }
-                ]}
-            />
-
-            <div className="maxhub-container">
-                <Container>
-                    <Row className="maxhub-intro-section mb-5">
-                        <Col>
-                            <h2 className="maxhub-section-title">About MAXHUB</h2>
-                            <p className="maxhub-intro-text">
-                                MAXHUB is a world-renowned brand specialized in developing and manufacturing interactive displays
-                                and audio-visual collaboration solutions. With a focus on innovation and user experience, MAXHUB
-                                provides cutting-edge technology solutions for modern workplaces and educational institutions.
-                            </p>
-                        </Col>
-                    </Row>
-                </Container>
-
-                <div className="maxhub-products-section">
-                    <Container>
-                        <h2 className="maxhub-section-title">Featured Products</h2>
-                    </Container>
-
-                    <div className="maxhub-slider-container">
-                        <Slider {...sliderSettings}>
-                            {featuredProducts.map(product => (
-                                <div key={product.id} className="maxhub-slider-item">
-                                    <Link to={product.url} className="maxhub-product-link">
-                                        <div className="maxhub-product-card">
-                                            <div className="maxhub-product-image-container">
-                                                <img
-                                                    src={product.image}
-                                                    alt={product.name}
-                                                    className="maxhub-product-image"
-                                                />
-                                            </div>
-                                            <div className="maxhub-product-content">
-                                                <h3 className="maxhub-product-title">{product.name}</h3>
-                                                <p className="maxhub-product-description">{product.description}</p>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            ))}
-                        </Slider>
-                    </div>
-
-                    <Container>
-                        <Row className="maxhub-cta-section mt-4">
-                            <Col className="text-center">
-                                <Link to="/maxhub/products">
-                                    <Button className="maxhub-view-all-btn">
-                                        View All Products
-                                    </Button>
-                                </Link>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
+              <p className="tm-lede">
+                MAXHUB develops and manufactures interactive displays and audio-visual
+                collaboration solutions, with a focus on innovation and user experience — for
+                modern workplaces and educational institutions.
+              </p>
             </div>
+          </div>
+        </section>
 
-            <Footer />
-        </div>
-    );
+        <section className="mh-featured tm-section tm-band-alt">
+          <div className="tm-shell">
+            <header className="tm-section-head">
+              <div>
+                <span className="tm-eyebrow">Featured</span>
+                <h2 className="tm-h2">A sample of the range.</h2>
+              </div>
+
+              <div className="tm-section-head-aside">
+                <p className="tm-lede">
+                  Panels, LED, conferencing, signage and the software behind them — the full
+                  catalogue runs to several categories.
+                </p>
+              </div>
+            </header>
+
+            <motion.ul
+              className="mh-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ staggerChildren: 0.08 }}
+            >
+              {FEATURED.map((product, i) => {
+                const body = (
+                  <>
+                    <span className="mh-plate">
+                      <img src={product.image} alt={product.name} loading="lazy" />
+                    </span>
+                    <span className="mh-meta">
+                      <span className="mh-index tm-num">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="mh-name">{product.name}</span>
+                      <span className="mh-note">{product.note}</span>
+                    </span>
+                    <span className="mh-arrow" aria-hidden="true">
+                      <FiArrowUpRight />
+                    </span>
+                  </>
+                );
+
+                return (
+                  <motion.li className="mh-cell" key={product.id} variants={cell}>
+                    {product.external ? (
+                      <a
+                        className="mh-link"
+                        href={product.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {body}
+                        <span className="mh-external tm-num">maxhub.com</span>
+                      </a>
+                    ) : (
+                      <Link className="mh-link" to={product.href}>
+                        {body}
+                      </Link>
+                    )}
+                  </motion.li>
+                );
+              })}
+            </motion.ul>
+
+            <div className="mh-cta">
+              <MagneticButton strength={0.25}>
+                <Link to="/maxhub/products" className="tm-btn tm-btn-solid">
+                  View the full catalogue
+                  <FiArrowRight aria-hidden="true" />
+                </Link>
+              </MagneticButton>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 };
 
 export default MaxHub;

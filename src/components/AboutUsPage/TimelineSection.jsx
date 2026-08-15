@@ -1,144 +1,80 @@
 // components/AboutUsPage/TimelineSection.jsx
-import React, { useState, useEffect } from 'react';
+// The four stages, drawn as a scale with a node per stage. The previous
+// version gave each stage its own colour and auto-advanced a carousel on
+// mobile; both are gone — all four stages are readable at once, and the only
+// colour is the accent marking where the company is now.
+import { motion } from 'framer-motion';
+import BlurText from '../Common/BlurText';
 import '../../css/AboutUsPage/TimelineSection.css';
-import { FaCloud, FaLightbulb, FaFlag, FaArrowRight, FaLongArrowAltRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+
+const STAGES = [
+  {
+    name: 'Dream',
+    subtitle: 'Started from a dream',
+    description: 'It began as an idea, and the idea grew.',
+  },
+  {
+    name: 'Implement',
+    subtitle: 'Then we began',
+    description: 'Technology Master was founded to deliver those solutions.',
+  },
+  {
+    name: 'Present',
+    subtitle: 'Here we are',
+    description: 'Delivering for major organisations across the Kingdom.',
+    current: true,
+  },
+  {
+    name: 'Future',
+    subtitle: 'What we aim for',
+    description: 'To become a world leader in flexible, end-to-end solutions.',
+  },
+];
+
+const container = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
 
 const TimelineSection = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
+  return (
+    <section className="tl tm-section tm-band-alt">
+      <div className="tm-shell">
+        <header className="tm-section-head">
+          <div>
+            <span className="tm-eyebrow">Trajectory</span>
+            <BlurText as="h2" className="tm-h2" text="From an idea to the Kingdom's institutions." />
+          </div>
+        </header>
 
-    const timelineItems = [
-        {
-            icon: <FaCloud />,
-            title: "Dream",
-            subtitle: "Started from a dream",
-            description: "It all began with an idea which grew",
-            color: "#00BCD4"
-        },
-        {
-            icon: <FaLightbulb />,
-            title: "Implement",
-            subtitle: "Then we began",
-            description: "We decided to start Technology Master to provide solutions",
-            color: "#2196F3"
-        },
-        {
-            icon: <FaFlag />,
-            title: "Present",
-            subtitle: "Here we are",
-            description: "Currently providing solutions for major organizations and continuing",
-            color: "#1976D2"
-        },
-        {
-            icon: <FaArrowRight />,
-            title: "Future",
-            subtitle: "What we aim for",
-            description: "As we mentioned we plan to become the world leader in providing flexible, end-to-end solutions",
-            color: "#0D47A1"
-        }
-    ];
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev === timelineItems.length - 1 ? 0 : prev + 1));
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev === 0 ? timelineItems.length - 1 : prev - 1));
-    };
-
-    // Auto slide for mobile
-    useEffect(() => {
-        if (isMobile) {
-            const interval = setInterval(nextSlide, 3000);
-            return () => clearInterval(interval);
-        }
-    }, [isMobile]);
-
-    return (
-        <div className="tm-timeline-section">
-            <div className="tm-timeline-container">
-                <div className={`tm-timeline ${isMobile ? 'mobile' : ''}`}>
-                    {isMobile ? (
-                        <>
-                            <button className="tm-timeline-nav prev" onClick={prevSlide}>
-                                <FaChevronLeft />
-                            </button>
-                            <div className="tm-timeline-mobile-wrapper">
-                                <div 
-                                    className="tm-timeline-mobile-slider"
-                                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                                >
-                                    {timelineItems.map((item, index) => (
-                                        <div 
-                                            key={index}
-                                            className={`tm-timeline-item ${index === currentSlide ? 'active' : ''}`}
-                                        >
-                                            <div 
-                                                className="tm-timeline-icon-container"
-                                                style={{ backgroundColor: item.color }}
-                                            >
-                                                {item.icon}
-                                            </div>
-                                            <div className="tm-timeline-content">
-                                                <h3 style={{ color: item.color }}>{item.title}</h3>
-                                                <h4>{item.subtitle}</h4>
-                                                <p>{item.description}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <button className="tm-timeline-nav next" onClick={nextSlide}>
-                                <FaChevronRight />
-                            </button>
-                            <div className="tm-timeline-dots">
-                                {timelineItems.map((_, index) => (
-                                    <span 
-                                        key={index}
-                                        className={`dot ${index === currentSlide ? 'active' : ''}`}
-                                        onClick={() => setCurrentSlide(index)}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    ) : (
-                        // Desktop version remains the same
-                        timelineItems.map((item, index) => (
-                            <div 
-                                className="tm-timeline-item" 
-                                key={index}
-                                data-aos="fade-up"
-                                data-aos-delay={index * 100}
-                            >
-                                <div className="tm-timeline-icon-container" style={{ backgroundColor: item.color }}>
-                                    {item.icon}
-                                </div>
-                                <div className="tm-timeline-content">
-                                    <h4>{item.subtitle}</h4>
-                                    <p>{item.description}</p>
-                                </div>
-                                {index < timelineItems.length - 1 && (
-                                    <div className="tm-timeline-arrow">
-                                        <FaLongArrowAltRight />
-                                    </div>
-                                )}
-                            </div>
-                        ))
-                    )}
-                </div>
-            </div>
-        </div>
-    );
+        <motion.ol
+          className="tl-track"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          {STAGES.map((stage, i) => (
+            <motion.li
+              className={`tl-stage${stage.current ? ' is-current' : ''}`}
+              key={stage.name}
+              variants={item}
+            >
+              <span className="tl-node" aria-hidden="true" />
+              <span className="tl-index tm-num">
+                {String(i + 1).padStart(2, '0')}
+                {stage.current && <span className="tl-now"> — now</span>}
+              </span>
+              <h3 className="tm-h3 tl-name">{stage.name}</h3>
+              <p className="tl-subtitle">{stage.subtitle}</p>
+              <p className="tl-description">{stage.description}</p>
+            </motion.li>
+          ))}
+        </motion.ol>
+      </div>
+    </section>
+  );
 };
 
 export default TimelineSection;

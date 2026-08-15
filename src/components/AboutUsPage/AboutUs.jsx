@@ -9,9 +9,15 @@ function AboutUs() {
   return (
     <>
       <Header />
-      <PageHeader title="About Us" />
-      <AboutContent />
-      <TimelineSection />
+      <main>
+        <PageHeader
+          title="About us"
+          eyebrow="Est. Amman, Jordan"
+          lede="An ICT solutions and services provider that plans, designs, optimises and supports IT infrastructure, data centers and smart solutions."
+        />
+        <AboutContent />
+        <TimelineSection />
+      </main>
       <Footer />
     </>
   );

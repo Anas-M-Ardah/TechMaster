@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import './css/theme.css';
 
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Home from './components/HomePage/Home';
 import AboutUs from './components/AboutUsPage/AboutUs';
@@ -72,6 +72,9 @@ function App() {
         <Route path="/services/smart-building" element={<SmartBuildingSolutions />} />
         <Route path="/maxhub" element={<MaxHub />} />
         <Route path="maxhub/products" element={<MaxHubProducts />} />
+        {/* Without this, an unknown path matched no route and rendered a blank
+            page — no header, no footer, nothing. */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

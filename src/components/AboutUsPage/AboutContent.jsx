@@ -1,77 +1,82 @@
 // components/AboutUsPage/AboutContent.jsx
-import React, { useState } from 'react';
+// Mission and vision were behind a tab toggle, which hid half the section's
+// substance behind a click. They now sit side by side as two ruled columns —
+// the company's own wording, just no longer competing for one slot.
+import { motion } from 'framer-motion';
+import BlurText from '../Common/BlurText';
 import '../../css/AboutUsPage/AboutContent.css';
-import { FaTrophy } from 'react-icons/fa';
+
 import aboutImage from '/images/banner1.jpg';
 
+const MISSION =
+  'To empower our clients with an intelligent and excellent IT infrastructure equipped with smart technology for their homes and business that makes their life easier while enabling them to optimize the efficiency of their business operations in an always-on-line and controlled network.';
+
+const VISION =
+  'To be the world leader in providing flexible, end-to-end solutions for the design, deployment, and management of effective, efficient and consistent on-premises and Data Centers, Low Current and Cloud IT Infrastructure solutions — implementation and support services that let customers consume technology in their business roles.';
+
 const AboutContent = () => {
-    const [activeTab, setActiveTab] = useState('mission');
+  return (
+    <section className="ab tm-section">
+      <div className="tm-shell">
+        <div className="ab-grid">
+          <div className="ab-text">
+            <span className="tm-eyebrow">The company</span>
 
-    const tabContent = {
-        mission: "To empower our clients with an intelligent and excellent IT infrastructure equipped with smart technology for their homes and business that makes their life easier while enabling them to optimize the efficiency of their business operations in an always-on-line and controlled network",
-        vision: "To be the world leader in providing flexible, end-to-end solutions for the design, deployment, and management of the provide a world-class effective, efficient, and consistent on-premises and Data Centers, Low Current, Cloud IT Infrastructure Solutions Implementation and support services and enable customers to consume technology in their business roles"
-    };
+            <BlurText
+              as="h2"
+              className="tm-h2 ab-title"
+              segments={[{ text: 'Enterprise solutions, across', breakAfter: true }, { text: 'every segment in the Kingdom.' }]}
+            />
 
-    return (
-        <div className="tm-about-content">
-            <div className="tm-about-container">
-                <div className="tm-about-grid">
-                    <div className="tm-about-text" data-aos="fade-right">
-                        <div className="tm-about-breadcrumb">
-                            <span>About us</span>
-                            <span className="tm-about-arrow">→</span>
-                        </div>
-                        
-                        <h2>Choose <span className="tm-about-highlight">The Best</span><br />Solutions Provider</h2>
-                        
-                        <p className="tm-about-main-description">
-                            an ICT (Information & Communication Technology) Solutions & Services provider. We help clients plan, Design Optimize, and support the mission of IT Infrastructure, Data Centers & Smart Solutions.
-                        </p>
+            <p className="tm-lede ab-lede">
+              We are an ICT (Information &amp; Communication Technology) solutions and services
+              provider. We help clients plan, design, optimise and support the mission of IT
+              infrastructure, data centers and smart solutions.
+            </p>
 
-                        <p className="tm-about-sub-description">
-                            We develop and customize Solutions for Customers targeting state-of-the-art solution.
-                        </p>
+            <p className="ab-body">
+              Technology Master develops and customises solutions targeting state-of-the-art
+              delivery. Its capability as a total solutions provider is enhanced by a portfolio of
+              services in networking, systems integration, consultation and implementation,
+              business recovery and operations support.
+            </p>
+          </div>
 
-                        <p className="tm-about-detailed-info">
-                            Today, Technology Master offers cutting-edge enterprise solutions across all industry segments in the Kingdom. Its capability as a total solutions provider is further enhanced with its portfolio of services in networking, systems integration, consultation and implementation, business recovery, and operations support
-                        </p>
-
-                        <div className="tm-about-tabs">
-                            <button 
-                                className={`tm-about-tab ${activeTab === 'mission' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('mission')}
-                            >
-                                Our Mission
-                            </button>
-                            <button 
-                                className={`tm-about-tab ${activeTab === 'vision' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('vision')}
-                            >
-                                Our Vision
-                            </button>
-                        </div>
-
-                        <div className="tm-about-tab-content">
-                            <p>
-                                {tabContent[activeTab]}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="tm-about-image-container" data-aos="fade-left">
-                        <div className="tm-about-image-wrapper">
-                            <img src={aboutImage} alt="About Us" />
-                        </div>
-                        <div className="tm-about-excellence-card">
-                            <FaTrophy className="tm-about-trophy-icon" />
-                            <h3>Thriving for Excellence</h3>
-                            <p>We aim to always be the market leader in providing solutions to clients</p>
-                        </div>
-                    </div>
-                </div>
+          <motion.figure
+            className="ab-plate"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="ab-plate-frame">
+              <img src={aboutImage} alt="Technology Master project work" loading="lazy" />
+              <span className="ab-tick ab-tick-tl" aria-hidden="true" />
+              <span className="ab-tick ab-tick-tr" aria-hidden="true" />
+              <span className="ab-tick ab-tick-bl" aria-hidden="true" />
+              <span className="ab-tick ab-tick-br" aria-hidden="true" />
             </div>
+            <figcaption className="ab-plate-caption">
+              <span className="tm-num">15+</span>
+              <span>years delivering infrastructure across Jordan</span>
+            </figcaption>
+          </motion.figure>
         </div>
-    );
+
+        <div className="ab-statements">
+          <article className="ab-statement">
+            <span className="ab-statement-index tm-num">01 — Mission</span>
+            <p>{MISSION}</p>
+          </article>
+
+          <article className="ab-statement">
+            <span className="ab-statement-index tm-num">02 — Vision</span>
+            <p>{VISION}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default AboutContent;
